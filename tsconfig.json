@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "outDir": "dist"
+  },
+  "include": ["server/**/*.ts"],
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true
+  }
+}

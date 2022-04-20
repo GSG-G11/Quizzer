@@ -1,0 +1,55 @@
+{
+  "name": "quizzer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node dist/",
+    "dev": "cross-env NODE_ENV=development ts-node-dev server/index.ts",
+    "test:routes": "cross-env NODE_ENV=test jest ./__test__/backend/routes.test.ts",
+    "test:db": "cross-env NODE_ENV=test jest ./__test__/backend/db.test.ts",
+    "build": "tsc -p tsconfig.json",
+    "prepare": "husky install",
+    "client": "cd client/ && npm start",
+    "heroku-postbuild": "cd client/ && npm i && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G11/Quizzer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G11/Quizzer/issues"
+  },
+  "homepage": "https://github.com/GSG-G11/Quizzer#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.3",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.25",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^7.0.0",
+    "jest": "^27.5.1",
+    "morgan": "^1.10.0",
+    "pre-commit": "^1.2.2",
+    "supertest": "^6.2.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  }
+}
