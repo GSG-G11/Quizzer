@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development ts-node-dev server/index.ts",
     "test": "cross-env NODE_ENV=test jest",
     "build": "tsc -p tsconfig.json",
-    "prepare": "husky install",
+    "prepare": "is-ci || npx husky install",
     "client": "cd client/ && npm start",
     "heroku-postbuild": "npm run build && cd client/ && npm i && npm run build"
   },
