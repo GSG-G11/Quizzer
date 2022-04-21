@@ -1,6 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run test:routes
-npm run test:db
-npm run test:frontend
+npm run test

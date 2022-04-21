@@ -6,9 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node dist/",
     "dev": "cross-env NODE_ENV=development ts-node-dev server/index.ts",
-    "test:routes": "cross-env NODE_ENV=test jest ./__test__/backend/routes.test.ts",
-    "test:db": "cross-env NODE_ENV=test jest ./__test__/backend/db.test.ts",
-    "test:frontend": "cross-env NODE_ENV=test jest ./__test__/frontend",
+    "test": "cross-env NODE_ENV=test jest",
     "build": "tsc -p tsconfig.json",
     "prepare": "husky install",
     "client": "cd client/ && npm start",
@@ -18,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/GSG-G11/Quizzer.git"
   },
-  "keywords": [],
+  "keywords": ["eslint", "typescript", "node", "express", "react", "react-router", "axios", "jest", "supertest", "nodemon", "husky", "heroku", "heroku-postbuild"],
   "author": "",
   "license": "ISC",
   "bugs": {
