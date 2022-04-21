@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "isolatedModules": false,
+    "esModuleInterop": true,
+    "outDir": "dist"
+  },
+  "include": ["server/**/*.ts"],
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true
+  }
+}
