@@ -28,20 +28,20 @@ VALUES (
     'ahmad',
     'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
   ),
-(
-  'Mohamed',
-  'mohamed@gmail.com',
-  'mohamed123',
-  'mohamed',
-  'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
-),
-(
-  'Ali',
-  'ali@gmail.com',
-  'ali123',
-  'ali',
-  'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
-);
+  (
+    'Mohamed',
+    'mohamed@gmail.com',
+    'mohamed123',
+    'mohamed',
+    'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
+  ),
+  (
+    'Ali',
+    'ali@gmail.com',
+    'ali123',
+    'ali',
+    'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
+  );
 INSERT INTO quizzes (
     id,
     teacher_id,
@@ -439,8 +439,7 @@ VALUES (
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   );
 INSERT INTO scores (quiz_id, student_id, student_score)
-VALUES ('quiz-1', 'user-1', '10'),
-  ('quiz-1', 1, '8'),
+VALUES ('quiz-1', 1, '10'),
   ('quiz-1', 2, '10'),
   ('quiz-1', 3, '9'),
   ('quiz-2', 1, '10'),
@@ -449,51 +448,54 @@ VALUES ('quiz-1', 'user-1', '10'),
   ('quiz-3', 1, '10'),
   ('quiz-3', 2, '8'),
   ('quiz-3', 3, '10');
-
 INSERT INTO leaderboard (quiz_title, mark, students)
 VALUES (
     'Arts & Literature',
     '10',
-    '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 10}, {username: "user-4", score: 10}, {username: "user-5", score: 10}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 10}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
   ),
   (
     'Film & TV',
     '10',
-    '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 10}, {username: "user-4", score: 10}, {username: "user-5", score: 10}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 10}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
   ),
   (
     'Food & Drink',
     '10',
-    '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 10}, {username: "user-4", score: 10}, {username: "user-5", score: 10}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 10}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
-  );
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
+  ),
+  (
+    'General Knowledge',
+    '10',
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":8},{"username":"user-4","score":10},{"username":"user-5","score":9},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":5},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
+  ),
+  (
+    'Geography',
+    '10',
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
+  ),
+  (
+    'Histoy',
+    '10',
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
+  ),
 (
-  'General Knowledge',
-  '10',
-  '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 8}, {username: "user-4", score: 10}, {username: "user-5", score: 9}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 5}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
-);
+    'Music',
+    '10',
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
+  ),
 (
-  'Geography',
-  '10',
-  '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 10}, {username: "user-4", score: 10}, {username: "user-5", score: 10}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 10}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
-);
+    'Science',
+    '10',
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
+  ),
 (
-  'Histoy',
-  '10',
-  '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 10}, {username: "user-4", score: 10}, {username: "user-5", score: 10}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 10}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
-)(
-  'Music',
-  '10',
-  '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 10}, {username: "user-4", score: 10}, {username: "user-5", score: 10}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 10}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
-)(
-  'Science',
-  '10',
-  '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 10}, {username: "user-4", score: 10}, {username: "user-5", score: 10}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 10}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
-)(
-  'Society & Culture',
-  '10',
-  '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 10}, {username: "user-4", score: 10}, {username: "user-5", score: 10}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 10}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
-)(
-  'Sport & Leisure',
-  '10',
-  '[{username: "user-1", score: 10}, {username: "user-2", score: 10}, {username: "user-3", score: 10}, {username: "user-4", score: 10}, {username: "user-5", score: 10}, {username: "user-6", score: 10}, {username: "user-7", score: 10}, {username: "user-8", score: 10}, {username: "user-9", score: 10}, {username: "user-10", score: 10}]'
-)
+    'Society & Culture',
+    '10',
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
+  ),
+(
+    'Sport & Leisure',
+    '10',
+    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
+  )
