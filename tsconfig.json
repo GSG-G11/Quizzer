@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
+    "target": "ES5",
     "module": "commonjs",
-    "isolatedModules": true,
+    "isolatedModules": false,
     "esModuleInterop": true,
     "outDir": "dist"
   },

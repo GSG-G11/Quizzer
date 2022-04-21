@@ -12,7 +12,7 @@
     "build": "tsc -p tsconfig.json",
     "prepare": "husky install",
     "client": "cd client/ && npm start",
-    "heroku-postbuild": "cd client/ && npm i && npm run build"
+    "heroku-postbuild": "npm run build && cd client/ && npm i && npm run build"
   },
   "repository": {
     "type": "git",
