@@ -1,4 +1,7 @@
 import { verify } from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const { env: { SECRET_KEY } } = process;
 
