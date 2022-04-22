@@ -1,0 +1,1 @@
+export { getLeaderboardQuery } from './student';
