@@ -1,3 +1,29 @@
-import { verifyToken, signToken } from './jwt';
+import { signupSchema, loginSchema } from './validation';
+import { signToken, verifyToken } from './jwt';
+import {
+  successSignup,
+  takenEmail,
+  invalidPassword,
+  invalidUsername,
+  invalidAvatar,
+  successLogin,
+  invalidUserPassword,
+  incorrectEmail,
+  incorrectPassword,
+} from './models';
 
-export { verifyToken, signToken };
+export {
+  signupSchema,
+  loginSchema,
+  signToken,
+  verifyToken,
+  successSignup,
+  takenEmail,
+  invalidPassword,
+  invalidUsername,
+  invalidAvatar,
+  successLogin,
+  invalidUserPassword,
+  incorrectEmail,
+  incorrectPassword,
+};

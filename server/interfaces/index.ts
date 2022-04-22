@@ -1,3 +1,5 @@
+import User from './user';
+import Checkable from './checkable';
 import UserAuth from './user-auth';
 
-export default UserAuth;
+export { User, Checkable, UserAuth };

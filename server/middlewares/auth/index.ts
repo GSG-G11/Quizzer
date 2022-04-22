@@ -1,5 +1,5 @@
 import { Response, NextFunction } from 'express';
-import UserAuth from '../../interfaces';
+import { UserAuth } from '../../interfaces';
 import { CustomError } from '../../errors';
 import { verifyToken } from '../../utils';
 
