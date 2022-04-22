@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node dist/",
     "dev": "cross-env NODE_ENV=development ts-node-dev server/index.ts",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest -i",
     "build": "tsc -p tsconfig.json",
     "prepare": "is-ci || npx husky install",
     "client": "cd client/ && npm start",
