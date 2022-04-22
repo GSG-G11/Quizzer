@@ -11,6 +11,7 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
 
     const user = await verifyToken(token);
     req.user = user;
+    next();
   } catch (err) {
     if (err.toString().includes('JsonWebTokenError')) {
       next(new CustomError(err.message, 401));
