@@ -1,3 +1,4 @@
-import user from './user';
+import User from './user';
+import Checkable from './checkable';
 
-export default user;
+export { User, Checkable };

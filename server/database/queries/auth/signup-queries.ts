@@ -1,7 +1,7 @@
 import dbConnection from '../../config/connections';
-import User from '../../../interfaces';
+import { User } from '../../../interfaces';
 
-const createNewUserQuery = (data: User) => {
+export default (data: User) => {
   const {
     destination, username, email, password, bio, avatar,
   } = data;
@@ -15,9 +15,3 @@ const createNewUserQuery = (data: User) => {
     [username, email, password, bio, avatar],
   );
 };
-
-const checkEmailTakenQuery = ({ destination, email }) => dbConnection.query(`
-  SELECT * from ${destination} WHERE email = $1
-`, [email]);
-
-export { checkEmailTakenQuery, createNewUserQuery };

@@ -1,1 +1,6 @@
-export { createNewUserQuery, checkEmailTakenQuery } from './auth';
+import { createNewUserQuery, checkEmailTakenQuery } from './auth';
+
+export {
+  createNewUserQuery,
+  checkEmailTakenQuery,
+};
