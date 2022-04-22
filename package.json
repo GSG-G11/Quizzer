@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development ts-node-dev server/index.ts",
     "test": "cross-env NODE_ENV=test jest",
     "build": "tsc -p tsconfig.json",
-    "prepare": "husky install",
+    "prepare": "is-ci || npx husky install",
     "client": "cd client/ && npm start",
     "heroku-postbuild": "npm run build && cd client/ && npm i && npm run build"
   },
@@ -16,7 +16,21 @@
     "type": "git",
     "url": "git+https://github.com/GSG-G11/Quizzer.git"
   },
-  "keywords": ["eslint", "typescript", "node", "express", "react", "react-router", "axios", "jest", "supertest", "nodemon", "husky", "heroku", "heroku-postbuild"],
+  "keywords": [
+    "eslint",
+    "typescript",
+    "node",
+    "express",
+    "react",
+    "react-router",
+    "axios",
+    "jest",
+    "supertest",
+    "nodemon",
+    "husky",
+    "heroku",
+    "heroku-postbuild"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -34,9 +48,14 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/compression": "^1.7.2",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
+    "@types/morgan": "^1.9.3",
     "@types/node": "^17.0.25",
+    "@types/pg": "^8.6.5",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "cross-env": "^7.0.3",
@@ -44,6 +63,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "husky": "^7.0.4",
+    "is-ci": "^3.0.1",
     "jest": "^27.5.1",
     "morgan": "^1.10.0",
     "supertest": "^6.2.2",

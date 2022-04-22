@@ -1,9 +1,16 @@
 import React from 'react';
+import { CssBaseline, ThemeProvider } from '../mui';
+import theme from '../theme';
 import './index.css';
 
 function App() {
   return (
-    <div>HELLO, WORLD</div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div>
+        Hello, Quizzer!
+      </div>
+    </ThemeProvider>
   );
 }
 
