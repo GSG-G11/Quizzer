@@ -10,7 +10,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       role, email, username, password, bio, avatar,
     } = req.body;
 
-    await signupSchema.validate({ ...req.body, role });
+    await signupSchema.validate(req.body);
     const destination = role === 'student' ? 'students' : 'teachers';
     const { rowCount: isEmailTaken } = await checkEmailTakenQuery({ destination, email });
     if (isEmailTaken) throw new CustomError('The email you used is taken', 409);

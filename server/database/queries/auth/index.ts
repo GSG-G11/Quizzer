@@ -1,4 +1,2 @@
-import createNewUserQuery from './signup-queries';
-import checkEmailTakenQuery from './check-email-taken';
-
-export { createNewUserQuery, checkEmailTakenQuery };
+export { default as createNewUserQuery } from './signup-queries';
+export { default as checkEmailTakenQuery } from './check-email-taken';

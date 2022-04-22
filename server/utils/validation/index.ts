@@ -1,3 +1,1 @@
-import signupSchema from './signup-schema';
-
-export { signupSchema };
+export { default as signupSchema } from './signup-schema';
