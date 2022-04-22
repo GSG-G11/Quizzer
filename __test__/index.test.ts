@@ -8,8 +8,9 @@ afterAll(() => dbConnection.end());
 
 describe('GET /', () => {
   it('should return 200 OK and Content-Type /json/', async () => {
-    const response = await supertest(app).get('/');
-    expect(response.status).toBe(200);
-    expect(response.type).toBe('application/json');
+    const res = await supertest(app).get('/');
+    expect(res.status).toBe(200);
+    expect(res.type).toBe('application/json');
+    expect(res.body.message).toBe('Server Is Running');
   });
 });
