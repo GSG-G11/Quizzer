@@ -8,7 +8,7 @@ afterAll(() => dbConnection.end());
 
 const baseURL = '/api/v1/student';
 
-describe('GET /api/v1/student', () => {
+describe('/api/v1/student', () => {
   it('should return 200 and quiz data as json response', async () => {
     const { body: { data } } = await supertest(app)
       .get(`${baseURL}/quiz/quiz-1`)
