@@ -1,7 +1,9 @@
-const { sign } = require('jsonwebtoken');
+import { sign } from 'jsonwebtoken';
 
-export default (userId, username) => new Promise((resolve, reject) => {
-  sign({ userId, username }, process.env.SECRET_KEY, (err, token) => {
+const { env: { SECRET_KEY } } = process;
+
+export default (user: object) => new Promise((resolve, reject) => {
+  sign(user, SECRET_KEY, (err: Error, token: string) => {
     if (err) return reject(err);
     return resolve(token);
   });
