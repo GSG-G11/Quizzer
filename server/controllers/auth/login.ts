@@ -7,7 +7,7 @@ import { CustomError } from '../../errors';
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const {
-      role, email, password,
+      role, email, password, userId, username,
     } = req.body;
     await loginSchema.validate({ email, password, role });
     const destination = role === 'student' ? 'students' : 'teachers';
@@ -16,9 +16,10 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const { password: hashedPassword } = rows[0];
     const isPasswordMatch = await compare(password, hashedPassword);
     if (!isPasswordMatch) throw new CustomError('Your password is incorrect', 401);
-    const token = await signToken({ email, role });
+    const token = await signToken({ userId, username, role });
     const user = rows[0];
     res
+      .status(201)
       .cookie('token', token)
       .json({ data: user, message: 'User Log in Successfully' });
   } catch (err) {

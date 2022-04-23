@@ -78,11 +78,11 @@ describe('GET /api/v1/auth/logout', () => {
 });
 
 describe('GET /api/v1/auth/login', () => {
-  it('should return 200 OK, and Content-Type /json/', async () => {
+  it('should return 201 Created, and Content-Type /json/', async () => {
     const res = await supertest(app)
       .get('/api/v1/auth/login')
       .send(successLogin)
-      .expect(200);
+      .expect(201);
     expect(res.body.message).toBe('User Log in Successfully');
   });
 
