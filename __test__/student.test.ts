@@ -32,11 +32,11 @@ describe('/api/v1/student', () => {
   it('should return 404 and json response', async () => {
     const { body: { message } } = await supertest(app)
       .get(`${baseURL}/quiz/invalidQuizId`)
-      .expect(200)
+      .expect(400)
       .expect('Content-Type', /json/);
 
     const actual = message;
-    const expected = 'No quiz found with that join code';
+    const expected = 'No quiz found';
 
     expect(actual).toEqual(expected);
   });
