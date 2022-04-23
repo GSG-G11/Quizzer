@@ -8,7 +8,7 @@ CREATE TYPE quiz_type AS ENUM('mcq', 'true_false', 'short_answer');
 CREATE TABLE students (
   id SERIAL PRIMARY KEY,
   username VARCHAR(50) NOT NULL,
-  email VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
   password TEXT NOT NULL,
   bio TEXT,
   avatar TEXT
@@ -17,7 +17,7 @@ CREATE TABLE students (
 CREATE TABLE teachers (
   id SERIAL PRIMARY KEY,
   username VARCHAR(50) NOT NULL,
-  email VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
   password TEXT NOT NULL,
   bio TEXT,
   avatar TEXT
