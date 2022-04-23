@@ -8,6 +8,10 @@ import {
   invalidPassword,
   invalidUsername,
   invalidAvatar,
+  successLogin,
+  invalidUserPassword,
+  incorrectEmail,
+  incorrectPassword,
 } from '../server/utils';
 
 beforeEach(dbBuild);
@@ -70,5 +74,33 @@ describe('GET /api/v1/auth/logout', () => {
     const actual = body.message;
     const expected = 'Logged Out Successfully';
     expect(actual).toEqual(expected);
+  });
+});
+
+describe('GET /api/v1/auth/login', () => {
+  it('should return 200 OK, and Content-Type /json/', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/auth/login')
+      .send(successLogin)
+      .expect(200);
+    expect(res.body.message).toBe('User Log in Successfully');
+  });
+
+  it('should return 401 Unauthorized, and Content-Type /json/', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/auth/login')
+      .send(incorrectEmail)
+      .expect(401);
+
+    expect(res.body.message).toBe('Your email is incorrect');
+  });
+
+  it('should return 401 Unauthorized, and Content-Type /json/', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/auth/login')
+      .send(incorrectPassword)
+      .expect(401);
+
+    expect(res.body.message).toBe('Your password is incorrect');
   });
 });
