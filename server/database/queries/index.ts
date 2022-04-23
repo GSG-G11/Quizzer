@@ -6,3 +6,5 @@ export {
 };
 
 export { quizDetails } from './student';
+
+export { getMyQuizzes } from './teacher';
