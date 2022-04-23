@@ -4,3 +4,5 @@ export {
   createNewUserQuery,
   checkEmailTakenQuery,
 };
+
+export { quizDetails } from './student';
