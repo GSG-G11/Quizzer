@@ -17,46 +17,46 @@ describe('POST /api/v1/auth/signup', () => {
   it('should return 201 Created, and Content-Type /json/', async () => {
     const res = await supertest(app)
       .post('/api/v1/auth/signup')
-      .send(successSignup);
+      .send(successSignup)
+      .expect(201);
 
-    expect(res.status).toBe(201);
     expect(res.body.message).toBe('User Created Successfully');
   });
 
   it('should return 409 Conflict, and Content-Type /json/', async () => {
     const res = await supertest(app)
       .post('/api/v1/auth/signup')
-      .send(takenEmail);
+      .send(takenEmail)
+      .expect(409);
 
-    expect(res.status).toBe(409);
     expect(res.body.message).toBe('The email you used is taken');
   });
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {
     const res = await supertest(app)
       .post('/api/v1/auth/signup')
-      .send(invalidPassword);
+      .send(invalidPassword)
+      .expect(400);
 
-    expect(res.status).toBe(400);
-    expect(res.body.message).toBe('Password must be at least 6 characters long');
+    expect(res.body.message[0]).toBe('Password must be at least 6 characters long');
   });
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {
     const res = await supertest(app)
       .post('/api/v1/auth/signup')
-      .send(invalidUsername);
+      .send(invalidUsername)
+      .expect(400);
 
-    expect(res.status).toBe(400);
-    expect(res.body.message).toBe('Username must be at least 3 characters long');
+    expect(res.body.message[0]).toBe('Username must be at least 3 characters long');
   });
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {
     const res = await supertest(app)
       .post('/api/v1/auth/signup')
-      .send(invalidAvatar);
+      .send(invalidAvatar)
+      .expect(400);
 
-    expect(res.status).toBe(400);
-    expect(res.body.message).toBe('Your avatar should be an image url');
+    expect(res.body.message[0]).toBe('Your avatar should be an image url');
   });
 });
 

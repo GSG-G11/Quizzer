@@ -10,7 +10,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       role, email, username, password, bio, avatar,
     } = req.body;
 
-    await signupSchema.validate(req.body);
+    await signupSchema.validate(req.body, { abortEarly: false });
     const destination = role === 'student' ? 'students' : 'teachers';
     const { rowCount: isEmailTaken } = await checkEmailTakenQuery({ destination, email });
     if (isEmailTaken) throw new CustomError('The email you used is taken', 409);
@@ -30,6 +30,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       .cookie('token', token)
       .json({ data: user, message: 'User Created Successfully' });
   } catch (err) {
-    err.toString().includes('ValidationError') ? next(new CustomError(err.message, 400)) : next(err);
+    err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);
   }
 };
