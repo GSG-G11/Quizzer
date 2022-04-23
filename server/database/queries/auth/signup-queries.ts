@@ -1,3 +1,4 @@
+import escape from 'pg-escape';
 import dbConnection from '../../config/connections';
 import { User } from '../../../interfaces';
 
@@ -7,11 +8,11 @@ export default (data: User) => {
   } = data;
 
   return dbConnection.query(
-    `
-    INSERT INTO ${destination} (username, email, password, bio, avatar) VALUES
+    escape(`
+    INSERT INTO %I (username, email, password, bio, avatar) VALUES
       ($1, $2, $3, $4, $5)
       RETURNING id, username, email, bio, avatar
-    `,
+    `, destination),
     [username, email, password, bio, avatar],
   );
 };

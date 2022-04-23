@@ -15,7 +15,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const { rowCount: isEmailTaken } = await checkEmailTakenQuery({ destination, email });
     if (isEmailTaken) throw new CustomError('The email you used is taken', 409);
     const hashedPassword = await hash(password, 10);
-    const { rows } = await createNewUserQuery({
+    const { rows: { 0: user } } = await createNewUserQuery({
       destination,
       email,
       username,
@@ -23,7 +23,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       bio,
       avatar,
     });
-    const user = rows[0];
     const token = await signToken({ userId: user.id, username, role });
 
     res
