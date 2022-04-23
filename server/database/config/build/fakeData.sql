@@ -47,7 +47,7 @@ INSERT INTO quizzes (
     teacher_id,
     title,
     description,
-    quiz_mark,
+    mark,
     time
   )
 VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),

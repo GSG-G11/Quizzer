@@ -28,7 +28,7 @@ CREATE TABLE quizzes (
   teacher_id INTEGER,
   title VARCHAR(255) NOT NULL,
   description TEXT,
-  quiz_mark INTEGER NOT NULL,
+  mark INTEGER NOT NULL,
   time INTEGER DEFAULT 5,
   FOREIGN KEY (teacher_id) REFERENCES teachers (id) ON DELETE CASCADE
 );
