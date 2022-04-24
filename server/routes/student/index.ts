@@ -1,7 +1,9 @@
 import { Router } from 'express';
-import { getQuiz } from '../../controllers';
+import { leaderboard, getQuiz } from '../../controllers';
 
 const router = Router();
+
+router.route('/leaderboard/:quizTitle').get(leaderboard);
 
 router.get('/quiz/:quizId', getQuiz);
 
