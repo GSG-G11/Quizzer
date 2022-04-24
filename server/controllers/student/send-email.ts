@@ -6,7 +6,7 @@ import { getQuizDetailsQuery, getStudentEmailQuery } from '../../database/querie
 import { emailResponse } from '../../utils';
 
 dotenv.config();
-const { env: { MAIL_PROVIDER_HOST, APP_MAIL, MAIL_PASSWORD } } = process;
+const { env: { APP_MAIL, MAIL_PASSWORD } } = process;
 
 export default async (req: UserAuth, res: Response, next: NextFunction) => {
   const { user: { userId, username }, body: { quizId, score } } = req;
@@ -18,8 +18,7 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
     const { email: userEmail } = emailObj;
 
     const transporter = createTransport({
-      host: MAIL_PROVIDER_HOST,
-      port: 587,
+      service: 'gmail',
       auth: {
         user: APP_MAIL,
         pass: MAIL_PASSWORD,
@@ -27,7 +26,7 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
     });
 
     await transporter.sendMail({
-      from: 'quizzer.gsg@gmail.com',
+      from: APP_MAIL,
       to: userEmail,
       subject: `${quizDetails.quiz_title} Test Result`,
       html: emailResponse(quizDetails),
