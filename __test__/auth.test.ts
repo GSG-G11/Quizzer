@@ -78,10 +78,10 @@ describe('GET /api/v1/auth/logout', () => {
   });
 });
 
-describe('GET /api/v1/auth/login', () => {
+describe('POST /api/v1/auth/login', () => {
   it('should return 200 OK, and Content-Type /json/ for student', async () => {
     const res = await supertest(app)
-      .get('/api/v1/auth/login')
+      .post('/api/v1/auth/login')
       .send(successStdLogin)
       .expect(200);
     expect(res.body.message).toBe('User Logged Successfully');
@@ -89,7 +89,7 @@ describe('GET /api/v1/auth/login', () => {
 
   it('should return 200 OK, and Content-Type /json/ for teacher', async () => {
     const res = await supertest(app)
-      .get('/api/v1/auth/login')
+      .post('/api/v1/auth/login')
       .send(successTechLogin)
       .expect(200);
     expect(res.body.message).toBe('User Logged Successfully');
@@ -97,7 +97,7 @@ describe('GET /api/v1/auth/login', () => {
 
   it('should return 401 Unauthorized, and Content-Type /json/', async () => {
     const res = await supertest(app)
-      .get('/api/v1/auth/login')
+      .post('/api/v1/auth/login')
       .send(incorrectEmail)
       .expect(401);
 
@@ -106,7 +106,7 @@ describe('GET /api/v1/auth/login', () => {
 
   it('should return 401 Unauthorized, and Content-Type /json/', async () => {
     const res = await supertest(app)
-      .get('/api/v1/auth/login')
+      .post('/api/v1/auth/login')
       .send(incorrectPassword)
       .expect(401);
 
@@ -115,7 +115,7 @@ describe('GET /api/v1/auth/login', () => {
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {
     const res = await supertest(app)
-      .get('/api/v1/auth/login')
+      .post('/api/v1/auth/login')
       .send(invalidUserPassword)
       .expect(400);
 
