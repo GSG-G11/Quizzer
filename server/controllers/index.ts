@@ -1,3 +1,3 @@
 export { signup, login, logOut } from './auth';
 export { quizDetails } from './student';
-export { quizzes, profile } from './teacher';
+export { quizzes, profile, deleteQuiz } from './teacher';
