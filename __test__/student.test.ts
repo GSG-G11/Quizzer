@@ -26,7 +26,7 @@ describe('POST /api/v1/student/score', () => {
       .expect(200)
       .expect('Content-Type', /json/);
 
-    expect(res.body.message).toBe('Email Sent Successfully');
+    expect(res.body.message).toBe('Score added to database and an email was sent to the student Successfully');
   });
 
   it('should return 401 Unauthorized and, Content-Type /json/', async () => {

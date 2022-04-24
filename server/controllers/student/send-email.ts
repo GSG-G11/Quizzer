@@ -6,6 +6,7 @@ import { getQuizDetailsQuery, getStudentEmailQuery } from '../../database/querie
 import { emailResponse } from '../../utils';
 
 dotenv.config();
+const { env: { MAIL_PROVIDER_HOST, APP_MAIL, MAIL_PASSWORD } } = process;
 
 export default async (req: UserAuth, res: Response, next: NextFunction) => {
   const { user: { userId, username }, body: { quizId, score } } = req;
@@ -17,11 +18,11 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
     const { email: userEmail } = emailObj;
 
     const transporter = createTransport({
-      host: 'smtp.ethereal.email',
+      host: MAIL_PROVIDER_HOST,
       port: 587,
       auth: {
-        user: 'eli.hauck97@ethereal.email',
-        pass: 'dHCE5sk9jN62Vsh4pg',
+        user: APP_MAIL,
+        pass: MAIL_PASSWORD,
       },
     });
 
@@ -32,7 +33,7 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
       html: emailResponse(quizDetails),
     });
 
-    res.json({ message: 'Email Sent Successfully' });
+    res.json({ message: 'Score added to database and an email was sent to the student Successfully' });
   } catch (err) {
     next(err);
   }
