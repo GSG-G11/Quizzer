@@ -7,22 +7,23 @@ import { CustomError } from '../../errors';
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const {
-      role, email, password, userId, username,
-    } = req.body;
-    await loginSchema.validate({ email, password, role });
+      role, email, password,
+    } = await loginSchema.validate(req.body, { abortEarly: false });
     const destination = role === 'student' ? 'students' : 'teachers';
     const { rowCount: isEmailTaken, rows } = await checkEmailTakenQuery({ destination, email });
     if (!isEmailTaken) throw new CustomError('Your email is incorrect', 401);
-    const { password: hashedPassword } = rows[0];
+    const {
+      password: hashedPassword, username, id,
+    } = rows[0];
     const isPasswordMatch = await compare(password, hashedPassword);
     if (!isPasswordMatch) throw new CustomError('Your password is incorrect', 401);
-    const token = await signToken({ userId, username, role });
-    const user = rows[0];
+    const token = await signToken({ id, username, role });
+
     res
-      .status(201)
+      .status(200)
       .cookie('token', token)
-      .json({ data: user, message: 'User Log in Successfully' });
+      .json({ message: 'User Logged Successfully' });
   } catch (err) {
-    err.toString().includes('ValidationError') ? next(new CustomError(err.message, 400)) : next(err);
+    err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);
   }
 };

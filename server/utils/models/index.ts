@@ -7,7 +7,8 @@ export {
 } from './signup-models';
 
 export {
-  successLogin,
+  successStdLogin,
+  successTechLogin,
   incorrectEmail,
   incorrectPassword,
   invalidUserPassword,
