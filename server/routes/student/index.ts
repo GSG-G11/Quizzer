@@ -3,7 +3,7 @@ import { leaderboard, getQuiz } from '../../controllers';
 
 const router = Router();
 
-router.route('/leaderboard').get(leaderboard);
+router.route('/leaderboard/:quizTitle').get(leaderboard);
 
 router.get('/quiz/:quizId', getQuiz);
 
