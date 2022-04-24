@@ -10,5 +10,8 @@ export {
   successLogin,
   incorrectEmail,
   incorrectPassword,
-  invalidUserPassword,
 } from './login-models';
+
+export {
+  successReturnData,
+} from './quizzes-models';

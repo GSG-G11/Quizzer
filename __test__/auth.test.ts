@@ -9,7 +9,6 @@ import {
   invalidUsername,
   invalidAvatar,
   successLogin,
-  invalidUserPassword,
   incorrectEmail,
   incorrectPassword,
 } from '../server/utils';

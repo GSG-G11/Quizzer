@@ -8,11 +8,11 @@ export default async (req:UserAuth, res:Response, next:NextFunction) => {
   const { user: { userId } } = req;
 
   try {
-    const { rows } = await getMyQuizzes(1);
+    const { rows } = await getMyQuizzes(userId);
     if (!token) throw new CustomError('Unauthorized', 401);
 
     res.json({ data: rows, message: 'Success' });
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };

@@ -16,12 +16,6 @@ const incorrectPassword = {
   role: 'student',
 };
 
-const invalidUserPassword = {
-  password: 'uru',
-  email: 'zaherabuamro@gmail.com',
-  role: 'student',
-};
-
 export {
-  successLogin, incorrectEmail, incorrectPassword, invalidUserPassword,
+  successLogin, incorrectEmail, incorrectPassword,
 };

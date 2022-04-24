@@ -7,7 +7,7 @@ export {
   invalidUsername,
   invalidAvatar,
   successLogin,
-  invalidUserPassword,
   incorrectEmail,
   incorrectPassword,
+  successReturnData,
 } from './models';
