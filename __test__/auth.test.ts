@@ -101,7 +101,7 @@ describe('POST /api/v1/auth/login', () => {
       .send(incorrectEmail)
       .expect(401);
 
-    expect(res.body.message).toBe('Your email is incorrect');
+    expect(res.body.message).toBe('Incorrect email or password');
   });
 
   it('should return 401 Unauthorized, and Content-Type /json/', async () => {
@@ -110,7 +110,7 @@ describe('POST /api/v1/auth/login', () => {
       .send(incorrectPassword)
       .expect(401);
 
-    expect(res.body.message).toBe('Your password is incorrect');
+    expect(res.body.message).toBe('Incorrect email or password');
   });
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {
