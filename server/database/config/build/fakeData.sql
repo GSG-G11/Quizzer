@@ -2,21 +2,21 @@ INSERT INTO students (username, email, password, bio, avatar)
 VALUES (
     'Zaher',
     'zaherabuamro@gmail.com',
-    'zaher123',
+    '$2b$10$3lj3fqqk9dA48xMMXw25PuzP06c.K2L9bAmGYizGOspktu.YiF/O.',
     'zaher-aa',
     'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
   ),
   (
     'Khaled',
     'khaled@gmail.com',
-    'khaled123',
+    '$2b$10$v83xXiJuu8w1lqsKt7nSRut4xWkWrS5lofQD0/bLbyUrU9hBNsYaK',
     'khaled',
     'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
   ),
   (
     'Amjad',
     'amjad@gmail.com',
-    'amjad123',
+    '$2b$10$uR2sd2/O3KQRk1S6ESZx1OELUxJds8BrIGhyF6FQjq160v2F/dwc2',
     'amjad',
     'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
   );
@@ -24,21 +24,21 @@ INSERT INTO teachers (username, email, password, bio, avatar)
 VALUES (
     'Ahmed',
     'ahmad@gmail.com',
-    'ahmad123',
+    '$2b$10$HOqzD8atr8G/RDYl3I6f9uESMqhsx2d6PRhv6iDwn7RvbRu9FrKOC',
     'ahmad',
     'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
   ),
   (
     'Mohamed',
     'mohamed@gmail.com',
-    'mohamed123',
+    '$2b$10$cbMrYD86onAFz4VbNgSBHOu6oKvhLi/aHrPBZ2htY6MCKFO/jn2fi',
     'mohamed',
     'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
   ),
   (
     'Ali',
     'ali@gmail.com',
-    'ali123',
+    '$2b$10$5fACnCeOowjWOeCCtKWDVesmjj4kPS100mq/WgcZPxX5gDteco51q',
     'ali',
     'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
   );

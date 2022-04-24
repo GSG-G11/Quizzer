@@ -1,7 +1,12 @@
 import { verify } from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
-export default (token) => new Promise((reject, resolve) => {
-  verify(token, process.env.SECRET_KEY, (err, match) => {
+dotenv.config();
+
+const { env: { SECRET_KEY } } = process;
+
+export default (token: string) => new Promise((reject, resolve) => {
+  verify(token, SECRET_KEY, (err: Error, match: string) => {
     if (err) return reject(err);
     return resolve(match);
   });
