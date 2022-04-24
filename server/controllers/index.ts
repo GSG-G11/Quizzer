@@ -1,1 +1,2 @@
-export { signup, login, logOut } from './auth';
+export { signup, logOut, login } from './auth';
+export { getQuiz } from './student';
