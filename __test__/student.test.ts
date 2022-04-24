@@ -8,14 +8,14 @@ afterAll(() => dbConnection.end());
 
 const baseURL = '/api/v1/student';
 
-describe('/api/v1/student', () => {
+describe('/api/v1/student/quiz/:quizId', () => {
   it('should return 200 and quiz data as json response', async () => {
-    const { body: { quiz } } = await supertest(app)
+    const { body: { data } } = await supertest(app)
       .get(`${baseURL}/quiz/quiz-1`)
       .expect(200)
       .expect('Content-Type', /json/);
 
-    const actual = quiz;
+    const actual = data;
     const expected = {
       description: 'This is quiz 1',
       id: 'quiz-1',
@@ -32,7 +32,7 @@ describe('/api/v1/student', () => {
   it('should return 404 and json response', async () => {
     const { body: { message } } = await supertest(app)
       .get(`${baseURL}/quiz/invalidQuizId`)
-      .expect(400)
+      .expect(404)
       .expect('Content-Type', /json/);
 
     const actual = message;
