@@ -10,4 +10,5 @@ export {
   incorrectEmail,
   incorrectPassword,
   successReturnData,
+  successTeacherProfile,
 } from './models';

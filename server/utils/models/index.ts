@@ -15,3 +15,7 @@ export {
 export {
   successReturnData,
 } from './quizzes-models';
+
+export {
+  successTeacherProfile,
+} from './teacher-profile';

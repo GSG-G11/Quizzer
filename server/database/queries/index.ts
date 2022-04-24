@@ -7,4 +7,4 @@ export {
 
 export { quizDetails } from './student';
 
-export { getMyQuizzes } from './teacher';
+export { getMyQuizzes, userInfo, quizzesInfo } from './teacher';
