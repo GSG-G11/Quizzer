@@ -8,7 +8,7 @@ export default async ({ params: { quizId } }:Request, res:Response, next:NextFun
 
     if (!quizFound) throw new CustomError('No quiz found', 400);
 
-    res.json({ data: quiz, message: 'Success' });
+    res.json({ quiz, message: 'Success' });
   } catch (error) {
     next(error);
   }
