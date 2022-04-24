@@ -8,7 +8,6 @@ import {
   invalidPassword,
   invalidUsername,
   invalidAvatar,
-  successLogin,
   incorrectEmail,
   incorrectPassword,
 } from '../server/utils';
@@ -77,14 +76,6 @@ describe('GET /api/v1/auth/logout', () => {
 });
 
 describe('GET /api/v1/auth/login', () => {
-  it('should return 200 OK, and Content-Type /json/', async () => {
-    const res = await supertest(app)
-      .get('/api/v1/auth/login')
-      .send(successLogin)
-      .expect(200);
-    expect(res.body.message).toBe('User Log in Successfully');
-  });
-
   it('should return 401 Unauthorized, and Content-Type /json/', async () => {
     const res = await supertest(app)
       .get('/api/v1/auth/login')

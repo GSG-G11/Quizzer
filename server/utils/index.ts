@@ -11,4 +11,5 @@ export {
   incorrectPassword,
   successReturnData,
   successTeacherProfile,
+  successDelete,
 } from './models';

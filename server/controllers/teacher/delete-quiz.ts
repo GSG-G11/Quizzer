@@ -8,7 +8,6 @@ export default async (req:UserAuth, res:Response, next:NextFunction) => {
 
   try {
     const { rowCount } = await deleteQuiz(params.quizId);
-    console.log(rowCount);
 
     if (!rowCount) throw new CustomError('No quiz to delete it', 400);
 

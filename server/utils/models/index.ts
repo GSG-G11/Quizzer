@@ -19,3 +19,7 @@ export {
 export {
   successTeacherProfile,
 } from './teacher-profile';
+
+export {
+  successDelete,
+} from './deleted-data';
