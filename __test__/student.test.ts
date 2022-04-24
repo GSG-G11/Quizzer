@@ -8,14 +8,18 @@ afterAll(() => dbConnection.end());
 
 const baseURL = '/api/v1/student';
 
-describe('/api/v1/student/leaderboard', () => {
+describe('/api/v1/student/leaderboard/:quizTitle', () => {
   it('should return 200 and leaderboard data as json response', async () => {
-    const { body } = await supertest(app)
-      .get(`${baseURL}/leaderboard`)
+    const { body: { data } } = await supertest(app)
+      .get(`${baseURL}/leaderboard/Music`)
       .expect(200)
       .expect('Content-Type', /json/);
 
-    expect(body).toHaveLength(10);
+    const arrayElement = data.at(0);
+
+    expect(data).toHaveLength(3);
+    expect(arrayElement).toHaveProperty('score');
+    expect(arrayElement).toHaveProperty('username');
   });
 });
 

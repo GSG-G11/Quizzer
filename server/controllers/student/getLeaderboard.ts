@@ -1,13 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 import { getLeaderboardQuery } from '../../database/queries';
 
-const getLeaderboard = async (req:Request, res:Response, next:NextFunction) => {
+export default async ({ params: { quizTitle } }:Request, res:Response, next:NextFunction) => {
   try {
-    const { rows } = await getLeaderboardQuery();
-    res.json(rows);
+    const { rows: leaderboard } = await getLeaderboardQuery(quizTitle);
+    res.json({ data: leaderboard, message: 'Success' });
   } catch (error) {
     next(error);
   }
 };
-
-export default getLeaderboard;
