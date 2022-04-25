@@ -13,11 +13,11 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const { rowCount: isEmailTaken, rows } = await checkEmailTakenQuery({ destination, email });
     if (!isEmailTaken) throw new CustomError('Incorrect email or password', 401);
     const {
-      password: hashedPassword, username, id,
+      password: hashedPassword, username, id: userId,
     } = rows[0];
     const isPasswordMatch = await compare(password, hashedPassword);
     if (!isPasswordMatch) throw new CustomError('Incorrect email or password', 401);
-    const token = await signToken({ id, username, role });
+    const token = await signToken({ userId, username, role });
 
     res
       .cookie('token', token, {
