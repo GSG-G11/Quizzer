@@ -7,22 +7,25 @@ import { CustomError } from '../../errors';
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const {
-      role, email, password, username,
-    } = req.body;
-    await loginSchema.validate({ email, password, role });
+      role, email, password,
+    } = await loginSchema.validate(req.body, { abortEarly: false });
     const destination = role === 'student' ? 'students' : 'teachers';
     const { rowCount: isEmailTaken, rows } = await checkEmailTakenQuery({ destination, email });
-    if (!isEmailTaken) throw new CustomError('Your email is incorrect', 401);
-    const { password: hashedPassword } = rows[0];
+    if (!isEmailTaken) throw new CustomError('Incorrect email or password', 401);
+    const {
+      password: hashedPassword, username, id: userId,
+    } = rows[0];
     const isPasswordMatch = await compare(password, hashedPassword);
-    if (!isPasswordMatch) throw new CustomError('Your password is incorrect', 401);
-    const user = rows[0];
-    const token = await signToken({ userId: user.id, username, role });
+    if (!isPasswordMatch) throw new CustomError('Incorrect email or password', 401);
+    const token = await signToken({ userId, username, role });
 
     res
-      .cookie('token', token)
-      .json({ data: user, message: 'User Log in Successfully' });
+      .cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+      })
+      .json({ message: 'User Logged Successfully' });
   } catch (err) {
-    err.toString().includes('ValidationError') ? next(new CustomError(err.message, 400)) : next(err);
+    err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);
   }
 };

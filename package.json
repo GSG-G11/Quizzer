@@ -46,9 +46,11 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.7.3",
     "pg": "^8.7.3",
     "pg-escape": "^0.2.0",
     "ts-jest": "^27.1.4",
+    "uniqid": "^5.4.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -61,9 +63,11 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/morgan": "^1.9.3",
     "@types/node": "^17.0.25",
+    "@types/nodemailer": "^6.4.4",
     "@types/pg": "^8.6.5",
     "@types/pg-escape": "^0.2.1",
     "@types/supertest": "^2.0.12",
+    "@types/uniqid": "^5.3.2",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "cross-env": "^7.0.3",

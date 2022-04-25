@@ -8,6 +8,9 @@ import {
   invalidPassword,
   invalidUsername,
   invalidAvatar,
+  successStdLogin,
+  successTechLogin,
+  invalidUserPassword,
   incorrectEmail,
   incorrectPassword,
 } from '../server/utils';
@@ -75,22 +78,47 @@ describe('GET /api/v1/auth/logout', () => {
   });
 });
 
-describe('GET /api/v1/auth/login', () => {
-  it('should return 401 Unauthorized, and Content-Type /json/', async () => {
+describe('POST /api/v1/auth/login', () => {
+  it('should return 200 OK, and Content-Type /json/ for student', async () => {
     const res = await supertest(app)
-      .get('/api/v1/auth/login')
-      .send(incorrectEmail)
-      .expect(401);
+      .post('/api/v1/auth/login')
+      .send(successStdLogin)
+      .expect(200);
+    expect(res.body.message).toBe('User Logged Successfully');
+  });
 
-    expect(res.body.message).toBe('Your email is incorrect');
+  it('should return 200 OK, and Content-Type /json/ for teacher', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/auth/login')
+      .send(successTechLogin)
+      .expect(200);
+    expect(res.body.message).toBe('User Logged Successfully');
   });
 
   it('should return 401 Unauthorized, and Content-Type /json/', async () => {
     const res = await supertest(app)
-      .get('/api/v1/auth/login')
+      .post('/api/v1/auth/login')
+      .send(incorrectEmail)
+      .expect(401);
+
+    expect(res.body.message).toBe('Incorrect email or password');
+  });
+
+  it('should return 401 Unauthorized, and Content-Type /json/', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/auth/login')
       .send(incorrectPassword)
       .expect(401);
 
-    expect(res.body.message).toBe('Your password is incorrect');
+    expect(res.body.message).toBe('Incorrect email or password');
+  });
+
+  it('should return 400 Bad Request, and Content-Type /json/', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/auth/login')
+      .send(invalidUserPassword)
+      .expect(400);
+
+    expect(res.body.message[0]).toBe('Password must be at least 6 characters long');
   });
 });
