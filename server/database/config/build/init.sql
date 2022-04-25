@@ -52,9 +52,11 @@ CREATE TABLE scores (
 );
 
 CREATE TABLE leaderboard (
-  quiz_title VARCHAR(50) NOT NULL,
-  mark INTEGER NOT NULL,
-  students JSON NOT NULL
+  quiz_title VARCHAR(50),
+  student_id INT,
+  score INT NOT NULL,
+  FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE,
+  PRIMARY KEY(student_id, quiz_title)
 );
 
 COMMIT;
