@@ -14,9 +14,7 @@ export {
   invalidUserPassword,
 } from './login-models';
 
-export {
-  successTeacherProfile,
-} from './teacher-profile';
+export { default as successTeacherProfile } from './teacher-profile';
 export {
   validQuiz,
   noTitleQuiz,
