@@ -19,6 +19,13 @@ VALUES (
     '$2b$10$uR2sd2/O3KQRk1S6ESZx1OELUxJds8BrIGhyF6FQjq160v2F/dwc2',
     'amjad',
     'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
+  ),
+  (
+    'Osama',
+    'osama@gmail.com',
+    '$2b$10$uR2sd2/O3KQRk1S6ESZx1OELUxJds8BrIGhyF6FQjq160v2F/dwc2',
+    'osama',
+    'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
   );
 INSERT INTO teachers (username, email, password, bio, avatar)
 VALUES (
@@ -47,7 +54,7 @@ INSERT INTO quizzes (
     teacher_id,
     title,
     description,
-    quiz_mark,
+    mark,
     time
   )
 VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
