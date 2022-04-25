@@ -66,3 +66,24 @@ describe('/api/v1/student/quiz/:quizId', () => {
     expect(actual).toEqual(expected);
   });
 });
+
+describe('/api/v1/student/questions/:quizId', () => {
+  it('should return 200 and quiz data as json response', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/student/questions/quiz-1')
+      .set({ Cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInVzZXJuYW1lIjoidGVzdCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNjUwOTIwMzQ0fQ.lBjKiLBrrd9QC12GtuPQFFdguZVRz7Y5xR0Xtn_cRw8' })
+      .expect(200)
+      .expect('Content-Type', /json/);
+
+    expect(res.body.data).toEqual(quizQuestions);
+  });
+
+  it('should return 401 Unauthorized and json response', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/student/questions/quiz-1')
+      .expect(401)
+      .expect('Content-Type', /json/);
+
+    expect(res.body.message).toEqual('Unauthorized');
+  });
+});

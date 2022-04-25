@@ -10,7 +10,6 @@ export default async (req:UserAuth, res:Response, next:NextFunction) => {
   try {
     const { rows } = await getQuestionsQuery(quizId);
     const { rowCount: studentDidAttendQuiz } = await checkUserAttendQuizQuery({ userId, quizId });
-    console.log(studentDidAttendQuiz);
     if (studentDidAttendQuiz) throw new CustomError('Student can\'t attend a quiz more than once', 401);
 
     if (!rows) throw new CustomError('No data for this quiz', 204);

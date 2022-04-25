@@ -1,4 +1,4 @@
-const quizQuestions = [
+export default [
   {
     id: 1,
     quiz_id: 'quiz-1',
@@ -13,9 +13,7 @@ const quizQuestions = [
         'Aswan',
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 2,
@@ -31,9 +29,7 @@ const quizQuestions = [
         'Aswan',
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 3,
@@ -49,9 +45,7 @@ const quizQuestions = [
         'Aswan',
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 4,
@@ -67,9 +61,7 @@ const quizQuestions = [
         'Aswan',
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 5,
@@ -85,9 +77,7 @@ const quizQuestions = [
         'Aswan',
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 6,
@@ -103,9 +93,7 @@ const quizQuestions = [
         'Aswan',
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 7,
@@ -121,9 +109,7 @@ const quizQuestions = [
         'Aswan',
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 8,
@@ -139,9 +125,7 @@ const quizQuestions = [
         'Aswan',
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 9,
@@ -157,9 +141,7 @@ const quizQuestions = [
         'Aswan',
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 10,
@@ -173,9 +155,7 @@ const quizQuestions = [
         false,
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 11,
@@ -189,9 +169,7 @@ const quizQuestions = [
         false,
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 12,
@@ -205,9 +183,7 @@ const quizQuestions = [
         false,
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 13,
@@ -221,9 +197,7 @@ const quizQuestions = [
         false,
       ],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 14,
@@ -234,9 +208,7 @@ const quizQuestions = [
       answer: 'Zaher',
       options: [],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 15,
@@ -247,9 +219,7 @@ const quizQuestions = [
       answer: 'Zaher',
       options: [],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
   {
     id: 16,
@@ -260,12 +230,6 @@ const quizQuestions = [
       answer: 'Zaher',
       options: [],
     },
-    quiz_title: 'Quiz 1',
-    quiz_mark: 10,
-    quiz_time: 5,
+
   },
 ];
-
-export {
-  quizQuestions,
-};
