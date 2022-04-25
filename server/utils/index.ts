@@ -1,4 +1,4 @@
-export { signupSchema, loginSchema } from './validation';
+export { signupSchema, loginSchema, addQuizSchema } from './validation';
 export { signToken, verifyToken } from './jwt';
 export { default as emailResponse } from './email-response';
 export {
@@ -13,4 +13,15 @@ export {
   incorrectEmail,
   incorrectPassword,
   quizQuestions,
+  validQuiz,
+  noTitleQuiz,
+  noDescriptionQuiz,
+  noMarkQuiz,
+  noTimeQuiz,
+  noQuestionsQuiz,
+  noQuestionQuiz,
+  noQuestionAnswerTypeQuiz,
+  invalidQuestionType,
+  noAnswersQuestion,
+  noAnswerQuestion,
 } from './models';

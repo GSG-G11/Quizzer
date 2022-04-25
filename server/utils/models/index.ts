@@ -17,3 +17,16 @@ export {
 export {
   quizQuestions,
 } from './get-questions';
+export {
+  validQuiz,
+  noTitleQuiz,
+  noDescriptionQuiz,
+  noMarkQuiz,
+  noTimeQuiz,
+  noQuestionsQuiz,
+  noQuestionQuiz,
+  noQuestionAnswerTypeQuiz,
+  invalidQuestionType,
+  noAnswersQuestion,
+  noAnswerQuestion,
+} from './quiz-models';
