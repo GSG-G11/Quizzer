@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { quizzes, profile } from '../../controllers';
+import { profile, createQuiz } from '../../controllers';
 import { checkAuth } from '../../middlewares';
 
 const router = Router();
-router.get('/quizzes', checkAuth('teacher'), quizzes);
+
 router.get('/profile', checkAuth('teacher'), profile);
+router.post('/quiz', checkAuth('teacher'), createQuiz);
 
 export default router;

@@ -28,7 +28,7 @@ CREATE TABLE quizzes (
   teacher_id INTEGER,
   title VARCHAR(255) NOT NULL,
   description TEXT,
-  quiz_mark INTEGER NOT NULL,
+  mark INTEGER NOT NULL,
   time INTEGER DEFAULT 5,
   FOREIGN KEY (teacher_id) REFERENCES teachers (id) ON DELETE CASCADE
 );
@@ -52,9 +52,11 @@ CREATE TABLE scores (
 );
 
 CREATE TABLE leaderboard (
-  quiz_title VARCHAR(50) NOT NULL,
-  mark INTEGER NOT NULL,
-  students JSON NOT NULL
+  quiz_title VARCHAR(50),
+  student_id INT,
+  score INT NOT NULL,
+  FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE,
+  PRIMARY KEY(student_id, quiz_title)
 );
 
 COMMIT;

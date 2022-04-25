@@ -7,15 +7,26 @@ export {
 } from './signup-models';
 
 export {
-  successLogin,
+  successStdLogin,
+  successTechLogin,
   incorrectEmail,
   incorrectPassword,
+  invalidUserPassword,
 } from './login-models';
-
-export {
-  successReturnData,
-} from './quizzes-models';
 
 export {
   successTeacherProfile,
 } from './teacher-profile';
+export {
+  validQuiz,
+  noTitleQuiz,
+  noDescriptionQuiz,
+  noMarkQuiz,
+  noTimeQuiz,
+  noQuestionsQuiz,
+  noQuestionQuiz,
+  noQuestionAnswerTypeQuiz,
+  invalidQuestionType,
+  noAnswersQuestion,
+  noAnswerQuestion,
+} from './quiz-models';
