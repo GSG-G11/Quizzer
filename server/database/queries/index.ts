@@ -1,2 +1,8 @@
-export { getQuizQuery } from './student';
 export { createNewUserQuery, checkEmailTakenQuery } from './auth';
+export {
+  addPrivateQuizScoreQuery,
+  getQuizDetailsQuery,
+  checkUserAttendQuizQuery,
+  getStudentEmailQuery,
+  getQuizQuery,
+} from './student';
