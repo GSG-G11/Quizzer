@@ -5,4 +5,5 @@ export {
   checkUserAttendQuizQuery,
   getStudentEmailQuery,
   getQuizQuery,
+  getQuestionsQuery,
 } from './student';
