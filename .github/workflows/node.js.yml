@@ -2,6 +2,8 @@ name: Test Suits Routes
 on: push
 env:
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  APP_MAIL: ${{ secrets.APP_MAIL }}
+  MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
 
 jobs:
   container-job:
