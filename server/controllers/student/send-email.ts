@@ -32,7 +32,7 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
       html: emailResponse(quizDetails),
     });
 
-    res.json({ message: 'Email Sent Successfully' });
+    res.json({ message: 'Score added to database and an email was sent to the student Successfully' });
   } catch (err) {
     next(err);
   }
