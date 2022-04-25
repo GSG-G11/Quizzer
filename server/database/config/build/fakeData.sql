@@ -19,6 +19,13 @@ VALUES (
     '$2b$10$uR2sd2/O3KQRk1S6ESZx1OELUxJds8BrIGhyF6FQjq160v2F/dwc2',
     'amjad',
     'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
+  ),
+  (
+    'Osama',
+    'osama@gmail.com',
+    '$2b$10$uR2sd2/O3KQRk1S6ESZx1OELUxJds8BrIGhyF6FQjq160v2F/dwc2',
+    'osama',
+    'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg'
   );
 INSERT INTO teachers (username, email, password, bio, avatar)
 VALUES (
@@ -47,7 +54,7 @@ INSERT INTO quizzes (
     teacher_id,
     title,
     description,
-    quiz_mark,
+    mark,
     time
   )
 VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
@@ -448,54 +455,19 @@ VALUES ('quiz-1', 1, '10'),
   ('quiz-3', 1, '10'),
   ('quiz-3', 2, '8'),
   ('quiz-3', 3, '10');
-INSERT INTO leaderboard (quiz_title, mark, students)
-VALUES (
-    'Arts & Literature',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  ),
-  (
-    'Film & TV',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  ),
-  (
-    'Food & Drink',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  ),
-  (
-    'General Knowledge',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":8},{"username":"user-4","score":10},{"username":"user-5","score":9},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":5},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  ),
-  (
-    'Geography',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  ),
-  (
-    'Histoy',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  ),
-(
-    'Music',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  ),
-(
-    'Science',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  ),
-(
-    'Society & Culture',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  ),
-(
-    'Sport & Leisure',
-    '10',
-    '[{"username":"user-1","score":10},{"username":"user-2","score":10},{"username":"user-3","score":10},{"username":"user-4","score":10},{"username":"user-5","score":10},{"username":"user-6","score":10},{"username":"user-7","score":10},{"username":"user-8","score":10},{"username":"user-9","score":10},{"username":"user-10","score":10}]'
-  )
+INSERT INTO leaderboard (quiz_title, score, student_id)
+VALUES ('Arts & Literature', 10, 1),
+  ('Film & TV', 6, 2),
+  ('Film & TV', 8, 1),
+  ('Food & Drink', 4, 1),
+  ('Food & Drink', 6, 3),
+  ('General Knowledge', 3, 3),
+  ('General Knowledge', 10, 1),
+  ('Geography', 7, 2),
+  ('Histoy', 2, 1),
+  ('Music', 7, 3),
+  ('Music', 5, 1),
+  ('Music', 10, 2),
+  ('Science', 9, 2),
+  ('Society & Culture', 6, 1),
+  ('Sport & Leisure', 5, 3)

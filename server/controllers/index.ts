@@ -1,3 +1,8 @@
 export { signup, login, logOut } from './auth';
-export { quizDetails } from './student';
-export { quizzes } from './teacher';
+export {
+  addPrivateQuizScore,
+  sendEmail,
+  checkUserAttendQuiz,
+  getQuiz,
+} from './student';
+export { quizzes, createQuiz } from './teacher';

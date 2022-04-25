@@ -1,10 +1,9 @@
-import { createNewUserQuery, checkEmailTakenQuery } from './auth';
-
+export { createNewUserQuery, checkEmailTakenQuery } from './auth';
 export {
-  createNewUserQuery,
-  checkEmailTakenQuery,
-};
-
-export { quizDetails } from './student';
-
-export { getMyQuizzes } from './teacher';
+  addPrivateQuizScoreQuery,
+  getQuizDetailsQuery,
+  checkUserAttendQuizQuery,
+  getStudentEmailQuery,
+  getQuizQuery,
+} from './student';
+export { createQuizQuery, createQuestionQuery, getMyQuizzes } from './teacher';
