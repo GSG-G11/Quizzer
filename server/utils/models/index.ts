@@ -13,3 +13,5 @@ export {
   incorrectPassword,
   invalidUserPassword,
 } from './login-models';
+
+export { default as quiz } from './quiz-models';

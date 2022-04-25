@@ -12,4 +12,5 @@ export {
   invalidUserPassword,
   incorrectEmail,
   incorrectPassword,
+  quiz,
 } from './models';
