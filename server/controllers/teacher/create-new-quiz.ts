@@ -1,15 +1,22 @@
 import { Response, NextFunction } from 'express';
+import uniqid from 'uniqid';
 import { UserAuth } from '../../interfaces';
+import { addQuizSchema } from '../../utils';
+import { CustomError } from '../../errors';
 import { createQuizQuery, createQuestionQuery } from '../../database/queries';
 
 export default async (req: UserAuth, res: Response, next: NextFunction) => {
   const {
     user: { userId: teacherId }, body: {
-      quizId, title, description, mark, time, questions,
+      title, description, mark, time, questions,
     },
   } = req;
 
+  const quizId = uniqid();
+
   try {
+    await addQuizSchema.validate(req.body, { abortEarly: false });
+
     const { rows: { 0: quiz } } = await createQuizQuery({
       quizId, teacherId, title, description, mark, time,
     });
@@ -29,11 +36,11 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
       .json({
         data: {
           quiz,
-          answers: allQuestions,
+          questions: allQuestions,
         },
         message: 'Quiz Created Successfully',
       });
   } catch (err) {
-    next(err);
+    err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);
   }
 };
