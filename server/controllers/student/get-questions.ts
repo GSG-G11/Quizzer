@@ -1,15 +1,17 @@
 import { NextFunction, Response } from 'express';
-import { getQuestionsQuery } from '../../database/queries';
+import { getQuestionsQuery, checkUserAttendQuizQuery } from '../../database/queries';
 import { UserAuth } from '../../interfaces';
 import { CustomError } from '../../errors';
 
 export default async (req:UserAuth, res:Response, next:NextFunction) => {
-  const { user: { userId }, body: { quizId } } = req;
+  const { params: { quizId } } = req;
+  const { userId } = req.user;
 
   try {
-    const { rows } = await getQuestionsQuery({ userId, quizId });
-
-    console.log(userId, quizId);
+    const { rows } = await getQuestionsQuery(quizId);
+    const { rowCount: studentDidAttendQuiz } = await checkUserAttendQuizQuery({ userId, quizId });
+    console.log(studentDidAttendQuiz);
+    if (studentDidAttendQuiz) throw new CustomError('Student can\'t attend a quiz more than once', 401);
 
     if (!rows) throw new CustomError('No data for this quiz', 204);
 

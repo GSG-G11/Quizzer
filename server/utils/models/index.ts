@@ -13,3 +13,7 @@ export {
   incorrectPassword,
   invalidUserPassword,
 } from './login-models';
+
+export {
+  quizQuestions,
+} from './get-questions';
