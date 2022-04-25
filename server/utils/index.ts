@@ -23,4 +23,5 @@ export {
   invalidQuestionType,
   noAnswersQuestion,
   noAnswerQuestion,
+  successTeacherProfile,
 } from './models';

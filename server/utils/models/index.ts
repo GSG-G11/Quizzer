@@ -27,3 +27,5 @@ export {
   noAnswersQuestion,
   noAnswerQuestion,
 } from './quiz-models';
+
+export { default as successTeacherProfile } from './teacher-profile';
