@@ -7,7 +7,7 @@ import { quizQuestions } from '../server/utils';
 beforeEach(dbBuild);
 afterAll(() => dbConnection.end());
 
-describe.skip('POST /api/v1/student/score', () => {
+describe('POST /api/v1/student/score', () => {
   it('should return 401 Unauthorized, and Content-Type /json/', async () => {
     const res = await supertest(app)
       .post('/api/v1/student/score')
@@ -48,7 +48,7 @@ describe('/api/v1/student/leaderboard/:quizTitle', () => {
   });
 });
 
-describe.skip('/api/v1/student/quiz/:quizId', () => {
+describe('/api/v1/student/quiz/:quizId', () => {
   it('should return 200 and quiz data as json response', async () => {
     const { body: { data } } = await supertest(app)
       .get(`${baseURL}/quiz/quiz-1111111111111`)
@@ -82,7 +82,7 @@ describe.skip('/api/v1/student/quiz/:quizId', () => {
   });
 });
 
-describe.skip('/api/v1/student/questions/:quizId', () => {
+describe('/api/v1/student/questions/:quizId', () => {
   it('should return 200 and quiz data as json response', async () => {
     const res = await supertest(app)
       .get('/api/v1/student/questions/quiz-1111111111111')
