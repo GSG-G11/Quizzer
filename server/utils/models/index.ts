@@ -10,11 +10,14 @@ export {
   successStdLogin,
   successTechLogin,
   incorrectEmail,
-  incorrectPassword,
   invalidUserPassword,
+  incorrectPassword,
 } from './login-models';
 
 export { default as quizQuestions } from './questions';
+export {
+  successReturnData,
+} from './quizzes-models';
 export {
   validQuiz,
   noTitleQuiz,
