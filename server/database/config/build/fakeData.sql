@@ -57,33 +57,33 @@ INSERT INTO quizzes (
     mark,
     time
   )
-VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
-  ('quiz-2', 2, 'Quiz 2', 'This is quiz 2', 10, 5),
-  ('quiz-3', 3, 'Quiz 3', 'This is quiz 3', 10, 5),
-  ('quiz-4', 1, 'Quiz 4', 'This is quiz 4', 10, 5),
-  ('quiz-5', 2, 'Quiz 5', 'This is quiz 5', 10, 5),
-  ('quiz-6', 3, 'Quiz 6', 'This is quiz 6', 10, 5),
-  ('quiz-7', 1, 'Quiz 7', 'This is quiz 7', 10, 5),
-  ('quiz-8', 2, 'Quiz 8', 'This is quiz 8', 10, 5),
-  ('quiz-9', 3, 'Quiz 9', 'This is quiz 9', 10, 5),
+VALUES ('quiz-111111111111', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
+  ('quiz-222222222222', 2, 'Quiz 2', 'This is quiz 2', 10, 5),
+  ('quiz-333333333333', 3, 'Quiz 3', 'This is quiz 3', 10, 5),
+  ('quiz-444444444444', 1, 'Quiz 4', 'This is quiz 4', 10, 5),
+  ('quiz-555555555555', 2, 'Quiz 5', 'This is quiz 5', 10, 5),
+  ('quiz-666666666666', 3, 'Quiz 6', 'This is quiz 6', 10, 5),
+  ('quiz-777777777777', 1, 'Quiz 7', 'This is quiz 7', 10, 5),
+  ('quiz-888888888888', 2, 'Quiz 8', 'This is quiz 8', 10, 5),
+  ('quiz-999999999999', 3, 'Quiz 9', 'This is quiz 9', 10, 5),
   (
-    'quiz-10',
+    'quiz-100000000000',
     1,
     'Quiz 10',
     'This is quiz 10',
     10,
     5
   ),
-  (
-    'quiz-11',
+  ( 
+    'quiz-111111111101',
     2,
     'Quiz 11',
     'This is quiz 11',
     10,
     5
   ),
-  (
-    'quiz-12',
+  ( 
+    'quiz-111111111112',
     3,
     'Quiz 12',
     'This is quiz 12',
@@ -91,7 +91,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-13',
+    'quiz-111111111113',
     1,
     'Quiz 13',
     'This is quiz 13',
@@ -99,7 +99,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-14',
+    'quiz-111111111114',
     2,
     'Quiz 14',
     'This is quiz 14',
@@ -107,7 +107,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-15',
+    'quiz-111111111115',
     3,
     'Quiz 15',
     'This is quiz 15',
@@ -115,7 +115,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-16',
+    'quiz-111111111116',
     1,
     'Quiz 16',
     'This is quiz 16',
@@ -123,7 +123,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-17',
+    'quiz-111111111117',
     2,
     'Quiz 17',
     'This is quiz 17',
@@ -131,7 +131,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-18',
+    'quiz-111111111118',
     3,
     'Quiz 18',
     'This is quiz 18',
@@ -139,7 +139,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-19',
+    'quiz-111111111119',
     1,
     'Quiz 19',
     'This is quiz 19',
@@ -147,7 +147,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-20',
+    'quiz-222222222220',
     2,
     'Quiz 20',
     'This is quiz 20',
@@ -155,7 +155,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-21',
+    'quiz-222222222221',
     3,
     'Quiz 21',
     'This is quiz 21',
@@ -163,7 +163,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-22',
+    'quiz-222222222202',
     1,
     'Quiz 22',
     'This is quiz 22',
@@ -171,7 +171,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-23',
+    'quiz-222222222223',
     2,
     'Quiz 23',
     'This is quiz 23',
@@ -179,7 +179,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-24',
+    'quiz-222222222224',
     3,
     'Quiz 24',
     'This is quiz 24',
@@ -187,7 +187,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-25',
+    'quiz-222222222225',
     1,
     'Quiz 25',
     'This is quiz 25',
@@ -195,7 +195,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-26',
+    'quiz-222222222226',
     2,
     'Quiz 26',
     'This is quiz 26',
@@ -203,7 +203,7 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
     5
   ),
   (
-    'quiz-27',
+    'quiz-222222222227',
     3,
     'Quiz 27',
     'This is quiz 27',
@@ -212,249 +212,249 @@ VALUES ('quiz-1', 1, 'Quiz 1', 'This is quiz 1', 10, 5),
   );
 INSERT INTO questions (quiz_id, question, type, answers)
 VALUES (
-    'quiz-1',
+    'quiz-111111111111',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'do you love me?',
     'true_false',
     '{"answer": true, "options": [true, false]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'do you love me?',
     'true_false',
     '{"answer": false, "options": [true, false]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'do you love me?',
     'true_false',
     '{"answer": true, "options": [true, false]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'do you love me?',
     'true_false',
     '{"answer": false, "options": [true, false]}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'whats my name',
     'short_answer',
     '{"answer": "Zaher", "options": []}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'whats my name',
     'short_answer',
     '{"answer": "Zaher", "options": []}'
   ),
   (
-    'quiz-1',
+    'quiz-111111111111',
     'whats my name',
     'short_answer',
     '{"answer": "Zaher", "options": []}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'do you love me?',
     'true_false',
     '{"answer": true, "options": [true, false]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'do you love me?',
     'true_false',
     '{"answer": false, "options": [true, false]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'do you love me?',
     'true_false',
     '{"answer": true, "options": [true, false]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'do you love me?',
     'true_false',
     '{"answer": false, "options": [true, false]}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'whats my name',
     'short_answer',
     '{"answer": "Zaher", "options": []}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'whats my name',
     'short_answer',
     '{"answer": "Zaher", "options": []}'
   ),
   (
-    'quiz-2',
+    'quiz-222222222222',
     'whats my name',
     'short_answer',
     '{"answer": "Zaher", "options": []}'
   ),
   (
-    'quiz-3',
+    'quiz-333333333333',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-3',
+    'quiz-333333333333',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-3',
+    'quiz-333333333333',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-3',
+    'quiz-333333333333',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-3',
+    'quiz-333333333333',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   ),
   (
-    'quiz-3',
+    'quiz-333333333333',
     'What is the capital of Egypt?',
     'mcq',
     '{"answer": "Cairo", "options": ["Cairo", "Alexandria", "Luxor", "Aswan"]}'
   );
 INSERT INTO scores (quiz_id, student_id, student_score)
-VALUES ('quiz-1', 1, '10'),
-  ('quiz-1', 2, '10'),
-  ('quiz-1', 3, '9'),
-  ('quiz-2', 1, '10'),
-  ('quiz-2', 2, '7'),
-  ('quiz-2', 3, '10'),
-  ('quiz-3', 1, '10'),
-  ('quiz-3', 2, '8'),
-  ('quiz-3', 3, '10');
+VALUES ('quiz-111111111111', 1, '10'),
+  ('quiz-111111111111', 2, '10'),
+  ('quiz-111111111111', 3, '9'),
+  ('quiz-222222222222', 1, '10'),
+  ('quiz-222222222222', 2, '7'),
+  ('quiz-222222222222', 3, '10'),
+  ('quiz-333333333333', 1, '10'),
+  ('quiz-333333333333', 2, '8'),
+  ('quiz-333333333333', 3, '10');
 INSERT INTO leaderboard (quiz_title, score, student_id)
 VALUES ('Arts & Literature', 10, 1),
   ('Film & TV', 6, 2),

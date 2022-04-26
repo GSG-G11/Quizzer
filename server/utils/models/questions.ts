@@ -1,7 +1,7 @@
 export default [
   {
     id: 1,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'What is the capital of Egypt?',
     type: 'mcq',
     answers: {
@@ -17,7 +17,7 @@ export default [
   },
   {
     id: 2,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'What is the capital of Egypt?',
     type: 'mcq',
     answers: {
@@ -33,7 +33,7 @@ export default [
   },
   {
     id: 3,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'What is the capital of Egypt?',
     type: 'mcq',
     answers: {
@@ -49,7 +49,7 @@ export default [
   },
   {
     id: 4,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'What is the capital of Egypt?',
     type: 'mcq',
     answers: {
@@ -65,7 +65,7 @@ export default [
   },
   {
     id: 5,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'What is the capital of Egypt?',
     type: 'mcq',
     answers: {
@@ -81,7 +81,7 @@ export default [
   },
   {
     id: 6,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'What is the capital of Egypt?',
     type: 'mcq',
     answers: {
@@ -97,7 +97,7 @@ export default [
   },
   {
     id: 7,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'What is the capital of Egypt?',
     type: 'mcq',
     answers: {
@@ -113,7 +113,7 @@ export default [
   },
   {
     id: 8,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'What is the capital of Egypt?',
     type: 'mcq',
     answers: {
@@ -129,7 +129,7 @@ export default [
   },
   {
     id: 9,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'What is the capital of Egypt?',
     type: 'mcq',
     answers: {
@@ -145,7 +145,7 @@ export default [
   },
   {
     id: 10,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'do you love me?',
     type: 'true_false',
     answers: {
@@ -159,7 +159,7 @@ export default [
   },
   {
     id: 11,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'do you love me?',
     type: 'true_false',
     answers: {
@@ -173,7 +173,7 @@ export default [
   },
   {
     id: 12,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'do you love me?',
     type: 'true_false',
     answers: {
@@ -187,7 +187,7 @@ export default [
   },
   {
     id: 13,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'do you love me?',
     type: 'true_false',
     answers: {
@@ -201,7 +201,7 @@ export default [
   },
   {
     id: 14,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'whats my name',
     type: 'short_answer',
     answers: {
@@ -212,7 +212,7 @@ export default [
   },
   {
     id: 15,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'whats my name',
     type: 'short_answer',
     answers: {
@@ -223,7 +223,7 @@ export default [
   },
   {
     id: 16,
-    quiz_id: 'quiz-1',
+    quiz_id: 'quiz-111111111111',
     question: 'whats my name',
     type: 'short_answer',
     answers: {

@@ -7,4 +7,5 @@ export {
   getStudentEmailQuery,
   getQuizQuery,
   getQuestionsQuery,
+  getLeaderboardQuery,
 } from './student';
