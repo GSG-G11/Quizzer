@@ -8,7 +8,7 @@ export default async ({ body, user }: UserAuth, res: Response, next: NextFunctio
 
   try {
     const {
-      rows: { 0: prevQuiz },
+      rows: { 0: prevAttempt },
       rowCount: hasScoredBefore,
     } = await checkUserScoreQuery(studentId, quizTitle);
 
@@ -17,13 +17,15 @@ export default async ({ body, user }: UserAuth, res: Response, next: NextFunctio
       return res.json({ data: quizScore, message: 'score added successfully' });
     }
 
-    const prevScoreGreaterThanNewOne = prevQuiz.score > score;
+    const prevScoreGreaterThanNewOne = prevAttempt.score > +score;
+    if (prevScoreGreaterThanNewOne) return res.json({ data: prevAttempt, message: 'You scored less than last time' });
 
-    if (prevScoreGreaterThanNewOne) return res.json({ data: prevQuiz, message: 'You scored less than last time' });
+    const prevScoreEqualsNewScore = prevAttempt.score === +score;
+    if (prevScoreEqualsNewScore) return res.json({ data: prevAttempt, message: 'Your score is equal to last time' });
 
     const { rows: { 0: quizScore } } = await updateScoreQuery({ studentId, score, quizTitle });
 
-    return res.json({ data: quizScore, message: 'score updated successfully' });
+    return res.json({ data: quizScore, message: 'leaderboard updated successfully' });
   } catch (error) {
     return next(error);
   }
