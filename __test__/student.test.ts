@@ -67,7 +67,7 @@ describe('/api/v1/student/quiz/:quizId', () => {
   });
 });
 
-describe('/api/v1/student/questions/:quizId', () => {
+describe.skip('/api/v1/student/questions/:quizId', () => {
   it('should return 200 and quiz data as json response', async () => {
     const res = await supertest(app)
       .get('/api/v1/student/questions/quiz-1')

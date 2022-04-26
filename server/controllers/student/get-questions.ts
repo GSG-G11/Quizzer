@@ -1,21 +1,25 @@
 import { NextFunction, Response } from 'express';
 import { getQuestionsQuery, checkUserAttendQuizQuery } from '../../database/queries';
+import { quizIdSchema } from '../../utils/validation';
 import { UserAuth } from '../../interfaces';
 import { CustomError } from '../../errors';
 
 export default async (req:UserAuth, res:Response, next:NextFunction) => {
   const { params: { quizId } } = req;
-  const { userId } = req.user;
+  const { user: { userId } } = req;
 
   try {
-    const { rows } = await getQuestionsQuery(quizId);
+    await quizIdSchema.validate({ quizId });
+
     const { rowCount: studentDidAttendQuiz } = await checkUserAttendQuizQuery({ userId, quizId });
     if (studentDidAttendQuiz) throw new CustomError('Student can\'t attend a quiz more than once', 401);
 
-    if (!rows) throw new CustomError('No data for this quiz', 204);
+    const { rows } = await getQuestionsQuery(quizId);
 
-    res.json({ data: rows, message: 'Success got quiz details' });
+    if (!rows.length) throw new CustomError('No data for this quiz', 404);
+
+    res.json({ data: rows, message: 'Receiving Quiz Questions Successfully' });
   } catch (err) {
-    next(err);
+    err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);
   }
 };
