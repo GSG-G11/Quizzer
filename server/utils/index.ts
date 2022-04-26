@@ -1,4 +1,6 @@
-export { signupSchema, loginSchema, addQuizSchema } from './validation';
+export {
+  signupSchema, loginSchema, addQuizSchema, quizIdSchema,
+} from './validation';
 export { signToken, verifyToken } from './jwt';
 export { default as emailResponse } from './email-response';
 export {
@@ -9,10 +11,10 @@ export {
   invalidAvatar,
   incorrectEmail,
   incorrectPassword,
-  successDelete,
   successStdLogin,
   successTechLogin,
   invalidUserPassword,
+  quizQuestions,
   validQuiz,
   noTitleQuiz,
   noDescriptionQuiz,

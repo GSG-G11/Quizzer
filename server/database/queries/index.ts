@@ -7,6 +7,8 @@ export {
   checkUserAttendQuizQuery,
   getStudentEmailQuery,
   getQuizQuery,
+  getQuestionsQuery,
+  getLeaderboardQuery,
 } from './student';
 
 export {

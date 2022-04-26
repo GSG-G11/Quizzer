@@ -3,7 +3,6 @@ import app from '../server/app';
 import dbBuild from '../server/database/config/build';
 import dbConnection from '../server/database/config/connections';
 import {
-  successDelete,
   validQuiz,
   noTitleQuiz,
   noDescriptionQuiz,
@@ -22,39 +21,43 @@ const teacherToken = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE
 beforeEach(dbBuild);
 afterAll(() => dbConnection.end());
 
-const cookie = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjUwNzg1Mzk3fQ.ErDrf4OSpcRWmrQACekbQBNwCRbBo1dmdBHRDio9b4w;';
-
 describe('DELETE /api/v1/teacher/quiz/:quizId', () => {
-  it('should return 200 and all quizzes teacher data as json response', async () => {
+  it('should return 200 and remove teacher quiz', async () => {
     const res = await supertest(app)
-      .delete('/api/v1/teacher/quiz/quiz-1')
-      .send(successDelete)
-      .set({ Cookie: cookie })
+      .delete('/api/v1/teacher/quiz/quiz-1111111111111')
+      .set({ Cookie: teacherToken })
       .expect(200);
 
     expect(res.body.message).toBe('Success delete');
   });
 
-  it('should return 200 and all quizzes teacher data as json response', async () => {
+  it('should return 401 Unauthorized', async () => {
     const res = await supertest(app)
-      .delete('/api/v1/teacher/quiz/quiz-100')
-      .send(successDelete)
-      .set({ Cookie: cookie })
+      .delete('/api/v1/teacher/quiz/quiz-2352323523512')
+      .expect(401);
+
+    expect(res.body.message).toBe('Unauthorized');
+  });
+
+  it('should return 400 and return massage for no data', async () => {
+    const res = await supertest(app)
+      .delete('/api/v1/teacher/quiz/quiz-2352323523512')
+      .set({ Cookie: teacherToken })
       .expect(400);
 
     expect(res.body.message).toBe('No quiz to delete it');
   });
 
-  it('should return 401 Unauthorized and json response', async () => {
-    const { body: { message } } = await supertest(app)
-      .delete('/api/v1/teacher/quiz/quiz-1')
-      .send(successDelete)
-      .expect(401)
-      .expect('Content-Type', /json/);
+  it('should return 400 Bad Request and return massage for quizId validation', async () => {
+    const res = await supertest(app)
+      .delete('/api/v1/teacher/quiz/quiz-100')
+      .set({ Cookie: teacherToken })
+      .expect(400);
 
-    expect(message).toEqual('Unauthorized');
+    expect(res.body.message[0]).toBe('Must be exactly 18 characters');
   });
 });
+
 describe('POST /api/v1/teacher/quiz', () => {
   it('should create a new quiz, return 201 OK, and Content-Type /json/', async () => {
     const res = await supertest(app)
