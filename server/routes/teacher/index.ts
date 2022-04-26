@@ -1,8 +1,11 @@
 import { Router } from 'express';
-import { enrolledStudents } from '../../controllers';
+import { enrolledStudents, createQuiz } from '../../controllers';
+import { checkAuth } from '../../middlewares';
 
 const router = Router();
 
-router.get('/enrolled-students/:quizId', enrolledStudents);
+router.get('/enrolled-students/:quizId', checkAuth('teacher'), enrolledStudents);
+
+router.post('/quiz', checkAuth('teacher'), createQuiz);
 
 export default router;

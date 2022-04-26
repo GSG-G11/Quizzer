@@ -1,7 +1,8 @@
 import { Request } from 'express';
 
 interface UserAuth extends Request {
-  user: {}
+  user: { userId: number, username: string, role: 'student' | 'teacher' },
+  quiz ?: {},
 }
 
 export default UserAuth;
