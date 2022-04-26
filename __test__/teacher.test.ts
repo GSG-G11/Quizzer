@@ -52,10 +52,7 @@ describe('DELETE /api/v1/teacher/quiz/:quizId', () => {
       .expect(401)
       .expect('Content-Type', /json/);
 
-    const actual = message;
-    const expected = 'Unauthorized';
-
-    expect(actual).toEqual(expected);
+    expect(message).toEqual('Unauthorized');
   });
 });
 describe('POST /api/v1/teacher/quiz', () => {
