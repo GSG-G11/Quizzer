@@ -5,5 +5,7 @@ export {
   checkUserAttendQuizQuery,
   getStudentEmailQuery,
   getQuizQuery,
+  getQuestionsQuery,
+  getLeaderboardQuery,
 } from './student';
 export { createQuizQuery, createQuestionQuery, getMyQuizzes } from './teacher';

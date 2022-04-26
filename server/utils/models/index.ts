@@ -14,6 +14,7 @@ export {
   incorrectPassword,
 } from './login-models';
 
+export { default as quizQuestions } from './questions';
 export {
   successReturnData,
 } from './quizzes-models';
