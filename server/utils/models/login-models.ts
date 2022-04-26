@@ -23,7 +23,7 @@ const incorrectPassword = {
 };
 
 const invalidUserPassword = {
-  password: 'uru',
+  password: 'za',
   email: 'zaherabuamro@gmail.com',
   role: 'student',
 };

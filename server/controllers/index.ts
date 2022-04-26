@@ -1,8 +1,8 @@
 export {
-  addPrivateQuizScore,
-  sendEmail,
-  checkUserAttendQuiz,
-  getQuiz,
+  signup, login, logOut, getUser,
+} from './auth';
+export {
+  sendEmail, getQuestions, getQuiz,
+  addPrivateQuizScore, checkUserAttendQuiz, leaderboard,
 } from './student';
-export { signup, logOut, login } from './auth';
-export { createQuiz, getProfile } from './teacher';
+export { createQuiz, getProfile, getQuizzes } from './teacher';
