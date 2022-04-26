@@ -7,5 +7,9 @@ export {
 } from './student';
 
 export {
-  createQuiz, deleteQuiz, getQuizzes, getEnrolledStudents,
+  createQuiz,
+  deleteQuiz,
+  getQuizzes,
+  getEnrolledStudents,
+  getProfile,
 } from './teacher';

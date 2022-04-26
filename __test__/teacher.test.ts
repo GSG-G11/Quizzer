@@ -14,7 +14,7 @@ import {
   invalidQuestionType,
   noAnswersQuestion,
   noAnswerQuestion,
-  successReturnData,
+  successReturnData as quizzesData,
 } from '../server/utils';
 
 const teacherToken = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQWhtZWQiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTY1MDcyNzk4Mn0.-ZZUxOdb_HAXAK1WSEHBSge_04wf2Eo3lPHPOpG_wkI';
@@ -64,6 +64,32 @@ describe('GET/ api/v1/teacher/enrolled-students/:quizId', () => {
 });
 
 const cookie = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjUwNzg1Mzk3fQ.ErDrf4OSpcRWmrQACekbQBNwCRbBo1dmdBHRDio9b4w;';
+const userData = {
+  username: 'Ali',
+  bio: 'ali',
+  avatar: 'https://res.cloudinary.com/dzqb0zjqw/image/upload/v1589735981/avatar_zqxqjy.jpg',
+};
+
+describe('GET /api/v1/teacher/profile', () => {
+  it('should return 200 and all quizzes teacher data as json response', async () => {
+    const { body: { data } } = await supertest(app)
+      .get('/api/v1/teacher/profile')
+      .expect(200)
+      .set({ Cookie: cookie })
+      .expect('Content-Type', /json/);
+
+    expect(data).toEqual({ quizzesData, userData });
+  });
+
+  it('should return 401 Unauthorized and json response', async () => {
+    const { body: { message } } = await supertest(app)
+      .get('/api/v1/teacher/profile')
+      .expect(401)
+      .expect('Content-Type', /json/);
+
+    expect(message).toEqual('Unauthorized');
+  });
+});
 
 describe('GET /api/v1/teacher/quizzes', () => {
   it('should return 200 and all quizzes teacher data as json response', async () => {
@@ -73,7 +99,7 @@ describe('GET /api/v1/teacher/quizzes', () => {
       .set({ Cookie: cookie })
       .expect('Content-Type', /json/);
 
-    expect(data).toEqual(successReturnData);
+    expect(data).toEqual(quizzesData);
   });
 
   it('should return 401 Unauthorized and json response', async () => {
