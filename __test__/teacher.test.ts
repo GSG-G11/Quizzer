@@ -17,47 +17,12 @@ import {
   successReturnData,
 } from '../server/utils';
 
+import { checkDeletedQuiz } from '../server/database/queries';
+
 const teacherToken = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQWhtZWQiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTY1MDcyNzk4Mn0.-ZZUxOdb_HAXAK1WSEHBSge_04wf2Eo3lPHPOpG_wkI';
 
-beforeEach(dbBuild);
+beforeAll(dbBuild);
 afterAll(() => dbConnection.end());
-
-describe('DELETE /api/v1/teacher/quiz/:quizId', () => {
-  it('should return 200 and remove teacher quiz', async () => {
-    const res = await supertest(app)
-      .delete('/api/v1/teacher/quiz/quiz-1111111111111')
-      .set({ Cookie: teacherToken })
-      .expect(200);
-
-    expect(res.body.message).toBe('Success delete');
-  });
-
-  it('should return 401 Unauthorized', async () => {
-    const res = await supertest(app)
-      .delete('/api/v1/teacher/quiz/quiz-2352323523512')
-      .expect(401);
-
-    expect(res.body.message).toBe('Unauthorized');
-  });
-
-  it('should return 400 and return massage for no data', async () => {
-    const res = await supertest(app)
-      .delete('/api/v1/teacher/quiz/quiz-2352323523512')
-      .set({ Cookie: teacherToken })
-      .expect(400);
-
-    expect(res.body.message).toBe('No quiz to delete it');
-  });
-
-  it('should return 400 Bad Request and return massage for quizId validation', async () => {
-    const res = await supertest(app)
-      .delete('/api/v1/teacher/quiz/quiz-100')
-      .set({ Cookie: teacherToken })
-      .expect(400);
-
-    expect(res.body.message[0]).toBe('Must be exactly 18 characters');
-  });
-});
 
 const cookie = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjUwNzg1Mzk3fQ.ErDrf4OSpcRWmrQACekbQBNwCRbBo1dmdBHRDio9b4w;';
 
@@ -213,5 +178,47 @@ describe('POST /api/v1/teacher/quiz', () => {
       .expect(400);
 
     expect(res.body.message[0]).toBe('Question type must be either MCQ, Short Answer, or True/False');
+  });
+});
+
+describe('DELETE /api/v1/teacher/quiz/:quizId', () => {
+  it('should return 200 and remove teacher quiz', async () => {
+    const res = await supertest(app)
+      .delete('/api/v1/teacher/quiz/quiz-1111111111111')
+      .set({ Cookie: teacherToken })
+      .expect(200);
+
+    expect(res.body.message).toBe('Success delete');
+  });
+
+  it('should return rowCount = 0', async () => {
+    const { rowCount } = await checkDeletedQuiz('quiz-1111111111111', 3);
+    expect(rowCount).toEqual(0);
+  });
+
+  it('should return 401 Unauthorized', async () => {
+    const res = await supertest(app)
+      .delete('/api/v1/teacher/quiz/quiz-2352323523512')
+      .expect(401);
+
+    expect(res.body.message).toBe('Unauthorized');
+  });
+
+  it('should return 400 and return massage for no data', async () => {
+    const res = await supertest(app)
+      .delete('/api/v1/teacher/quiz/quiz-2352323523512')
+      .set({ Cookie: teacherToken })
+      .expect(400);
+
+    expect(res.body.message).toBe('No quiz to delete it');
+  });
+
+  it('should return 400 Bad Request and return massage for quizId validation', async () => {
+    const res = await supertest(app)
+      .delete('/api/v1/teacher/quiz/quiz-100')
+      .set({ Cookie: teacherToken })
+      .expect(400);
+
+    expect(res.body.message[0]).toBe('Must be exactly 18 characters');
   });
 });

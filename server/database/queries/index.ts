@@ -11,6 +11,5 @@ export {
 } from './student';
 
 export {
-  deleteQuiz,
+  createQuizQuery, createQuestionQuery, getMyQuizzes, deleteQuiz, checkDeletedQuiz,
 } from './teacher';
-export { createQuizQuery, createQuestionQuery, getMyQuizzes } from './teacher';

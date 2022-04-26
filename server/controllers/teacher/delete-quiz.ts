@@ -6,11 +6,12 @@ import { UserAuth } from '../../interfaces';
 
 export default async (req:UserAuth, res:Response, next:NextFunction) => {
   const { params: { quizId } } = req;
+  const { user: { userId: teacherId } } = req;
 
   try {
     await quizIdSchema.validate({ quizId });
 
-    const { rowCount } = await deleteQuiz(quizId);
+    const { rowCount } = await deleteQuiz(quizId, teacherId);
 
     if (!rowCount) throw new CustomError('No quiz to delete it', 400);
 
