@@ -122,3 +122,39 @@ describe('POST /api/v1/auth/login', () => {
     expect(res.body.message[0]).toBe('Password must be at least 6 characters long');
   });
 });
+
+describe('GET /api/v1/auth/user', () => {
+  it('should found user and return their data { userId: number, username: string, role: student | teacher }', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/auth/user')
+      .set({ Cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiWmFoZXIiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTY1MDcxMDU5NX0.EVMLoTfhyGBxJJNSf6tqLRwC36lApGpgDfjBbbInpHk' })
+      .expect(200);
+
+    expect(res.body).toEqual({
+      data: {
+        userId: 1,
+        username: 'Zaher',
+        role: 'student',
+        iat: 1650710595,
+      },
+      message: 'User Found',
+    });
+  });
+
+  it('should return 401 Unauthorized and, Content-Type /json/', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/auth/user')
+      .set({ Cookie: 'token=yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiWmFoZXIiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTY1MDcxMDU5NX0.EVMLoTfhyGBxJJNSf6tqLRwC36lApGpgDfjBbbInpHk' })
+      .expect(401);
+
+    expect(res.body).toEqual({ message: 'invalid token' });
+  });
+
+  it('should return 404 Not Found and, Content-Type /json/', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/auth/user')
+      .expect(404);
+
+    expect(res.body).toEqual({ message: 'User does not exist' });
+  });
+});
