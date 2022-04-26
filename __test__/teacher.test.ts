@@ -17,8 +17,6 @@ import {
   successReturnData,
 } from '../server/utils';
 
-import { checkDeletedQuiz } from '../server/database/queries';
-
 const teacherToken = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQWhtZWQiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTY1MDcyNzk4Mn0.-ZZUxOdb_HAXAK1WSEHBSge_04wf2Eo3lPHPOpG_wkI';
 
 beforeAll(dbBuild);
@@ -191,9 +189,13 @@ describe('DELETE /api/v1/teacher/quiz/:quizId', () => {
     expect(res.body.message).toBe('Success delete');
   });
 
-  it('should return rowCount = 0', async () => {
-    const { rowCount } = await checkDeletedQuiz('quiz-1111111111111', 3);
-    expect(rowCount).toEqual(0);
+  it('Delete test quiz-1111111111111 for the second time to check if its still existing', async () => {
+    const res = await supertest(app)
+      .delete('/api/v1/teacher/quiz/quiz-1111111111111')
+      .set({ Cookie: teacherToken })
+      .expect(400);
+
+    expect(res.body.message).toBe('No quiz to delete it');
   });
 
   it('should return 401 Unauthorized', async () => {
