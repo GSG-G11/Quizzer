@@ -18,37 +18,34 @@ import {
 
 const teacherToken = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQWhtZWQiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTY1MDcyNzk4Mn0.-ZZUxOdb_HAXAK1WSEHBSge_04wf2Eo3lPHPOpG_wkI';
 
-beforeEach(dbBuild);
+beforeAll(dbBuild);
 afterAll(() => dbConnection.end());
 
 describe('GET/ api/v1/teacher/enrolled-students/:quizId', () => {
   it('should get enrolled students for teacher quiz when authorized', async () => {
-    const { body } = await supertest(app)
+    const { body: { data } } = await supertest(app)
       .get('/api/v1/teacher/enrolled-students/quiz-1')
       .set({ Cookie: teacherToken })
       .expect(200)
       .expect('Content-Type', /json/);
 
-    const actual = body;
+    const actual = data;
 
     const expected = [
       {
         username: 'Zaher',
         student_score: 10,
         mark: 10,
-        title: 'Quiz 1',
       },
       {
         username: 'Khaled',
         student_score: 10,
         mark: 10,
-        title: 'Quiz 1',
       },
       {
         username: 'Amjad',
         student_score: 9,
         mark: 10,
-        title: 'Quiz 1',
       },
     ];
 

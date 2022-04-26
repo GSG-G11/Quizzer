@@ -3,7 +3,7 @@ import app from '../server/app';
 import dbBuild from '../server/database/config/build';
 import dbConnection from '../server/database/config/connections';
 
-beforeEach(dbBuild);
+beforeAll(dbBuild);
 afterAll(() => dbConnection.end());
 
 describe('POST /api/v1/student/score', () => {

@@ -1,6 +1,6 @@
 import connections from '../../config/connections';
 
-const query = `select st.username, s.student_score, q.mark, q.title 
+const query = `select st.username, s.student_score, q.mark
 from students as st 
 join scores as s on st.id = s.student_id 
 join quizzes as q on q.id = s.quiz_id JOIN teachers as t on t.id = q.teacher_id 
