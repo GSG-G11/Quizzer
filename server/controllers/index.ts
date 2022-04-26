@@ -5,4 +5,5 @@ export {
   sendEmail, getQuestions, getQuiz,
   addPrivateQuizScore, checkUserAttendQuiz, leaderboard,
 } from './student';
-export { getQuizzes, createQuiz } from './teacher';
+
+export { createQuiz, deleteQuiz, getQuizzes } from './teacher';

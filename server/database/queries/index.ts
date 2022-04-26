@@ -1,4 +1,5 @@
 export { createNewUserQuery, checkEmailTakenQuery } from './auth';
+
 export {
   addPrivateQuizScoreQuery,
   getQuizDetailsQuery,
@@ -8,4 +9,7 @@ export {
   getQuestionsQuery,
   getLeaderboardQuery,
 } from './student';
-export { createQuizQuery, createQuestionQuery, getMyQuizzes } from './teacher';
+
+export {
+  createQuizQuery, createQuestionQuery, getMyQuizzes, deleteQuiz,
+} from './teacher';

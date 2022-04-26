@@ -9,6 +9,7 @@ export {
   invalidPassword,
   invalidUsername,
   invalidAvatar,
+  invalidUserPassword,
   successReturnData,
   successStdLogin,
   successTechLogin,
@@ -26,5 +27,4 @@ export {
   invalidQuestionType,
   noAnswersQuestion,
   noAnswerQuestion,
-  invalidUserPassword,
 } from './models';
