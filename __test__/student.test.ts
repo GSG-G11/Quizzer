@@ -11,7 +11,7 @@ describe('POST /api/v1/student/score', () => {
     const res = await supertest(app)
       .post('/api/v1/student/score')
       .set({ Cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiWmFoZXIiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTY1MDcxMDU5NX0.EVMLoTfhyGBxJJNSf6tqLRwC36lApGpgDfjBbbInpHk' })
-      .send({ quizId: 'quiz-111111111111', score: 10 })
+      .send({ quizId: 'quiz-1111111111111', score: 10 })
       .expect(401)
       .expect('Content-Type', /json/);
 
@@ -22,7 +22,7 @@ describe('POST /api/v1/student/score', () => {
     const res = await supertest(app)
       .post('/api/v1/student/score')
       .set({ Cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWhtYWQiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTY1MDcxMTg4Mn0.JY4MEH0aVQw2-JDD8mcoFD7TQHLTPIvixzMmYeTQpdc' })
-      .send({ quizId: 'quiz-111111111111', score: 10 })
+      .send({ quizId: 'quiz-1111111111111', score: 10 })
       .expect(401)
       .expect('Content-Type', /json/);
 
@@ -50,14 +50,14 @@ describe('/api/v1/student/leaderboard/:quizTitle', () => {
 describe('/api/v1/student/quiz/:quizId', () => {
   it('should return 200 and quiz data as json response', async () => {
     const { body: { data } } = await supertest(app)
-      .get(`${baseURL}/quiz/quiz-111111111111`)
+      .get(`${baseURL}/quiz/quiz-1111111111111`)
       .expect(200)
       .expect('Content-Type', /json/);
 
     const actual = data;
     const expected = {
       description: 'This is quiz 1',
-      id: 'quiz-111111111111',
+      id: 'quiz-1111111111111',
       mark: 10,
       teacher_id: 1,
       time: 5,
