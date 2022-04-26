@@ -5,4 +5,4 @@ export {
   checkUserAttendQuiz,
   getQuiz,
 } from './student';
-export { quizzes, createQuiz } from './teacher';
+export { getQuizzes, createQuiz } from './teacher';

@@ -32,8 +32,7 @@ describe('GET /api/v1/teacher/quizzes', () => {
       .set({ Cookie: cookie })
       .expect('Content-Type', /json/);
 
-    const actual = data;
-    expect(actual).toEqual(successReturnData);
+    expect(data).toEqual(successReturnData);
   });
 
   it('should return 401 Unauthorized and json response', async () => {
