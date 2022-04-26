@@ -6,4 +6,4 @@ export {
   addPrivateQuizScore, checkUserAttendQuiz, leaderboard,
 } from './student';
 
-export { createQuiz, deleteQuiz } from './teacher';
+export { createQuiz, deleteQuiz, getQuizzes } from './teacher';

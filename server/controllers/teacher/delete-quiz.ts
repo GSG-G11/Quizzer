@@ -5,8 +5,7 @@ import { quizIdSchema } from '../../utils/validation';
 import { UserAuth } from '../../interfaces';
 
 export default async (req:UserAuth, res:Response, next:NextFunction) => {
-  const { params } = req;
-  const { quizId } = params;
+  const { params: { quizId } } = req;
 
   try {
     await quizIdSchema.validate({ quizId });

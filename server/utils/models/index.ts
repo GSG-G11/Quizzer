@@ -17,6 +17,9 @@ export {
 export { default as quizQuestions } from './questions';
 
 export {
+  successReturnData,
+} from './quizzes-models';
+export {
   validQuiz,
   noTitleQuiz,
   noDescriptionQuiz,
