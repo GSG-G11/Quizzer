@@ -23,8 +23,10 @@ afterAll(() => dbConnection.end());
 
 describe('GET/ api/v1/teacher/enrolled-students/:quizId', () => {
   it('should get enrolled students for teacher quiz when authorized', async () => {
-    const { body: { data } } = await supertest(app)
-      .get('/api/v1/teacher/enrolled-students/quiz-1')
+    const {
+      body: { data },
+    } = await supertest(app)
+      .get('/api/v1/teacher/enrolled-students/quiz-1111111111111')
       .set({ Cookie: teacherToken })
       .expect(200)
       .expect('Content-Type', /json/);

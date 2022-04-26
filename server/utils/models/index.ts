@@ -14,6 +14,7 @@ export {
   invalidUserPassword,
 } from './login-models';
 
+export { default as quizQuestions } from './questions';
 export {
   validQuiz,
   noTitleQuiz,
