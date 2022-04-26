@@ -32,6 +32,21 @@ describe('POST /api/v1/student/score', () => {
 
 const baseURL = '/api/v1/student';
 
+describe('/api/v1/student/leaderboard/:quizTitle', () => {
+  it('should return 200 and leaderboard data as json response', async () => {
+    const { body: { data } } = await supertest(app)
+      .get(`${baseURL}/leaderboard/Music`)
+      .expect(200)
+      .expect('Content-Type', /json/);
+
+    const arrayElement = data.at(0);
+
+    expect(data).toHaveLength(3);
+    expect(arrayElement).toHaveProperty('score');
+    expect(arrayElement).toHaveProperty('username');
+  });
+});
+
 describe('/api/v1/student/quiz/:quizId', () => {
   it('should return 200 and quiz data as json response', async () => {
     const { body: { data } } = await supertest(app)
