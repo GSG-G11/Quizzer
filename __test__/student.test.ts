@@ -2,6 +2,7 @@ import supertest from 'supertest';
 import app from '../server/app';
 import dbBuild from '../server/database/config/build';
 import dbConnection from '../server/database/config/connections';
+import { quizQuestions } from '../server/utils';
 
 beforeEach(dbBuild);
 afterAll(() => dbConnection.end());
@@ -78,5 +79,36 @@ describe('/api/v1/student/quiz/:quizId', () => {
     const expected = 'No quiz found';
 
     expect(actual).toEqual(expected);
+  });
+});
+
+describe('/api/v1/student/questions/:quizId', () => {
+  it('should return 200 and quiz data as json response', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/student/questions/quiz-1111111111111')
+      .set({ Cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInVzZXJuYW1lIjoidGVzdCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNjUwOTIwMzQ0fQ.lBjKiLBrrd9QC12GtuPQFFdguZVRz7Y5xR0Xtn_cRw8' })
+      .expect(200)
+      .expect('Content-Type', /json/);
+
+    expect(res.body.data).toEqual(quizQuestions);
+  });
+
+  it('should return 400 and quiz data as json response', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/student/questions/quiz-1')
+      .set({ Cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInVzZXJuYW1lIjoidGVzdCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNjUwOTIwMzQ0fQ.lBjKiLBrrd9QC12GtuPQFFdguZVRz7Y5xR0Xtn_cRw8' })
+      .expect(400)
+      .expect('Content-Type', /json/);
+
+    expect(res.body.message[0]).toEqual('Must be exactly 18 characters');
+  });
+
+  it('should return 401 Unauthorized and json response', async () => {
+    const res = await supertest(app)
+      .get('/api/v1/student/questions/quiz-1111111111111')
+      .expect(401)
+      .expect('Content-Type', /json/);
+
+    expect(res.body.message).toEqual('Unauthorized');
   });
 });
