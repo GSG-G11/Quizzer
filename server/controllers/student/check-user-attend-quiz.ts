@@ -8,7 +8,6 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
 
   try {
     const { rowCount: studentDidAttendQuiz } = await checkUserAttendQuizQuery({ userId, quizId });
-
     if (studentDidAttendQuiz) throw new CustomError('Student can\'t attend a quiz more than once', 401);
     next();
   } catch (err) {

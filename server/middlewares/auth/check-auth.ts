@@ -9,7 +9,6 @@ export default (role: 'student' | 'teacher') => async (req: UserAuth, res: Respo
   try {
     if (!token) throw new CustomError('Unauthorized', 401);
     const user: any = await verifyToken(token);
-
     if (user.role !== role) throw new CustomError('Unauthorized', 401);
     req.user = user;
     next();
