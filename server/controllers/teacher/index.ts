@@ -1,2 +1,2 @@
 export { default as createQuiz } from './create-new-quiz';
-export { default as profile } from './profile';
+export { default as getProfile } from './get-profile';

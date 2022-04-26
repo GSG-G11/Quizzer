@@ -5,4 +5,4 @@ export {
   getQuiz,
 } from './student';
 export { signup, logOut, login } from './auth';
-export { createQuiz, profile } from './teacher';
+export { createQuiz, getProfile } from './teacher';
