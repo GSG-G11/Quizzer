@@ -1,8 +1,11 @@
 export {
+  signup, login, logOut, getUser,
+} from './auth';
+export {
   sendEmail, getQuestions, getQuiz,
   addPrivateQuizScore, checkUserAttendQuiz, leaderboard,
 } from './student';
-export { getEnrolledStudents, createQuiz } from './teacher';
+
 export {
-  signup, logOut, login, getUser,
-} from './auth';
+  createQuiz, deleteQuiz, getQuizzes, getEnrolledStudents,
+} from './teacher';
