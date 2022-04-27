@@ -1,5 +1,5 @@
 import { Response, NextFunction } from 'express';
-import uniqid from 'uniqid';
+import { nanoid } from 'nanoid';
 import { UserAuth } from '../../interfaces';
 import { addQuizSchema } from '../../utils';
 import { CustomError } from '../../errors';
@@ -12,7 +12,7 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
     },
   } = req;
 
-  const quizId = uniqid();
+  const quizId = nanoid(20);
 
   try {
     await addQuizSchema.validate(req.body, { abortEarly: false });
