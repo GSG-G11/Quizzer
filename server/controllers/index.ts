@@ -10,6 +10,11 @@ export {
   leaderboard,
   updateLeaderboard,
 } from './student';
+
 export {
-  createQuiz, getProfile, getQuizzes, deleteQuiz,
+  createQuiz,
+  deleteQuiz,
+  getQuizzes,
+  getEnrolledStudents,
+  getProfile,
 } from './teacher';
