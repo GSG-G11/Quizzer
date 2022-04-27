@@ -5,6 +5,11 @@ export {
   sendEmail, getQuestions, getQuiz,
   addPrivateQuizScore, checkUserAttendQuiz, leaderboard,
 } from './student';
+
 export {
-  createQuiz, getProfile, getQuizzes, deleteQuiz,
+  createQuiz,
+  deleteQuiz,
+  getQuizzes,
+  getEnrolledStudents,
+  getProfile,
 } from './teacher';
