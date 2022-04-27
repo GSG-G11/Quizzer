@@ -2,8 +2,9 @@ import { NextFunction, Response } from 'express';
 import { updateScoreQuery, checkUserScoreQuery, addScoreQuery } from '../../database/queries';
 import { UserAuth } from '../../interfaces';
 
-export default async ({ body, user }: UserAuth, res: Response, next: NextFunction) => {
-  const { score, quizTitle } = body;
+export default async ({ body, user, params }: UserAuth, res: Response, next: NextFunction) => {
+  const { score } = body;
+  const { quizTitle } = params;
   const { userId: studentId } = user;
 
   try {
@@ -23,9 +24,9 @@ export default async ({ body, user }: UserAuth, res: Response, next: NextFunctio
     const prevScoreEqualsNewScore = prevAttempt.score === +score;
     if (prevScoreEqualsNewScore) return res.json({ data: prevAttempt, message: 'Your score is equal to last time' });
 
-    const { rows: { 0: quizScore } } = await updateScoreQuery({ studentId, score, quizTitle });
+    const { rows: { 0: attemptData } } = await updateScoreQuery({ studentId, score, quizTitle });
 
-    return res.json({ data: quizScore, message: 'leaderboard updated successfully' });
+    return res.json({ data: attemptData, message: 'leaderboard updated successfully' });
   } catch (error) {
     return next(error);
   }

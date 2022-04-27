@@ -4,7 +4,7 @@ import dbBuild from '../server/database/config/build';
 import dbConnection from '../server/database/config/connections';
 import { quizQuestions } from '../server/utils';
 
-beforeEach(dbBuild);
+beforeAll(dbBuild);
 afterAll(() => dbConnection.end());
 
 describe('POST /api/v1/student/score', () => {
@@ -32,6 +32,7 @@ describe('POST /api/v1/student/score', () => {
 });
 
 const baseURL = '/api/v1/student';
+const token = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiWmFoZXIiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTY1MDcxMDU5NX0.EVMLoTfhyGBxJJNSf6tqLRwC36lApGpgDfjBbbInpHk';
 
 describe('/api/v1/student/leaderboard/:quizTitle', () => {
   it('should return 200 and leaderboard data as json response', async () => {
@@ -45,6 +46,65 @@ describe('/api/v1/student/leaderboard/:quizTitle', () => {
     expect(data).toHaveLength(3);
     expect(arrayElement).toHaveProperty('score');
     expect(arrayElement).toHaveProperty('username');
+  });
+
+  it('should return 200 with attempt data when student first attempt', async () => {
+    const {
+      body: { data, message },
+    } = await supertest(app)
+      .post(`${baseURL}/leaderboard/Music`)
+      .set({ Cookie: token })
+      .send({ score: 1424 })
+      .expect(200)
+      .expect('Content-Type', /json/);
+
+    const actual = data;
+    const expected = { quiz_title: 'Music', student_id: 1, score: 1424 };
+
+    expect(actual).toEqual(expected);
+    expect(message).toEqual('leaderboard updated successfully');
+  });
+
+  it('should return 401 when not logged in', async () => {
+    await supertest(app)
+      .post(`${baseURL}/leaderboard/Music`)
+      .send({ score: 1424 })
+      .expect(401)
+      .expect('Content-Type', /json/);
+  });
+
+  it('should return 200 with attempt data when attempted second time but scored the same score as last attempt score', async () => {
+    const {
+      body: { data, message },
+    } = await supertest(app)
+      .post(`${baseURL}/leaderboard/Music`)
+      .set({ Cookie: token })
+      .send({ score: 1424 })
+      .expect(200)
+      .expect('Content-Type', /json/);
+
+    const actual = data;
+    const expected = { quiz_title: 'Music', student_id: 1, score: 1424 };
+
+    expect(actual).toEqual(expected);
+    expect(message).toEqual('Your score is equal to last time');
+  });
+
+  it('should return 200 with last highest score attempt when attempted second time but scored the less than last attempt score', async () => {
+    const {
+      body: { data, message },
+    } = await supertest(app)
+      .post(`${baseURL}/leaderboard/Music`)
+      .set({ Cookie: token })
+      .send({ score: 1423 })
+      .expect(200)
+      .expect('Content-Type', /json/);
+
+    const actual = data;
+    const expected = { quiz_title: 'Music', student_id: 1, score: 1424 };
+
+    expect(actual).toEqual(expected);
+    expect(message).toEqual('You scored less than last time');
   });
 });
 

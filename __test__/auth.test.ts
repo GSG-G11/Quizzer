@@ -15,7 +15,7 @@ import {
   incorrectPassword,
 } from '../server/utils';
 
-beforeEach(dbBuild);
+beforeAll(dbBuild);
 afterAll(() => dbConnection.end());
 
 describe('POST /api/v1/auth/signup', () => {
