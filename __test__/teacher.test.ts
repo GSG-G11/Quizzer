@@ -27,7 +27,7 @@ describe('GET/ api/v1/teacher/enrolled-students/:quizId', () => {
     const {
       body: { data },
     } = await supertest(app)
-      .get('/api/v1/teacher/enrolled-students/quiz-1111111111111')
+      .get('/api/v1/teacher/quiz/quiz-1111111111111/enrolled-students')
       .set({ Cookie: teacherToken })
       .expect(200)
       .expect('Content-Type', /json/);
@@ -57,7 +57,7 @@ describe('GET/ api/v1/teacher/enrolled-students/:quizId', () => {
 
   it('should return 401 when unauthorized', async () => {
     await supertest(app)
-      .get('/api/v1/teacher/enrolled-students/quiz-1')
+      .get('/api/v1/teacher/quiz/quiz-1/enrolled-students')
       .expect(401)
       .expect('Content-Type', /json/);
   });
