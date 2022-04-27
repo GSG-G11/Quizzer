@@ -10,4 +10,5 @@ export {
   leaderboard,
   updateLeaderboard,
 } from './student';
-export { getQuizzes, createQuiz } from './teacher';
+
+export { createQuiz, deleteQuiz, getQuizzes } from './teacher';
