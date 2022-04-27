@@ -54,12 +54,12 @@ describe('/api/v1/student/leaderboard/:quizTitle', () => {
     } = await supertest(app)
       .post(`${baseURL}/leaderboard/Music`)
       .set({ Cookie: token })
-      .send({ score: 1424 })
+      .send({ score: 7 })
       .expect(200)
       .expect('Content-Type', /json/);
 
     const actual = data;
-    const expected = { quiz_title: 'Music', student_id: 1, score: 1424 };
+    const expected = { quiz_title: 'Music', student_id: 1, score: 7 };
 
     expect(actual).toEqual(expected);
     expect(message).toEqual('leaderboard updated successfully');
@@ -68,7 +68,7 @@ describe('/api/v1/student/leaderboard/:quizTitle', () => {
   it('should return 401 when not logged in', async () => {
     await supertest(app)
       .post(`${baseURL}/leaderboard/Music`)
-      .send({ score: 1424 })
+      .send({ score: 7 })
       .expect(401)
       .expect('Content-Type', /json/);
   });
@@ -79,12 +79,12 @@ describe('/api/v1/student/leaderboard/:quizTitle', () => {
     } = await supertest(app)
       .post(`${baseURL}/leaderboard/Music`)
       .set({ Cookie: token })
-      .send({ score: 1424 })
+      .send({ score: 7 })
       .expect(200)
       .expect('Content-Type', /json/);
 
     const actual = data;
-    const expected = { quiz_title: 'Music', student_id: 1, score: 1424 };
+    const expected = { quiz_title: 'Music', student_id: 1, score: 7 };
 
     expect(actual).toEqual(expected);
     expect(message).toEqual('Your score is equal to last time');
@@ -96,12 +96,12 @@ describe('/api/v1/student/leaderboard/:quizTitle', () => {
     } = await supertest(app)
       .post(`${baseURL}/leaderboard/Music`)
       .set({ Cookie: token })
-      .send({ score: 1423 })
+      .send({ score: 6 })
       .expect(200)
       .expect('Content-Type', /json/);
 
     const actual = data;
-    const expected = { quiz_title: 'Music', student_id: 1, score: 1424 };
+    const expected = { quiz_title: 'Music', student_id: 1, score: 7 };
 
     expect(actual).toEqual(expected);
     expect(message).toEqual('You scored less than last time');
