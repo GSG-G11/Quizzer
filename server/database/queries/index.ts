@@ -1,12 +1,12 @@
 export { createNewUserQuery, checkEmailTakenQuery } from './auth';
-
 export {
   createQuizQuery,
   createQuestionQuery,
-  userInfo,
+  checkQuizExistsQuery,
+  getEnrolledStudentsQuery,
   getMyQuizzes,
   deleteQuiz,
-  checkQuizExistsQuery,
+  userInfo,
 } from './teacher';
 
 export {

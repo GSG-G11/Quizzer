@@ -23,6 +23,47 @@ const teacherToken = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE
 beforeAll(dbBuild);
 afterAll(() => dbConnection.end());
 
+describe('GET/ api/v1/teacher/enrolled-students/:quizId', () => {
+  it('should get enrolled students for teacher quiz when authorized', async () => {
+    const {
+      body: { data },
+    } = await supertest(app)
+      .get('/api/v1/teacher/quiz/quiz-1111111111111/enrolled-students')
+      .set({ Cookie: teacherToken })
+      .expect(200)
+      .expect('Content-Type', /json/);
+
+    const actual = data;
+
+    const expected = [
+      {
+        username: 'Zaher',
+        student_score: 10,
+        mark: 10,
+      },
+      {
+        username: 'Khaled',
+        student_score: 10,
+        mark: 10,
+      },
+      {
+        username: 'Amjad',
+        student_score: 9,
+        mark: 10,
+      },
+    ];
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should return 401 when unauthorized', async () => {
+    await supertest(app)
+      .get('/api/v1/teacher/quiz/quiz-1/enrolled-students')
+      .expect(401)
+      .expect('Content-Type', /json/);
+  });
+});
+
 const cookie = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjUwNzg1Mzk3fQ.ErDrf4OSpcRWmrQACekbQBNwCRbBo1dmdBHRDio9b4w;';
 const userData = {
   username: 'Ali',
