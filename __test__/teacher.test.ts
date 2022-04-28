@@ -4,6 +4,7 @@ import dbBuild from '../server/database/config/build';
 import dbConnection from '../server/database/config/connections';
 import {
   validQuiz,
+  answersEmpty,
   noTitleQuiz,
   noDescriptionQuiz,
   noMarkQuiz,
@@ -94,16 +95,6 @@ describe('POST /api/v1/teacher/quiz', () => {
     expect(res.body.message).toBe('Unauthorized');
   });
 
-  it('should create a new quiz, return 201 OK, and Content-Type /json/', async () => {
-    const res = await supertest(app)
-      .post('/api/v1/teacher/quiz')
-      .set({ Cookie: teacherToken })
-      .send(validQuiz)
-      .expect(201);
-
-    expect(res.body.message).toBe('Quiz Created Successfully');
-  });
-
   it('should return 401 Unauthorized, and Content-Type /json/', async () => {
     const res = await supertest(app)
       .post('/api/v1/teacher/quiz')
@@ -112,6 +103,16 @@ describe('POST /api/v1/teacher/quiz', () => {
       .expect(400);
 
     expect(res.body.message[0]).toBe('Quiz description is required');
+  });
+
+  it('should return 401 Unauthorized, and Content-Type /json/', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/teacher/quiz')
+      .set({ Cookie: teacherToken })
+      .send(answersEmpty)
+      .expect(400);
+
+    expect(res.body.message[0]).toBe('Answers can\'t be empty');
   });
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {
@@ -181,7 +182,7 @@ describe('POST /api/v1/teacher/quiz', () => {
       .send(noAnswersQuestion)
       .expect(400);
 
-    expect(res.body.message[0]).toBe('Answers can\'t be empty');
+    expect(res.body.message[0]).toBe('Answers for a question should be provided');
   });
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {

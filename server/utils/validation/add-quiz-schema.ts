@@ -11,12 +11,12 @@ export default object({
     object({
       question: string().required('Question is not allowed to be empty'),
       type: string().oneOf(['mcq', 'short_answer', 'true_false'], 'Question type must be either MCQ, Short Answer, or True/False').required('Question type must be specified'),
-      answers: array().of(
+      answers: array().min(1, 'Answers can\'t be empty').of(
         object({
           answer: string().required('Answer is not allowed to be empty'),
           is_correct: boolean().required('Answer must be specified whether correct or not'),
         }),
-      ).required('Answers can\'t be empty'),
+      ).required('Answers for a question should be provided'),
     }),
   ).required('Questions can\'t be empty'),
 });

@@ -43,6 +43,20 @@ const noTitleQuiz = {
   ],
 };
 
+const answersEmpty = {
+  title: 'my first quiz',
+  description: 'my first quiz description',
+  mark: 20,
+  time: 30,
+  questions: [
+    {
+      question: 'This is my question',
+      type: 'mcq',
+      answers: [],
+    },
+  ],
+};
+
 const noDescriptionQuiz = {
   title: 'my first quiz',
   mark: 20,
@@ -169,4 +183,5 @@ export {
   invalidQuestionType,
   noAnswersQuestion,
   noAnswerQuestion,
+  answersEmpty,
 };
