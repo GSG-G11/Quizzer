@@ -1,5 +1,5 @@
 import {
-  array, boolean, number, object, string,
+  array, number, object, string,
 } from 'yup';
 
 export default object({
@@ -11,12 +11,10 @@ export default object({
     object({
       question: string().required('Question is not allowed to be empty'),
       type: string().oneOf(['mcq', 'short_answer', 'true_false'], 'Question type must be either MCQ, Short Answer, or True/False').required('Question type must be specified'),
-      answers: array().min(1, 'Answers can\'t be empty').of(
-        object({
-          answer: string().required('Answer is not allowed to be empty'),
-          is_correct: boolean().required('Answer must be specified whether correct or not'),
-        }),
-      ).required('Answers for a question should be provided'),
+      answers: object({
+        answer: string().required('Correct answer is required'),
+        options: array().required('options are required'),
+      }),
     }),
   ).required('Questions can\'t be empty'),
 });

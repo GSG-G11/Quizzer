@@ -17,6 +17,12 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
   try {
     await addQuizSchema.validate(req.body, { abortEarly: false });
 
+    questions.forEach(({ type, answers: { answer, options } }) => {
+      if (type !== 'short_answer') {
+        if (options.indexOf(answer) === -1) throw new CustomError('Correct answer should be in options', 400);
+      }
+    });
+
     const { rows: { 0: quiz } } = await createQuizQuery({
       quizId, teacherId, title, description, mark, time,
     });

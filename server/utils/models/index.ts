@@ -31,5 +31,5 @@ export {
   invalidQuestionType,
   noAnswersQuestion,
   noAnswerQuestion,
-  answersEmpty,
+  noOptions,
 } from './quiz-models';

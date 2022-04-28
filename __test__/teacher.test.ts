@@ -4,7 +4,7 @@ import dbBuild from '../server/database/config/build';
 import dbConnection from '../server/database/config/connections';
 import {
   validQuiz,
-  answersEmpty,
+  noOptions,
   noTitleQuiz,
   noDescriptionQuiz,
   noMarkQuiz,
@@ -109,10 +109,10 @@ describe('POST /api/v1/teacher/quiz', () => {
     const res = await supertest(app)
       .post('/api/v1/teacher/quiz')
       .set({ Cookie: teacherToken })
-      .send(answersEmpty)
+      .send(noOptions)
       .expect(400);
 
-    expect(res.body.message[0]).toBe('Answers can\'t be empty');
+    expect(res.body.message[0]).toBe('options are required');
   });
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {
@@ -182,7 +182,7 @@ describe('POST /api/v1/teacher/quiz', () => {
       .send(noAnswersQuestion)
       .expect(400);
 
-    expect(res.body.message[0]).toBe('Answers for a question should be provided');
+    expect(res.body).toEqual({ message: ['options are required', 'Correct answer is required'] });
   });
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {
@@ -192,7 +192,7 @@ describe('POST /api/v1/teacher/quiz', () => {
       .send(noAnswerQuestion)
       .expect(400);
 
-    expect(res.body.message[0]).toBe('Answer is not allowed to be empty');
+    expect(res.body.message[0]).toBe('Correct answer is required');
   });
 
   it('should return 400 Bad Request, and Content-Type /json/', async () => {
