@@ -18,8 +18,13 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
     await addQuizSchema.validate(req.body, { abortEarly: false });
 
     questions.forEach(({ type, answers: { answer, options } }) => {
-      if (type !== 'short_answer') {
+      if (type === 'mcq') {
         if (options.indexOf(answer) === -1) throw new CustomError('Correct answer should be in options', 400);
+      } else if (type === 'true_false') {
+        const notAllBooleans = options.some((option: boolean) => typeof option !== 'boolean');
+        const sameOptions = options[0] === options[1];
+        const validTrueFalseQuestion = typeof answer !== 'boolean' || options.length !== 2 || notAllBooleans || sameOptions;
+        if (validTrueFalseQuestion) throw new CustomError('Invalid answers for question of type true_false', 400);
       }
     });
 
