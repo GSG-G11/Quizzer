@@ -12,7 +12,7 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
     },
   } = req;
 
-  const quizId = nanoid(20);
+  const quizId = nanoid(18);
 
   try {
     await addQuizSchema.validate(req.body, { abortEarly: false });
