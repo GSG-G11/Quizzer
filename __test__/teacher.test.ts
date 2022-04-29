@@ -15,6 +15,7 @@ import {
   invalidQuestionType,
   noAnswersQuestion,
   noAnswerQuestion,
+  invalidTrueFalseAnswers,
   successReturnData as quizzesData,
 } from '../server/utils';
 
@@ -244,6 +245,16 @@ describe('POST /api/v1/teacher/quiz', () => {
       .expect(400);
 
     expect(res.body.message[0]).toBe('Question type must be either MCQ, Short Answer, or True/False');
+  });
+
+  it('should return 400 Bad Request, and Content-Type /json/', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/teacher/quiz')
+      .set({ Cookie: teacherToken })
+      .send(invalidTrueFalseAnswers)
+      .expect(400);
+
+    expect(res.body).toEqual({ message: 'Invalid answers for question of type true_false' });
   });
 });
 

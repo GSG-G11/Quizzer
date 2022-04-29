@@ -163,6 +163,30 @@ const noAnswerQuestion = {
   ],
 };
 
+const invalidTrueFalseAnswers = {
+  title: 'my first quiz',
+  description: 'my first quiz description',
+  mark: 20,
+  time: 30,
+  questions: [
+    {
+      question: 'This is my question',
+      type: 'mcq',
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
+    },
+    {
+      question: 'This is my question',
+      type: 'true_false',
+      answers: { answer: 'hi', options: [true, true] },
+    },
+    {
+      question: 'This is my question',
+      type: 'short_answer',
+      answers: { answer: 'correct answer', options: [] },
+    },
+  ],
+};
+
 export {
   validQuiz,
   noTitleQuiz,
@@ -176,4 +200,5 @@ export {
   noAnswersQuestion,
   noAnswerQuestion,
   noOptions,
+  invalidTrueFalseAnswers,
 };
