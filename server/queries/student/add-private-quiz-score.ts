@@ -1,4 +1,4 @@
-import dbConnection from '../../config/connections';
+import dbConnection from '../../database/connections';
 
 export default ({ userId: studentId, quizId, score }) => dbConnection.query(
   `

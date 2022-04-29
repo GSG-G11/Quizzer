@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
 import { UserAuth } from '../../interfaces';
-import { checkUserAttendQuizQuery } from '../../database/queries';
+import { checkUserAttendQuizQuery } from '../../queries';
 import { CustomError } from '../../errors';
 
 export default async (req: UserAuth, res: Response, next: NextFunction) => {

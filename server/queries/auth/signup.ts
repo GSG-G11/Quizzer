@@ -1,6 +1,6 @@
 import escape from 'pg-escape';
-import dbConnection from '../../config/connections';
-import { User } from '../../../interfaces';
+import dbConnection from '../../database/connections';
+import { User } from '../../interfaces';
 
 export default (data: User) => {
   const {

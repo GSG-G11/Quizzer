@@ -2,7 +2,7 @@ import { Response, NextFunction } from 'express';
 import { createTransport } from 'nodemailer';
 import dotenv from 'dotenv';
 import { UserAuth } from '../../interfaces';
-import { getQuizDetailsQuery, getStudentEmailQuery } from '../../database/queries';
+import { getQuizDetailsQuery, getStudentEmailQuery } from '../../queries';
 import { emailResponse } from '../../utils';
 
 dotenv.config();

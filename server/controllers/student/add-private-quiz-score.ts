@@ -2,7 +2,7 @@ import { Response, NextFunction } from 'express';
 import { UserAuth } from '../../interfaces';
 import { addScoreSchema } from '../../utils';
 import { CustomError } from '../../errors';
-import { addPrivateQuizScoreQuery, checkQuizExistsQuery } from '../../database/queries';
+import { addPrivateQuizScoreQuery, checkQuizExistsQuery } from '../../queries';
 
 export default async (req: UserAuth, res: Response, next: NextFunction) => {
   const { user: { userId }, body: { quizId, score } } = req;

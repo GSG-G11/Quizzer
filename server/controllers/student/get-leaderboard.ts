@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { getLeaderboardQuery } from '../../database/queries';
+import { getLeaderboardQuery } from '../../queries';
 
 export default async ({ params: { quizTitle } }:Request, res:Response, next:NextFunction) => {
   try {

@@ -1,4 +1,4 @@
-import connections from '../../config/connections';
+import connections from '../../database/connections';
 
 const query = `select students.username, scores.student_score, quizzes.mark
 from students

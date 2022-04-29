@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { UserAuth } from '../../interfaces';
 import { addQuizSchema } from '../../utils';
 import { CustomError } from '../../errors';
-import { createQuizQuery, createQuestionQuery } from '../../database/queries';
+import { createQuizQuery, createQuestionQuery } from '../../queries';
 
 export default async (req: UserAuth, res: Response, next: NextFunction) => {
   const {

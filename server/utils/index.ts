@@ -6,7 +6,7 @@ export {
   addQuizSchema,
   quizIdSchema,
   addScoreSchema,
-} from './validation';
+} from '../validation';
 export {
   successSignup,
   takenEmail,

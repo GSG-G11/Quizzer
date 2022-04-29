@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
-import { deleteQuiz } from '../../database/queries';
+import { deleteQuiz } from '../../queries';
 import { CustomError } from '../../errors';
-import { quizIdSchema } from '../../utils/validation';
+import { quizIdSchema } from '../../validation';
 import { UserAuth } from '../../interfaces';
 
 export default async (req:UserAuth, res:Response, next:NextFunction) => {
