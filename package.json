@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines" : { 
+    "npm" : ">=7.0.0",
+    "node" : ">=16.0.0"
+  },
   "scripts": {
     "start": "NODE_ENV=production node dist/",
     "dev": "cross-env NODE_ENV=development ts-node-dev server/index.ts",
