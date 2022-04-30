@@ -73,23 +73,6 @@ describe('/api/v1/student/leaderboard/:quizTitle', () => {
       .expect('Content-Type', /json/);
   });
 
-  it('should return 200 with attempt data when attempted second time but scored the same score as last attempt score', async () => {
-    const {
-      body: { data, message },
-    } = await supertest(app)
-      .post(`${baseURL}/leaderboard/Music`)
-      .set({ Cookie: token })
-      .send({ score: 7 })
-      .expect(200)
-      .expect('Content-Type', /json/);
-
-    const actual = data;
-    const expected = { quiz_title: 'Music', student_id: 1, score: 7 };
-
-    expect(actual).toEqual(expected);
-    expect(message).toEqual('Your score is equal to last time');
-  });
-
   it('should return 200 with last highest score attempt when attempted second time but scored the less than last attempt score', async () => {
     const {
       body: { data, message },
