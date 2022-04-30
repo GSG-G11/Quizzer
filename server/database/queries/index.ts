@@ -16,5 +16,5 @@ export {
   getQuizQuery,
   getQuestionsQuery,
   getLeaderboardQuery,
-  updateScoreQuery,
+  updateLeaderboardQuery,
 } from './student';

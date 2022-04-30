@@ -1,5 +1,5 @@
 import { NextFunction, Response } from 'express';
-import { updateScoreQuery } from '../../database/queries';
+import { updateLeaderboardQuery } from '../../database/queries';
 import { CustomError } from '../../errors';
 import { UserAuth } from '../../interfaces';
 import { updateLeaderboardSchema } from '../../utils';
@@ -16,7 +16,7 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
 
     const {
       rows: { 0: attempt },
-    } = await updateScoreQuery({ quizTitle, studentId, score });
+    } = await updateLeaderboardQuery({ quizTitle, studentId, score });
 
     let message = 'leaderboard updated successfully';
 
