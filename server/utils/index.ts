@@ -1,5 +1,5 @@
 export {
-  signupSchema, loginSchema, addQuizSchema, quizIdSchema,
+  signupSchema, loginSchema, addQuizSchema, quizIdSchema, updateLeaderboardSchema,
 } from './validation';
 export { signToken, verifyToken } from './jwt';
 export { default as emailResponse } from './email-response';
