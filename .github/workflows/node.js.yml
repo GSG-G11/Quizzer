@@ -34,6 +34,3 @@ jobs:
         run: npm test
         env:
           TEST_DB_URL: postgres://quizzer:123456@postgres:5432/quizzer_test
-      
-      - name: Test Linting
-        run: npm run lint
