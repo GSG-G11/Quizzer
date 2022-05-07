@@ -8,21 +8,19 @@ const theme = createTheme({
       md: 992,
       lg: 1200,
       xl: 1440,
-      xxl: 1600,
     },
   },
   palette: {
-    primary: { main: '#4A6572' },
+    primary: {
+      main: '#4A6572',
+    },
     secondary: {
       main: '#F9AA33',
-    },
-    titleColor: {
-      main: '#344955',
     },
     success: {
       main: '#75BA75',
     },
-    fail: {
+    error: {
       main: '#EB5D5D',
     },
   },
