@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express';
 import { nanoid } from 'nanoid';
 import { UserAuth } from '../../interfaces';
-import { addQuizSchema } from '../../utils';
+import { addQuizSchema } from '../../validation';
 import { CustomError } from '../../errors';
 import { createQuizQuery, createQuestionQuery } from '../../queries';
 

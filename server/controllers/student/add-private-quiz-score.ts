@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
 import { UserAuth } from '../../interfaces';
-import { addScoreSchema } from '../../utils';
+import { addScoreSchema } from '../../validation';
 import { CustomError } from '../../errors';
 import { addPrivateQuizScoreQuery, checkQuizExistsQuery } from '../../queries';
 

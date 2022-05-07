@@ -55,6 +55,4 @@ const successReturnData = [
   },
 ];
 
-export {
-  successReturnData,
-};
+export default successReturnData;

@@ -5,3 +5,4 @@ export { default as checkUserAttendQuizQuery } from './check-user-attend-quiz';
 export { default as getStudentEmailQuery } from './get-student-email';
 export { default as getQuizQuery } from './get-quiz';
 export { default as getQuestionsQuery } from './get-questions';
+export { default as updateLeaderboardQuery } from './update-leaderboard';

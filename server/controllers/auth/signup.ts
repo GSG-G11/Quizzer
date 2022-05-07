@@ -2,7 +2,8 @@ import { Response, Request, NextFunction } from 'express';
 import { hash } from 'bcrypt';
 import dotenv from 'dotenv';
 import { createNewUserQuery, checkEmailTakenQuery } from '../../queries';
-import { signupSchema, signToken } from '../../utils';
+import { signToken } from '../../utils';
+import { signupSchema } from '../../validation';
 import { CustomError } from '../../errors';
 
 dotenv.config();
