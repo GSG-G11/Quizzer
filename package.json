@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines" : { 
-    "npm" : ">=7.0.0",
-    "node" : ">=16.0.0"
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.0.0"
   },
   "scripts": {
     "start": "NODE_ENV=production node dist/",
@@ -55,7 +55,6 @@
     "pg": "^8.7.3",
     "pg-escape": "^0.2.0",
     "ts-jest": "^27.1.4",
-    "uninstall": "^0.0.0",
     "uniqid": "^5.4.0",
     "yup": "^0.32.11"
   },
