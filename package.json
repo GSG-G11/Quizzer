@@ -14,7 +14,8 @@
     "build": "tsc -p tsconfig.json",
     "prepare": "is-ci || npx husky install",
     "client": "cd client/ && npm start",
-    "heroku-postbuild": "npm run build && cd client/ && npm i && npm run build"
+    "heroku-postbuild": "npm run build && cd client/ && npm i && npm run build",
+    "lint": "eslint --ext .ts server/ && eslint --ext .jsx client/src/"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import {
   leaderboard,
   getQuiz,
@@ -9,7 +10,7 @@ import {
   sendEmail,
 } from '../../controllers';
 
-import { checkAuth } from '../../middlewares';
+import checkAuth from '../../middlewares/auth';
 
 const router = Router();
 

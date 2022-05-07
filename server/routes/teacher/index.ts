@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import {
   deleteQuiz,
   createQuiz,
@@ -6,7 +7,8 @@ import {
   getEnrolledStudents,
   getProfile,
 } from '../../controllers';
-import { checkAuth } from '../../middlewares';
+
+import checkAuth from '../../middlewares/auth';
 
 const router = Router();
 

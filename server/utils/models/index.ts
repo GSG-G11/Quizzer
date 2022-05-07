@@ -15,10 +15,8 @@ export {
 } from './login-models';
 
 export { default as quizQuestions } from './questions';
+export { default as successReturnData } from './quizzes-models';
 
-export {
-  successReturnData,
-} from './quizzes-models';
 export {
   validQuiz,
   noTitleQuiz,
