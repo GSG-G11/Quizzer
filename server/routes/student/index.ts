@@ -1,15 +1,22 @@
 import { Router } from 'express';
 import {
-  getQuestions,
   leaderboard,
-  checkUserAttendQuiz, addPrivateQuizScore, sendEmail, getQuiz,
+  getQuiz,
+  updateLeaderboard,
+  getQuestions,
+  checkUserAttendQuiz,
+  addPrivateQuizScore,
+  sendEmail,
 } from '../../controllers';
 
 import { checkAuth } from '../../middlewares';
 
 const router = Router();
 
-router.route('/leaderboard/:quizTitle').get(leaderboard);
+router
+  .route('/leaderboard/:quizTitle')
+  .get(leaderboard)
+  .post(checkAuth('student'), updateLeaderboard);
 router.get('/quiz/:quizId', getQuiz);
 router.use(checkAuth('student'));
 router.get('/questions/:quizId', getQuestions);

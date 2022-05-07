@@ -1,6 +1,10 @@
 import { Router } from 'express';
 import {
-  deleteQuiz, createQuiz, getQuizzes, getEnrolledStudents, getProfile,
+  deleteQuiz,
+  createQuiz,
+  getQuizzes,
+  getEnrolledStudents,
+  getProfile,
 } from '../../controllers';
 import { checkAuth } from '../../middlewares';
 
