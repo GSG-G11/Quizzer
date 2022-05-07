@@ -1,4 +1,4 @@
-import connections from '../../config/connections';
+import connections from '../../database/connections';
 
 export default (quizId) => connections
   .query(

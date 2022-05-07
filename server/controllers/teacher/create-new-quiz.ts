@@ -1,9 +1,9 @@
 import { Response, NextFunction } from 'express';
-import uniqid from 'uniqid';
+import { nanoid } from 'nanoid';
 import { UserAuth } from '../../interfaces';
-import { addQuizSchema } from '../../utils';
+import { addQuizSchema } from '../../validation';
 import { CustomError } from '../../errors';
-import { createQuizQuery, createQuestionQuery } from '../../database/queries';
+import { createQuizQuery, createQuestionQuery } from '../../queries';
 
 export default async (req: UserAuth, res: Response, next: NextFunction) => {
   const {
@@ -12,10 +12,21 @@ export default async (req: UserAuth, res: Response, next: NextFunction) => {
     },
   } = req;
 
-  const quizId = uniqid();
+  const quizId = nanoid(18);
 
   try {
     await addQuizSchema.validate(req.body, { abortEarly: false });
+
+    questions.forEach(({ type, answers: { answer, options } }) => {
+      if (type === 'mcq') {
+        if (options.indexOf(answer) === -1) throw new CustomError('Correct answer should be in options', 400);
+      } else if (type === 'true_false') {
+        const notAllBooleans = options.some((option: boolean) => typeof option !== 'boolean');
+        const sameOptions = options[0] === options[1];
+        const validTrueFalseQuestion = typeof answer !== 'boolean' || options.length !== 2 || notAllBooleans || sameOptions;
+        if (validTrueFalseQuestion) throw new CustomError('Invalid answers for question of type true_false', 400);
+      }
+    });
 
     const { rows: { 0: quiz } } = await createQuizQuery({
       quizId, teacherId, title, description, mark, time,

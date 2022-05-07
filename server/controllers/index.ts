@@ -1,5 +1,5 @@
 export {
-  signup, login, logOut, getUser,
+  signup, login, logout, getUser,
 } from './auth';
 export {
   sendEmail,

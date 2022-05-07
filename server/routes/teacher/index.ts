@@ -1,16 +1,22 @@
 import { Router } from 'express';
+
 import {
-  deleteQuiz, createQuiz, getQuizzes, getEnrolledStudents, getProfile,
+  deleteQuiz,
+  createQuiz,
+  getQuizzes,
+  getEnrolledStudents,
+  getProfile,
 } from '../../controllers';
-import { checkAuth } from '../../middlewares';
+
+import checkAuth from '../../middlewares/auth';
 
 const router = Router();
 
-router.get('/quiz/:quizId/enrolled-students', checkAuth('teacher'), getEnrolledStudents);
-
-router.get('/profile', checkAuth('teacher'), getProfile);
-router.delete('/quiz/:quizId', checkAuth('teacher'), deleteQuiz);
-router.get('/quizzes', checkAuth('teacher'), getQuizzes);
-router.post('/quiz', checkAuth('teacher'), createQuiz);
+router.use(checkAuth('teacher'));
+router.get('/quiz/:quizId/enrolled-students', getEnrolledStudents);
+router.get('/profile', getProfile);
+router.get('/quizzes', getQuizzes);
+router.post('/quiz', createQuiz);
+router.delete('/quiz/:quizId', deleteQuiz);
 
 export default router;

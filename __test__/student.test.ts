@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import app from '../server/app';
-import dbBuild from '../server/database/config/build';
-import dbConnection from '../server/database/config/connections';
+import dbBuild from '../server/database/build';
+import dbConnection from '../server/database/connections';
 import { quizQuestions } from '../server/utils';
 
 beforeAll(dbBuild);

@@ -1,8 +1,12 @@
 import { Response, Request, NextFunction } from 'express';
 import { hash } from 'bcrypt';
-import { createNewUserQuery, checkEmailTakenQuery } from '../../database/queries';
-import { signupSchema, signToken } from '../../utils';
+import dotenv from 'dotenv';
+import { createNewUserQuery, checkEmailTakenQuery } from '../../queries';
+import { signToken } from '../../utils';
+import { signupSchema } from '../../validation';
 import { CustomError } from '../../errors';
+
+dotenv.config();
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -27,7 +31,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
     res
       .status(201)
-      .cookie('token', token)
+      .cookie('token', token, { maxAge: 2592000000, httpOnly: true, secure: process.env.NODE_ENV === 'production' })
       .json({ data: user, message: 'User Created Successfully' });
   } catch (err) {
     err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);

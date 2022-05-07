@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { getQuizQuery } from '../../database/queries';
+import { getQuizQuery } from '../../queries';
 import { CustomError } from '../../errors';
 
 export default async ({ params: { quizId } }:Request, res:Response, next:NextFunction) => {

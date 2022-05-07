@@ -7,25 +7,17 @@ const validQuiz = {
     {
       question: 'This is my question',
       type: 'mcq',
-      answers: [
-        { answer: 'this is the answer', is_correct: false },
-        { answer: 'this is the answer', is_correct: false },
-        { answer: 'this is the answer', is_correct: false },
-        { answer: 'this is the answer', is_correct: true },
-      ],
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
     },
     {
       question: 'This is my question',
       type: 'true_false',
-      answers: [
-        { answer: 'this is the answer', is_correct: true },
-        { answer: 'this is the answer', is_correct: false },
-      ],
+      answers: { answer: true, options: [true, false] },
     },
     {
       question: 'This is my question',
       type: 'short_answer',
-      answers: [{ answer: 'this is the answer', is_correct: true }],
+      answers: { answer: 'correct answer', options: [] },
     },
   ],
 };
@@ -38,7 +30,21 @@ const noTitleQuiz = {
     {
       question: 'This is my question',
       type: 'mcq',
-      answers: [{ answer: 'this is the answer', is_correct: true }],
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
+    },
+  ],
+};
+
+const noOptions = {
+  title: 'my first quiz',
+  description: 'my first quiz description',
+  mark: 20,
+  time: 30,
+  questions: [
+    {
+      question: 'This is my question',
+      type: 'mcq',
+      answers: { answer: 'true answer' },
     },
   ],
 };
@@ -51,7 +57,7 @@ const noDescriptionQuiz = {
     {
       question: 'This is my question',
       type: 'mcq',
-      answers: [{ answer: 'this is the answer', is_correct: true }],
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
     },
   ],
 };
@@ -65,7 +71,7 @@ const noMarkQuiz = {
     {
       question: 'This is my question',
       type: 'mcq',
-      answers: [{ answer: 'this is the answer', is_correct: true }],
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
     },
   ],
 };
@@ -78,7 +84,7 @@ const noTimeQuiz = {
     {
       question: 'This is my question',
       type: 'mcq',
-      answers: [{ answer: 'this is the answer', is_correct: true }],
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
     },
   ],
 };
@@ -98,7 +104,7 @@ const noQuestionQuiz = {
   questions: [
     {
       type: 'mcq',
-      answers: [{ answer: 'this is the answer', is_correct: true }],
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
     },
   ],
 };
@@ -111,7 +117,7 @@ const noQuestionAnswerTypeQuiz = {
   questions: [
     {
       question: 'This is my question',
-      answers: [{ answer: 'this is the answer', is_correct: true }],
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
     },
   ],
 };
@@ -125,7 +131,7 @@ const invalidQuestionType = {
     {
       question: 'This is my question',
       type: 'hello',
-      answers: [{ answer: 'this is the answer', is_correct: true }],
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
     },
   ],
 };
@@ -152,7 +158,31 @@ const noAnswerQuestion = {
     {
       question: 'This is my question',
       type: 'mcq',
-      answers: [{ is_correct: true }],
+      answers: { options: ['true answer', 'hello', 'hi', 'why'] },
+    },
+  ],
+};
+
+const invalidTrueFalseAnswers = {
+  title: 'my first quiz',
+  description: 'my first quiz description',
+  mark: 20,
+  time: 30,
+  questions: [
+    {
+      question: 'This is my question',
+      type: 'mcq',
+      answers: { answer: 'true answer', options: ['true answer', 'hello', 'hi', 'why'] },
+    },
+    {
+      question: 'This is my question',
+      type: 'true_false',
+      answers: { answer: 'hi', options: [true, true] },
+    },
+    {
+      question: 'This is my question',
+      type: 'short_answer',
+      answers: { answer: 'correct answer', options: [] },
     },
   ],
 };
@@ -169,4 +199,6 @@ export {
   invalidQuestionType,
   noAnswersQuestion,
   noAnswerQuestion,
+  noOptions,
+  invalidTrueFalseAnswers,
 };

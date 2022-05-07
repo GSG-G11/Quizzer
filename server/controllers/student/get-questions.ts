@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
-import { getQuestionsQuery, checkUserAttendQuizQuery } from '../../database/queries';
-import { quizIdSchema } from '../../utils/validation';
+import { getQuestionsQuery, checkUserAttendQuizQuery } from '../../queries';
+import { quizIdSchema } from '../../validation';
 import { UserAuth } from '../../interfaces';
 import { CustomError } from '../../errors';
 

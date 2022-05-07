@@ -1,4 +1,4 @@
-import dbConnection from '../../config/connections';
+import dbConnection from '../../database/connections';
 
 const createQuizQuery = ({
   quizId, teacherId, title, description, mark, time,

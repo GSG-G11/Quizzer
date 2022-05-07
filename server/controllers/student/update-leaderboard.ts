@@ -1,8 +1,8 @@
 import { NextFunction, Response } from 'express';
-import { updateLeaderboardQuery } from '../../database/queries';
+import { updateLeaderboardQuery } from '../../queries';
 import { CustomError } from '../../errors';
 import { UserAuth } from '../../interfaces';
-import { updateLeaderboardSchema } from '../../utils';
+import { updateLeaderboardSchema } from '../../validation';
 
 export default async (req: UserAuth, res: Response, next: NextFunction) => {
   const {

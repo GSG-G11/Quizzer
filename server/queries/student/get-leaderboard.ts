@@ -1,4 +1,4 @@
-import connections from '../../config/connections';
+import connections from '../../database/connections';
 
 const getLeaderboard = (quizTitle:String) => connections
   .query(

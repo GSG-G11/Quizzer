@@ -2,6 +2,7 @@ export { createNewUserQuery, checkEmailTakenQuery } from './auth';
 export {
   createQuizQuery,
   createQuestionQuery,
+  checkQuizExistsQuery,
   getEnrolledStudentsQuery,
   getMyQuizzes,
   deleteQuiz,

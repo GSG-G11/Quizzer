@@ -1,4 +1,4 @@
-import connections from '../../config/connections';
+import connections from '../../database/connections';
 
 const sql = `
 INSERT INTO leaderboard (quiz_title, student_id, score) VALUES ($1, $2, $3) 

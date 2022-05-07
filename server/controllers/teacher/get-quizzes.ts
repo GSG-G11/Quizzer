@@ -1,5 +1,5 @@
 import { NextFunction, Response } from 'express';
-import { getMyQuizzes } from '../../database/queries';
+import { getMyQuizzes } from '../../queries';
 import { UserAuth } from '../../interfaces';
 
 export default async (req:UserAuth, res:Response, next:NextFunction) => {
