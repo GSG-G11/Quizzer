@@ -21,11 +21,12 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     } = rows[0];
     const isPasswordMatch = await compare(password, hashedPassword);
     if (!isPasswordMatch) throw new CustomError('Incorrect email or password', 401);
-    const token = await signToken({ userId, username, role });
+    const user = { userId, username, role };
+    const token = await signToken(user);
 
     res
       .cookie('token', token, { maxAge: 2592000000, httpOnly: true, secure: process.env.NODE_ENV === 'production' })
-      .json({ message: 'User Logged Successfully' });
+      .json({ data: user, message: 'User Logged Successfully' });
   } catch (err) {
     err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);
   }
