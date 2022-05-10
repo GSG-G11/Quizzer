@@ -6,6 +6,7 @@ import {
   Avatar, Button, Divider, List, ListItemButton, ListItemIcon, Menu, MenuItem, Stack, Typography,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import classes from './Navbar.module.css';
 
 const ActivateLink = ({ isActive } :{ isActive:boolean }) => (isActive ? { color: '#F9AA33' } : {});
 
@@ -56,11 +57,11 @@ function NavbarActions({
         </>
         )}
 
-        <ListItemButton onClick={() => setDrawer(false)}>
+        <ListItemButton onClick={() => setDrawer(false)} className={classes.navLink}>
           <NavLink to="/public" style={ActivateLink}>Public Quizzes</NavLink>
         </ListItemButton>
 
-        <ListItemButton onClick={() => setDrawer(false)}>
+        <ListItemButton onClick={() => setDrawer(false)} className={classes.navLink}>
           <NavLink to="/leaderboard" style={ActivateLink}>Leaderboard</NavLink>
         </ListItemButton>
 
