@@ -27,12 +27,13 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       bio,
       avatar,
     });
-    const token = await signToken({ userId: user.id, username, role });
+    const userInfo = { userId: user.id, username, role };
+    const token = await signToken(user);
 
     res
       .status(201)
       .cookie('token', token, { maxAge: 2592000000, httpOnly: true, secure: process.env.NODE_ENV === 'production' })
-      .json({ data: user, message: 'User Created Successfully' });
+      .json({ data: userInfo, message: 'User Created Successfully' });
   } catch (err) {
     err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);
   }
