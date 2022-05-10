@@ -7,16 +7,16 @@ import App from './App';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 const app = (
-  <BrowserRouter>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <StyledEngineProvider injectFirst>
-        <StrictMode>
+  <StrictMode>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <StyledEngineProvider injectFirst>
           <App />
-        </StrictMode>
-      </StyledEngineProvider>
-    </ThemeProvider>
-  </BrowserRouter>
+        </StyledEngineProvider>
+      </ThemeProvider>
+    </BrowserRouter>
+  </StrictMode>
 );
 
 root.render(app);
