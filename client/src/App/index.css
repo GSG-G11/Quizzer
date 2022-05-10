@@ -1,6 +1,7 @@
 :root {
   --primary: #4A6572;
   --secondary: #F9AA33;
+  --secondary-light: #F9AA3350;
 }
 * {
   padding: 0;
