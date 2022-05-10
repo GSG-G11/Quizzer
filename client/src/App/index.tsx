@@ -1,11 +1,10 @@
 import React from 'react';
+import { Navbar } from '../Components';
 import './index.css';
 
 function App() {
   return (
-    <div>
-      Hello, Quizzer!
-    </div>
+    <Navbar />
   );
 }
 
