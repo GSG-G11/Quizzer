@@ -6,14 +6,8 @@ import React, {
   ReactNode,
 } from 'react';
 import { AlertColor } from '@mui/material';
+import { SnackBarContext } from '../../Hooks';
 import { Alert, Snackbar } from '../../mui';
-
-type SnackBarContextActions = {
-  showSnackBar: (text: string, typeColor: AlertColor) => void;
-};
-
-const SnackBarContext = createContext({} as SnackBarContextActions);
-export const useSnackBar = (): SnackBarContextActions => useContext(SnackBarContext);
 
 function SnackBarProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState<boolean>(false);
