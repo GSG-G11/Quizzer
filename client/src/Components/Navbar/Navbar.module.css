@@ -1,4 +1,15 @@
+.logo {
+  flex-grow: 1;
+  cursor: pointer;
+  color: var(--primary);
+  font-weight: bold;
+}
 .navLink {
   font-weight: bold;
   color: var(--primary);
+}
+.avatarContainer {
+  min-width: none;
+  margin-inline: 1rem;
+  cursor: pointer;
 }

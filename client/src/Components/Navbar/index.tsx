@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import {
   AppBar,
   Drawer,
@@ -9,22 +9,29 @@ import {
 import { useNavigate } from 'react-router-dom';
 import BurgerIcon from '@mui/icons-material/Menu';
 import NavbarActions from './NavbarActions';
+import classes from './Navbar.module.css';
+import { useAuth } from '../../context/auth.jsx';
 
-function Navbar() {
+interface INavbar {
+  setCodeFormOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+function Navbar({ setCodeFormOpen }:INavbar) {
   const [drawerOpen, setDrawer] = useState<boolean>(false);
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const { role } = useAuth()?.user || '';
+  const isSmallScreen = useMediaQuery(useTheme().breakpoints.down('md'));
+
   return (
 
     <AppBar sx={{ backgroundColor: 'white' }} position="static">
       <Toolbar>
-        <Typography onClick={() => navigate('/')} variant="h4" flexGrow={1} color="primary">Quizzer</Typography>
+        <Typography variant="h4" className={classes.logo} onClick={() => navigate(`${role || '/'}`)}>Quizzer</Typography>
 
         {isSmallScreen && (
           <>
             <Drawer open={drawerOpen} onClose={() => setDrawer(false)} anchor="right">
-              <NavbarActions direction="column" space={1} avatarOrder={0} setDrawer={setDrawer} />
+              <NavbarActions setCodeForm={setCodeFormOpen} direction="column" space={1} avatarOrder={0} setDrawer={setDrawer} />
             </Drawer>
 
             <IconButton onClick={() => setDrawer(true)}>
@@ -33,7 +40,7 @@ function Navbar() {
           </>
         )}
 
-        {!isSmallScreen && <NavbarActions setDrawer={setDrawer} />}
+        {!isSmallScreen && <NavbarActions setCodeForm={setCodeFormOpen} setDrawer={setDrawer} />}
 
       </Toolbar>
 
