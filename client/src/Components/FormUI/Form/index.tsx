@@ -3,19 +3,19 @@ import { Formik, Form } from 'formik';
 
 interface CustomFormProps {
   children: ReactNode;
-  initialValue: object;
+  initialValues: object;
   validationSchema: object;
-  onSubmit: (values: object) => void;
+  onSubmit: (values: any) => void;
 }
 
 function CustomForm(props: CustomFormProps) {
   const {
-    children, initialValue, validationSchema, onSubmit,
+    children, initialValues, validationSchema, onSubmit,
   } = props;
 
   return (
     <Formik
-      initialValues={initialValue}
+      initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
