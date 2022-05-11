@@ -1,0 +1,26 @@
+.hight {
+  height: 18%;
+}
+
+.popularInfo {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 30px;
+  padding: 50px;
+  background-color: #f7f1e8;
+}
+
+.paper {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: ridge;
+  border-radius: 10px;
+}
+
+.worldIcon {
+  font-size: 77px;
+  padding: 10px;
+} 
