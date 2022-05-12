@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { AlertColor } from '@mui/material';
 import { createContext, useContext } from 'react';
 

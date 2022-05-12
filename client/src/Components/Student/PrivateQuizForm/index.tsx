@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Form, Input, Submit } from '../../FormUI';
-import classes from './PrivateQuizForm.module.css';
 import { searchForPrivateQuizSchema } from '../../../Validation';
 import {
   Dialog,
@@ -21,12 +21,15 @@ interface PrivateQuizFormProps {
 
 function PrivateQuizForm({ codeFormOpen, setCodeFormOpen }: PrivateQuizFormProps) {
   const { showSnackBar } = useSnackBar();
+  const navigate = useNavigate();
   const handleClose = () => setCodeFormOpen(false);
 
   const initialValues = { quizId: '' };
   const getQuizData = async ({ quizId }: { quizId: string }) => {
     try {
       const { data: { data: quiz } } = await axios.get(`/api/v1/student/quiz/${quizId}`);
+      navigate('/student/quiz-details', { state: { quiz } });
+      setCodeFormOpen(false);
     } catch (err: any) {
       showSnackBar('Invalid Quiz Code', 'error');
     }
@@ -39,15 +42,14 @@ function PrivateQuizForm({ codeFormOpen, setCodeFormOpen }: PrivateQuizFormProps
         validationSchema={searchForPrivateQuizSchema}
         onSubmit={(values) => getQuizData(values)}
       >
-        <DialogTitle className={classes.title}>Enter Code</DialogTitle>
+        <DialogTitle style={{ paddingBottom: '5px' }}>Enter Code</DialogTitle>
         <DialogContent>
-          <DialogContentText className={classes.description}>
+          <DialogContentText style={{ paddingBottom: '5px' }}>
             Enter the code you received from your teacher.
           </DialogContentText>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
               <Input
-                autoFocus
                 name="quizId"
                 variant="outlined"
                 placeholder="Enter Code"
