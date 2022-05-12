@@ -1,5 +1,6 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import { CssBaseline, StyledEngineProvider, ThemeProvider } from './mui';
 import theme from './theme';
@@ -11,14 +12,16 @@ if (process.env.NODE_ENV === 'production') {
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 const app = (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <StyledEngineProvider injectFirst>
-      <StrictMode>
-        <App />
-      </StrictMode>
-    </StyledEngineProvider>
-  </ThemeProvider>
+  <StrictMode>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <StyledEngineProvider injectFirst>
+          <App />
+        </StyledEngineProvider>
+      </ThemeProvider>
+    </BrowserRouter>
+  </StrictMode>
 );
 
 root.render(app);
