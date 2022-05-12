@@ -1,6 +1,7 @@
 import React from 'react';
 import { useField } from 'formik';
-import { TextField, OutlinedTextFieldProps } from '../../../mui';
+import { OutlinedTextFieldProps } from '@mui/material';
+import { TextField } from '../../../mui';
 
 interface InputProps extends OutlinedTextFieldProps {
   name: string;
