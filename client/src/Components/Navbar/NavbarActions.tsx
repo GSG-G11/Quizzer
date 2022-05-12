@@ -4,9 +4,8 @@ import {
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import classes from './Navbar.module.css';
-import useAuth from '../../Hooks/useAuth';
+import { useAuth } from '../../Hooks';
 import MenuList from './MenuList';
-
 import { INavbarActions } from './Interfaces';
 
 const activeStyles = ({ isActive } :{ isActive:boolean }) => (isActive ? { color: '#F9AA33' } : {});
