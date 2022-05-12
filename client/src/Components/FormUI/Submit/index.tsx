@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useFormikContext } from 'formik';
-import { Button, ButtonProps } from '../../../mui';
+import { ButtonProps } from '@mui/material';
+import { Button } from '../../../mui';
 
 interface SubmitProps extends ButtonProps {
   children: ReactNode;

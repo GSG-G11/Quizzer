@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  AppBar, Drawer, IconButton, Toolbar, Typography, useMediaQuery, useTheme,
+  AppBar, Container, Drawer, IconButton, Toolbar, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import BurgerIcon from '@mui/icons-material/Menu';
@@ -17,10 +17,12 @@ function Navbar({ setCodeFormOpen }:INavbar) {
   return (
 
     <AppBar className={classes.header}>
-      <Toolbar>
-        <Typography variant="h4" className={classes.logo} onClick={() => navigate('/')}>Quizzer</Typography>
+      <Container maxWidth="lg" disableGutters>
 
-        {isSmallScreen && (
+        <Toolbar>
+          <Typography variant="h4" className={classes.logo} onClick={() => navigate('/')}>Quizzer</Typography>
+
+          {isSmallScreen && (
           <>
             <Drawer open={drawerOpen} onClose={() => setDrawer(false)} anchor="right">
               <NavbarActions setCodeForm={setCodeFormOpen} direction="column" space={2} avatarPosition={0} setDrawer={setDrawer} />
@@ -30,10 +32,11 @@ function Navbar({ setCodeFormOpen }:INavbar) {
               <BurgerIcon />
             </IconButton>
           </>
-        )}
+          )}
 
-        {!isSmallScreen && <NavbarActions setCodeForm={setCodeFormOpen} setDrawer={setDrawer} />}
-      </Toolbar>
+          {!isSmallScreen && <NavbarActions setCodeForm={setCodeFormOpen} setDrawer={setDrawer} />}
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 }
