@@ -91,7 +91,7 @@ function QuizDetails() {
         </span>
       </Stack>
       <Stack>
-        <Button variant="contained" className={classes.enrollBtn} onClick={handleEnroll}>Enroll now</Button>
+        <Button variant="contained" className={classes.enrollBtn} color="primary" onClick={handleEnroll}>Enroll now</Button>
       </Stack>
     </Container>
   );

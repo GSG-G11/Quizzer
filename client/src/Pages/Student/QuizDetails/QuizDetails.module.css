@@ -11,18 +11,18 @@
 }
 
 .teacher {
-  color: var(--primary-light);
+  color: var(--primary-dark);
   font-weight: normal;
 }
 
 .teacherWrapper {
-  color: var(--primary);
+  color: var(--primary-dark);
   font-weight: bold;
 }
 
 .description {
   margin-block: 1.5rem;
-  color: var(--primary-light);
+  color: var(--primary-dark);
 }
 
 .spanIcon {
@@ -30,12 +30,12 @@
   align-items: center;
   justify-content: center;
   margin-left: 0.3rem;
-  color: var(--primary);
+  color: var(--primary-dark);
   font-weight: bold;
 }
 
 .timeLimit {
-  color: var(--primary-light);
+  color: var(--primary-dark);
 }
 
 .timeIcon {
@@ -44,7 +44,6 @@
 
 .enrollBtn {
   margin-inline: auto;
-  background-color: var(--primary-light);
   color: var(--secondary);
   margin-top: 3rem;
   padding-inline: 50px;
