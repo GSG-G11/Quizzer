@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { PrivateQuizForm, Navbar } from '../Components';
+import { PrivateQuizForm, Navbar, RoleModal } from '../Components';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
-  const { isAuthModalOpen, user } = useAuth();
+  const [role, setRole] = useState<string>('student');
+  const { isAuthModalOpen, user, setAuthModalOpen } = useAuth();
 
   return (
     <>
       <Navbar setCodeFormOpen={setCodeFormOpen} />
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
-      {isAuthModalOpen && !user && <>Login Form</>}
+      <RoleModal
+        role={role}
+        setRole={setRole}
+        isAuthModalOpen={isAuthModalOpen}
+        setAuthModalOpen={setAuthModalOpen}
+      />
+      {isAuthModalOpen === 'login' && !user && <>Login Form</>}
 
       <Routes>
         <Route index element={<h1>Hello, Quizzer</h1>} />

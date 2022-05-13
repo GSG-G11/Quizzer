@@ -8,18 +8,18 @@ import student from '../../Assets/student.png';
 interface IRole {
   role: string;
   setRole: (role: string) => void;
-  modal: string;
-  setModal: (modal: string) => void
+  isAuthModalOpen: string;
+  setAuthModalOpen: (isAuthModalOpen: string) => void
 }
 
 function RoleModal({
-  role, setRole, modal, setModal,
+  role, setRole, isAuthModalOpen, setAuthModalOpen,
 }: IRole) {
   return (
 
     <Dialog
-      open={modal === 'role'}
-      onClose={() => setModal('')}
+      open={isAuthModalOpen === 'role'}
+      onClose={() => setAuthModalOpen('')}
     >
       <Grid
         container
@@ -37,7 +37,7 @@ function RoleModal({
           >
             <CardActionArea onClick={() => {
               setRole('teacher');
-              setModal('login');
+              setAuthModalOpen('login');
             }}
             >
               <CardMedia
@@ -55,7 +55,7 @@ function RoleModal({
           <Card style={{ boxShadow: '0 7px #F9AA33', border: '1px solid', borderRadius: '10px' }}>
             <CardActionArea onClick={() => {
               setRole('student');
-              setModal('login');
+              setAuthModalOpen('login');
             }}
             >
               <CardMedia
