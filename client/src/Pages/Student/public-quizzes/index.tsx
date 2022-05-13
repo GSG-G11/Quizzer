@@ -39,7 +39,7 @@ function PublicQuizzes() {
       title: selectedCategory, description, questions,
     };
 
-    navigate('/student/quiz-details', { state: quizDetails });
+    navigate(`/student/${formattedCategoryString}/quiz-details`, { state: quizDetails });
   };
 
   useEffect(() => {
@@ -51,7 +51,6 @@ function PublicQuizzes() {
   }, [searchTerm]);
 
   return (
-
     <Container maxWidth="lg" sx={{ marginTop: '3rem' }}>
       <Typography color="primary.dark" variant="h5" fontWeight="bold" textAlign="center">Test Your Knowledge in many fields</Typography>
 
@@ -68,6 +67,8 @@ function PublicQuizzes() {
       </Grid>
 
       <Grid container alignContent="center" justifyContent="center" spacing={4} sx={{ marginBlock: '1rem' }}>
+        {!categoriesList.length && <Typography variant="h6" component="p" color="secondary.dark">No Quiz Found!</Typography>}
+
         {categoriesList.map(({ category, description }) => (
           <Grid item key={category} xs={11} sm={7} md={4}>
             <Card elevation={5} sx={{ borderRadius: '10px' }}>
