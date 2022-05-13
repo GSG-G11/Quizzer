@@ -39,7 +39,7 @@ function PublicQuizzes() {
       title: selectedCategory, description, questions,
     };
 
-    navigate('/student/quiz-details', { state: quizDetails });
+    navigate(`/student/${formattedCategoryString}/quiz-details`, { state: quizDetails });
   };
 
   useEffect(() => {

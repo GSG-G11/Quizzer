@@ -4,7 +4,7 @@ import {
   Divider, Menu, MenuItem, Typography, Stack,
 } from '@mui/material';
 import { properCase } from '../../utils';
-import useAuth from '../../Hooks/useAuth';
+import { useAuth } from '../../Hooks';
 
 import { IMenuList } from './Interfaces';
 
