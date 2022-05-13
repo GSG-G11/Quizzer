@@ -14,7 +14,7 @@ export const AuthContext = createContext<IAuthContext>(null!);
 function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<IUser | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
-  const [isAuthModalOpen, setAuthModalOpen] = useState<boolean>(false);
+  const [isAuthModalOpen, setAuthModalOpen] = useState<string>('');
   const navigate = useNavigate();
 
   const signup = async (userInfo: IUserInfo) => {

@@ -15,8 +15,8 @@ interface IUserInfo {
 
 interface IAuthContext {
   user: IUser | null;
-  isAuthModalOpen: boolean;
-  setAuthModalOpen: (_: boolean) => void;
+  isAuthModalOpen: string;
+  setAuthModalOpen: (_: string) => void;
   signup: (_: IUserInfo) => void;
   login: (_: IUserInfo) => void;
   logout: () => void;

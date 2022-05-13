@@ -60,7 +60,7 @@ function NavbarActions({
 
         {!userId && (
         <ListItem sx={{ width: 'initial' }}>
-          <Button onClick={() => setAuthModalOpen(!isAuthModalOpen)} variant="contained" sx={{ color: 'secondary.light' }}>Log In</Button>
+          <Button onClick={() => setAuthModalOpen('role')} variant="contained" sx={{ color: 'secondary.light' }}>Log In</Button>
         </ListItem>
         )}
       </Stack>

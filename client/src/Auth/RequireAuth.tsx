@@ -6,7 +6,7 @@ function RequireAuth({ element, userRole }: { element: JSX.Element, userRole: 's
   const { user, setAuthModalOpen } = useAuth();
 
   if (!user || user.role !== userRole) {
-    setAuthModalOpen(true);
+    setAuthModalOpen('login');
   }
 
   return element;
