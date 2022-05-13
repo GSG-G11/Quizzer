@@ -6,6 +6,13 @@ import {
   TextField,
   Alert,
   Snackbar,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Dialog,
+  Grid,
+  Typography,
 } from '@mui/material';
 
 export {
@@ -17,4 +24,11 @@ export {
   Button,
   Alert,
   Snackbar,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Dialog,
+  Grid,
+  Typography,
 };
