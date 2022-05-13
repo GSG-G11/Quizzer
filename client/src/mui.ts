@@ -19,8 +19,6 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  Dialog,
-  Grid,
   Typography,
 } from '@mui/material';
 
@@ -31,11 +29,9 @@ export {
   StyledEngineProvider,
   TextField,
   Button,
-  Dialog,
   DialogTitle,
   DialogContent,
   DialogContentText,
-  Grid,
   QrCodeIcon,
   InputAdornment,
   Alert,
