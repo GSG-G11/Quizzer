@@ -8,7 +8,7 @@ import {
   Button,
   AccessTimeFilledIcon,
 } from '../../../mui';
-import { useSnackBar } from '../../../Hooks';
+import { useSnackBar, useAuth } from '../../../Hooks';
 import classes from './QuizDetails.module.css';
 
 type Quiz = {
@@ -25,6 +25,7 @@ type Quiz = {
 function QuizDetails() {
   const { state: { quiz } }: any = useLocation();
   const navigate = useNavigate();
+  const { isAuthModalOpen, setAuthModalOpen } = useAuth();
   const { showSnackBar } = useSnackBar();
   const isPrivateQuiz = quiz.id;
   const quizDetails: Quiz = { ...quiz };
@@ -49,7 +50,7 @@ function QuizDetails() {
         navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, questions, type: 'private' } } });
       } catch ({ response: { data: { message } } }) {
         if (message === 'Unauthorized') {
-          navigate('/auth/login');
+          setAuthModalOpen(!isAuthModalOpen);
         } else if (message === "Student can't attend a quiz more than once") {
           showSnackBar('You have already enrolled in this quiz', 'warning');
         }
