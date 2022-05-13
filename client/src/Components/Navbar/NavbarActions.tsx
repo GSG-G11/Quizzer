@@ -1,8 +1,8 @@
 import React, { useState, MouseEvent } from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   Avatar, Button, List, ListItem, Stack,
-} from '@mui/material';
-import { NavLink } from 'react-router-dom';
+} from '../../mui';
 import classes from './Navbar.module.css';
 import { useAuth } from '../../Hooks';
 import MenuList from './MenuList';
@@ -36,11 +36,11 @@ function NavbarActions({
         {(!userId || role === 'student') && (
         <>
           <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
-            <NavLink className={classes.navLink} to="public-quizzes" style={activeStyles}>Public Quizzes</NavLink>
+            <NavLink className={classes.navLink} to="/student/public-quizzes" style={activeStyles}>Public Quizzes</NavLink>
           </ListItem>
 
           <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
-            <NavLink className={classes.navLink} to="leaderboard" style={activeStyles}>Leaderboard</NavLink>
+            <NavLink className={classes.navLink} to="/student/leaderboard" style={activeStyles}>Leaderboard</NavLink>
           </ListItem>
 
           <ListItem sx={{ width: 'initial' }} onClick={() => { setDrawer(false); setCodeForm(true); }}>
