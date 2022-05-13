@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import {
   Divider, Menu, MenuItem, Typography, Stack,
 } from '@mui/material';
-import { properCase } from '../../utils';
+import { properCase } from '../../Utils';
 import { useAuth } from '../../Hooks';
-
 import { IMenuList } from './Interfaces';
+import { IUser } from '../../Auth/interfaces';
 
-function MenuList({ setDrawer, toggleMenu, anchorEl }:IMenuList) {
-  const { user: { role, username }, logout } = useAuth();
+function MenuList({ setDrawer, toggleMenu, anchorEl }: IMenuList) {
+  const { role, username } = useAuth().user as IUser;
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const hideDrawerAndMenu = () => {
@@ -25,7 +26,7 @@ function MenuList({ setDrawer, toggleMenu, anchorEl }:IMenuList) {
           <Typography color="initial" variant="subtitle2" mb="0.5rem">{properCase(username)}</Typography>
         </Typography>
 
-        {role === 'teacher' && <MenuItem onClick={() => { hideDrawerAndMenu(); navigate('profile'); }}>Profile</MenuItem>}
+        {role === 'teacher' && <MenuItem onClick={() => { hideDrawerAndMenu(); navigate('/teacher/profile'); }}>Profile</MenuItem>}
         <MenuItem onClick={() => { hideDrawerAndMenu(); logout(); }}>Logout</MenuItem>
       </Stack>
     </Menu>

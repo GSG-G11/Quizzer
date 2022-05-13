@@ -13,7 +13,7 @@ interface INavbarActions {
 
 interface IMenuList {
   setDrawer: Dispatch<SetStateAction<boolean>>;
-  toggleMenu: (e: any | undefined) => void;
+  toggleMenu: (e: any) => void;
   anchorEl: HTMLElement | null;
 }
 

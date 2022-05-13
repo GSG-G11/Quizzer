@@ -6,7 +6,7 @@ import React, {
   ReactNode,
 } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useHref, useLocation } from 'react-router-dom';
 import { IUser, IUserInfo, IAuthContext } from './interfaces';
 
 export const AuthContext = createContext<IAuthContext>(null!);
@@ -15,7 +15,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<IUser | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
   const [isAuthModalOpen, setAuthModalOpen] = useState<boolean>(false);
+  const location = useLocation();
   const navigate = useNavigate();
+  const href = useHref(location);
 
   const signup = async (userInfo: IUserInfo) => {
     try {
@@ -55,7 +57,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const { data: { data: loggedUser } } = await axios.get('/api/v1/auth/is-auth');
       setUser(loggedUser);
-      navigate(`/${loggedUser.role}`);
+      href === '/' && navigate(`/${loggedUser.role}`);
     } catch (err: any) {
       if (err.response.status === 500) navigate('/error');
     }
