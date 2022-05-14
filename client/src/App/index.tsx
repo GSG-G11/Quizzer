@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { PrivateQuizForm, Navbar, RoleModal } from '../Components';
+import {
+  PrivateQuizForm, Navbar, RoleModal, AccessUser,
+} from '../Components';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
@@ -8,6 +10,7 @@ import './index.css';
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
   const [role, setRole] = useState<string>('student');
+  const [isLoginModal, setLoginModal] = useState<boolean>(true);
   const { authModalType, user } = useAuth();
 
   return (
@@ -15,7 +18,8 @@ function App() {
       <Navbar setCodeFormOpen={setCodeFormOpen} />
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
       <RoleModal setRole={setRole} />
-      {authModalType === 'login_signup' && !user && <>Login Form</>}
+      {authModalType === 'login_signup'
+     && <AccessUser role={role} isLoginModal={isLoginModal} setLoginModal={setLoginModal} />}
 
       <Routes>
         <Route index element={<h1>Hello, Quizzer</h1>} />

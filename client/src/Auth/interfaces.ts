@@ -20,6 +20,7 @@ interface IAuthContext {
   signup: (_: IUserInfo) => void;
   login: (_: IUserInfo) => void;
   logout: () => void;
+  errors: string[];
 }
 
 export { IUser, IUserInfo, IAuthContext };

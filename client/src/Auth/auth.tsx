@@ -38,7 +38,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
       navigate(`/${loggedUser.role}`);
     } catch (err: any) {
       const { message } = err.response.data;
-      setErrors(message);
+      setErrors([message]);
       if (err.response.status === 500) navigate('/error');
     }
   };

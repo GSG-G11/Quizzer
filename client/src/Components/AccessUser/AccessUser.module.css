@@ -1,0 +1,19 @@
+.googleEmail {
+  justify-content: flex-start;
+  font-weight: 600;
+  height: 160%;
+}
+
+.accessSubmit {
+  color: #F9AA33;
+  font-weight: 600;
+  font-size: 20px;
+  width: 30%;
+  border-radius: 10px;
+}
+
+.access {
+  justify-content: center;
+  padding-top: 10px;
+  
+}
