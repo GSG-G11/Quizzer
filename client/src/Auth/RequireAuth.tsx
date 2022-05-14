@@ -7,8 +7,10 @@ function RequireAuth({ element, userRole }: { element: JSX.Element, userRole: 's
   const { user, setAuthModalOpen } = useAuth();
   const { pathname } = useLocation();
 
-  useEffect(() => { if (!user || user.role !== userRole) setAuthModalOpen(true); }, []);
-  if (!user || user.role !== userRole) return <Navigate to="/" state={{ pathname }} />;
+  const isUserAuthorized = user && user.role === userRole;
+
+  useEffect(() => { if (isUserAuthorized) setAuthModalOpen(true); }, []);
+  if (!isUserAuthorized) return <Navigate to="/" state={{ pathname }} />;
 
   return element;
 }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PrivateQuizForm, Navbar, QuizResult } from '../Components';
+import { QuizDetails } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
+import Hello from '../Hello';
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
@@ -16,11 +18,11 @@ function App() {
       {isAuthModalOpen && !user && <>Login Form</>}
 
       <Routes>
-        <Route index element={<h1>Hello, Quizzer</h1>} />
+        <Route index element={<Hello />} />
         {/* Student Routes */}
         <Route path="/student">
           <Route index element={<div>Public Quizzes</div>} />
-          <Route path="quiz-details" element={<div>Quiz Details</div>} />
+          <Route path="quiz-details" element={<QuizDetails />} />
           <Route path="leaderboard" element={<div>Leaderboard</div>} />
           <Route path="quiz/enroll" element={<RequireAuth element={<QuizResult />} userRole="student" />} />
         </Route>

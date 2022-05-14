@@ -38,7 +38,7 @@ function NavbarActions({
         {(!userId || role === 'student') && (
         <>
           <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
-            <NavLink className={classes.navLink} to="/student" style={activeStyles}>Public Quizzes</NavLink>
+            <NavLink className={classes.navLink} to="/student/" style={activeStyles}>Public Quizzes</NavLink>
           </ListItem>
 
           <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
