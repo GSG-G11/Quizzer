@@ -11,6 +11,7 @@ interface IQuestions {
 
 interface ICategory {
   category: string;
+  miniDescription:string;
   description: string;
 }
 

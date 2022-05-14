@@ -21,6 +21,10 @@ import {
   CardContent,
   Container,
   Typography,
+  Avatar,
+  List,
+  ListItem,
+  Stack,
 } from '@mui/material';
 
 export {
@@ -45,4 +49,8 @@ export {
   CardContent,
   Container,
   Typography,
+  Avatar,
+  List,
+  ListItem,
+  Stack,
 };
