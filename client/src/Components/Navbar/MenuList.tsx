@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Divider, Menu, MenuItem, Typography, Stack,
 } from '@mui/material';
-import { properCase } from '../../utils';
+import { properCase } from '../../Utils';
 import { useAuth } from '../../Hooks';
 
 import { IMenuList } from './Interfaces';
