@@ -25,7 +25,7 @@ type Quiz = {
 function QuizDetails() {
   const { state: { quiz } }: any = useLocation();
   const navigate = useNavigate();
-  const { isAuthModalOpen, setAuthModalOpen } = useAuth();
+  const { authModalType, setAuthModalType } = useAuth();
   const { showSnackBar } = useSnackBar();
   const isPrivateQuiz = quiz.id;
   const quizDetails: Quiz = { ...quiz };
@@ -50,7 +50,7 @@ function QuizDetails() {
         navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, questions, type: 'private' } } });
       } catch ({ response: { data: { message } } }) {
         if (message === 'Unauthorized') {
-          setAuthModalOpen(!isAuthModalOpen);
+          setAuthModalType('login_signup');
         } else if (message === "Student can't attend a quiz more than once") {
           showSnackBar('You have already enrolled in this quiz', 'warning');
         }

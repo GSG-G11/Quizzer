@@ -19,6 +19,9 @@ import {
   Typography,
   Stack,
   Container,
+  Avatar,
+  List,
+  ListItem,
 } from '@mui/material';
 
 export {
@@ -38,7 +41,10 @@ export {
   Alert,
   Snackbar,
   Typography,
-  Stack,
   Container,
   AccessTimeFilledIcon,
+  Avatar,
+  List,
+  ListItem,
+  Stack,
 };
