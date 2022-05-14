@@ -13,7 +13,7 @@ const activeStyles = ({ isActive } :{ isActive:boolean }) => (isActive ? { color
 function NavbarActions({
   direction, space, avatarPosition, setDrawer, setCodeForm,
 }:INavbarActions) {
-  const { user, signin } = useAuth();
+  const { user,setAuthModalOpen } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const toggleMenu = (e:MouseEvent<HTMLElement> | undefined) => {
@@ -58,7 +58,7 @@ function NavbarActions({
 
         {!userId && (
         <ListItem sx={{ width: 'initial' }}>
-          <Button onClick={signin} variant="contained" sx={{ color: 'secondary.light' }}>Log In</Button>
+          <Button onClick={()=>setAuthModalOpen('login-signup')} variant="contained" sx={{ color: 'secondary.light' }}>Log In</Button>
         </ListItem>
         )}
       </Stack>
