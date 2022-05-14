@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PrivateQuizForm, Navbar, QuizResult } from '../Components';
-import { QuizDetails } from '../Pages';
+import { QuizDetails, Leaderboard } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
@@ -23,7 +23,7 @@ function App() {
         <Route path="/student">
           <Route index element={<div>Public Quizzes</div>} />
           <Route path="quiz-details" element={<QuizDetails />} />
-          <Route path="leaderboard" element={<div>Leaderboard</div>} />
+          <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="quiz/enroll" element={<RequireAuth element={<QuizResult />} userRole="student" />} />
         </Route>
         {/* Teacher Routes */}

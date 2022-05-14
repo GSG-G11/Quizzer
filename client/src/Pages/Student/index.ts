@@ -1,2 +1,2 @@
-// eslint-disable-next-line import/prefer-default-export
 export { default as QuizDetails } from './QuizDetails';
+export { default as Leaderboard } from './Leaderboard';
