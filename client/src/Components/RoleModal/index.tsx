@@ -1,25 +1,23 @@
 import React from 'react';
 import {
-  Button, Card, CardActionArea, CardContent, CardMedia, Dialog, Grid, Typography,
+  Card, CardActionArea, CardContent, CardMedia, Dialog, Grid, Typography,
 } from '../../mui';
+import { useAuth } from '../../Hooks';
 import teacher from '../../Assets/teacher.png';
 import student from '../../Assets/student.png';
 
 interface IRole {
-  role: string;
-  setRole: (role: string) => void;
-  isAuthModalOpen: string;
-  setAuthModalOpen: (isAuthModalOpen: string) => void
+  setRole: (role: 'teacher' | 'student') => void;
 }
 
-function RoleModal({
-  role, setRole, isAuthModalOpen, setAuthModalOpen,
-}: IRole) {
+function RoleModal({ setRole }: IRole) {
+  const { authModalType, setAuthModalType } = useAuth();
+
   return (
 
     <Dialog
-      open={isAuthModalOpen === 'role'}
-      onClose={() => setAuthModalOpen('')}
+      open={authModalType === 'role'}
+      onClose={() => { setAuthModalType(null); setRole('student'); }}
     >
       <Grid
         container
@@ -37,7 +35,7 @@ function RoleModal({
           >
             <CardActionArea onClick={() => {
               setRole('teacher');
-              setAuthModalOpen('login');
+              setAuthModalType('login_signup');
             }}
             >
               <CardMedia
@@ -55,7 +53,7 @@ function RoleModal({
           <Card style={{ boxShadow: '0 7px #F9AA33', border: '1px solid', borderRadius: '10px' }}>
             <CardActionArea onClick={() => {
               setRole('student');
-              setAuthModalOpen('login');
+              setAuthModalType('login_signup');
             }}
             >
               <CardMedia
