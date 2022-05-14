@@ -8,13 +8,13 @@ import './index.css';
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
-  const { isAuthModalOpen, user } = useAuth();
+  const { authModalType, user } = useAuth();
 
   return (
     <>
       <Navbar setCodeFormOpen={setCodeFormOpen} />
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
-      {isAuthModalOpen === 'login-signup' && !user && <>Login Form</>}
+      {authModalType === 'login_signup' && !user && <>Login Form</>}
 
       <Routes>
         <Route index element={<h1>Hello, Quizzer</h1>} />

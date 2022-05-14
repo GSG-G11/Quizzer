@@ -35,11 +35,9 @@ function PublicQuizzes() {
     });
     const questions = data.map(getQuestions);
 
-    const quizDetails = {
-      title: selectedCategory, description, questions,
-    };
+    const quiz = { title: selectedCategory, description, questions };
 
-    navigate(`/student/${formattedCategoryString}/quiz-details`, { state: quizDetails });
+    navigate(`/student/${formattedCategoryString}/quiz-details`, { state: quiz });
   };
 
   useEffect(() => {
@@ -61,7 +59,7 @@ function PublicQuizzes() {
             options={autoCompleteOptions}
             onChange={handleSearchTermChange}
             freeSolo
-            renderInput={(params) => <TextField {...params} label="Search a Quiz by name" />}
+            renderInput={(params:any) => <TextField {...params} label="Search a Quiz by name" />}
           />
         </Grid>
       </Grid>

@@ -13,7 +13,7 @@ const activeStyles = ({ isActive } :{ isActive:boolean }) => (isActive ? { color
 function NavbarActions({
   direction, space, avatarPosition, setDrawer, setCodeForm,
 }:INavbarActions) {
-  const { user,setAuthModalOpen } = useAuth();
+  const { user, setAuthModalType } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const toggleMenu = (e:MouseEvent<HTMLElement> | undefined) => {
@@ -36,11 +36,11 @@ function NavbarActions({
         {(!userId || role === 'student') && (
         <>
           <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
-            <NavLink className={classes.navLink} to="public-quizzes" style={activeStyles}>Public Quizzes</NavLink>
+            <NavLink className={classes.navLink} to="/student/" style={activeStyles}>Public Quizzes</NavLink>
           </ListItem>
 
           <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
-            <NavLink className={classes.navLink} to="leaderboard" style={activeStyles}>Leaderboard</NavLink>
+            <NavLink className={classes.navLink} to="/student/leaderboard" style={activeStyles}>Leaderboard</NavLink>
           </ListItem>
 
           <ListItem sx={{ width: 'initial' }} onClick={() => { setDrawer(false); setCodeForm(true); }}>
@@ -58,7 +58,7 @@ function NavbarActions({
 
         {!userId && (
         <ListItem sx={{ width: 'initial' }}>
-          <Button onClick={()=>setAuthModalOpen('login-signup')} variant="contained" sx={{ color: 'secondary.light' }}>Log In</Button>
+          <Button onClick={() => setAuthModalType('login_signup')} variant="contained" sx={{ color: 'secondary.light' }}>Log In</Button>
         </ListItem>
         )}
       </Stack>
