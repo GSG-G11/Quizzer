@@ -9,7 +9,7 @@ function RequireAuth({ element, userRole }: { element: JSX.Element, userRole: 's
 
   const isUserAuthorized = user && user.role === userRole;
 
-  useEffect(() => { if (isUserAuthorized) setAuthModalType('login_signup'); }, []);
+  useEffect(() => { if (!isUserAuthorized) setAuthModalType('login_signup'); }, []);
   if (!isUserAuthorized) return <Navigate to="/" state={{ pathname }} />;
 
   return element;

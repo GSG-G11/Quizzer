@@ -57,7 +57,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const { data: { data: loggedUser } } = await axios.get('/api/v1/auth/is-auth');
       setUser(loggedUser);
-      if (href === '/') navigate(`/${loggedUser.role}`);
+      navigate(href === '/' ? loggedUser.role : href);
     } catch (err: any) {
       if (err.response.status === 500) navigate('/error');
     }
