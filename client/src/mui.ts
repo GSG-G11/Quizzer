@@ -1,3 +1,4 @@
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 // Icons
 import QrCodeIcon from '@mui/icons-material/QrCode';
 // Components
@@ -19,12 +20,12 @@ import {
   Card,
   CardActions,
   CardContent,
-  Container,
-  Typography,
   Avatar,
   List,
   ListItem,
   Stack,
+  Typography,
+  Container,
 } from '@mui/material';
 
 export {
@@ -53,4 +54,5 @@ export {
   List,
   ListItem,
   Stack,
+  AccessTimeFilledIcon,
 };

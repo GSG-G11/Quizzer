@@ -11,8 +11,10 @@ import {
   Grid,
   QrCodeIcon,
   InputAdornment,
+  Stack,
 } from '../../../mui';
 import { useSnackBar } from '../../../Hooks';
+import classes from './PrivateQuizForm.module.css';
 
 interface PrivateQuizFormProps {
   codeFormOpen: boolean;
@@ -42,33 +44,29 @@ function PrivateQuizForm({ codeFormOpen, setCodeFormOpen }: PrivateQuizFormProps
         validationSchema={searchForPrivateQuizSchema}
         onSubmit={(values) => getQuizData(values)}
       >
-        <DialogTitle style={{ paddingBottom: '5px' }}>Enter Code</DialogTitle>
+        <DialogTitle className={classes.title}>Enter Code</DialogTitle>
         <DialogContent>
-          <DialogContentText style={{ paddingBottom: '5px' }}>
+          <DialogContentText className={classes.description}>
             Enter the code you received from your teacher.
           </DialogContentText>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item>
-              <Input
-                name="quizId"
-                variant="outlined"
-                placeholder="Enter Code"
-                label="Quiz Code"
-                type="text"
-                margin="dense"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <QrCodeIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <Submit color="secondary" variant="contained">Attempt</Submit>
-            </Grid>
-          </Grid>
+          <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }} alignItems="center">
+            <Input
+              name="quizId"
+              variant="outlined"
+              placeholder="Enter Code"
+              label="Quiz Code"
+              type="text"
+              margin="dense"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <QrCodeIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Submit color="secondary" variant="contained" size="large">Attempt</Submit>
+          </Stack>
         </DialogContent>
       </Form>
     </Dialog>

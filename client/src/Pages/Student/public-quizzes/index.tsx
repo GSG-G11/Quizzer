@@ -37,7 +37,7 @@ function PublicQuizzes() {
 
     const quiz = { title: selectedCategory, description, questions };
 
-    navigate('/student/quiz-details', { state: quiz });
+    navigate('/student/quiz-details', { state: { quiz } });
   };
 
   useEffect(() => {
