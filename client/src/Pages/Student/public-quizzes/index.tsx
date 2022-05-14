@@ -37,7 +37,7 @@ function PublicQuizzes() {
 
     const quiz = { title: selectedCategory, description, questions };
 
-    navigate(`/student/${formattedCategoryString}/quiz-details`, { state: quiz });
+    navigate('/student/quiz-details', { state: quiz });
   };
 
   useEffect(() => {
@@ -67,12 +67,12 @@ function PublicQuizzes() {
       <Grid container alignContent="center" justifyContent="center" spacing={4} sx={{ marginBlock: '1rem' }}>
         {!categoriesList.length && <Typography variant="h6" component="p" color="secondary.dark">No Quiz Found!</Typography>}
 
-        {categoriesList.map(({ category, description }) => (
+        {categoriesList.map(({ category, miniDescription }) => (
           <Grid item key={category} xs={11} sm={7} md={4}>
             <Card elevation={5} sx={{ borderRadius: '10px' }}>
               <CardContent>
                 <Typography color="#344955" fontWeight="bold" textAlign="center" gutterBottom variant="h5">{category}</Typography>
-                <Typography variant="body2" color="primary">{description.slice(0, description.indexOf('.') + 1)}</Typography>
+                <Typography variant="body2" color="primary">{miniDescription}</Typography>
               </CardContent>
               <CardActions sx={{ marginBottom: '0.5rem', justifyContent: 'center' }}>
                 <Button id={category} variant="contained" sx={{ color: 'secondary.main' }} onClick={handleButtonClick}>Details</Button>

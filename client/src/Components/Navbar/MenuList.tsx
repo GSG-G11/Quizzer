@@ -10,7 +10,8 @@ import { IMenuList } from './Interfaces';
 
 function MenuList({ setDrawer, toggleMenu, anchorEl }:IMenuList) {
   const { user, logout } = useAuth();
-  const { role, username } = user || {};
+  const { username = '', role } = user || {};
+
   const navigate = useNavigate();
 
   const hideDrawerAndMenu = () => {
@@ -23,10 +24,10 @@ function MenuList({ setDrawer, toggleMenu, anchorEl }:IMenuList) {
       <Stack divider={<Divider orientation="horizontal" flexItem />} width="10rem">
         <Typography variant="overline" color="GrayText" textAlign="center" component="span">
           Signed in as
-          <Typography color="initial" variant="subtitle2" mb="0.5rem">{properCase(username || '')}</Typography>
+          <Typography color="initial" variant="subtitle2" mb="0.5rem">{properCase(username)}</Typography>
         </Typography>
 
-        {role === 'teacher' && <MenuItem onClick={() => { hideDrawerAndMenu(); navigate('profile'); }}>Profile</MenuItem>}
+        {role === 'teacher' && <MenuItem onClick={() => { hideDrawerAndMenu(); navigate('/teacher/profile'); }}>Profile</MenuItem>}
         <MenuItem onClick={() => { hideDrawerAndMenu(); logout(); }}>Logout</MenuItem>
       </Stack>
     </Menu>
