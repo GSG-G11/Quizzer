@@ -25,7 +25,7 @@ type Quiz = {
 function QuizDetails() {
   const { state: { quiz } }: any = useLocation();
   const navigate = useNavigate();
-  const { setAuthModalType } = useAuth();
+  const { setAuthModalType, user } = useAuth();
   const { showSnackBar } = useSnackBar();
   const isPrivateQuiz = quiz.id;
   const quizDetails: Quiz = { ...quiz };
@@ -55,9 +55,8 @@ function QuizDetails() {
           showSnackBar('You have already enrolled in this quiz', 'warning');
         }
       }
-    } else {
-      navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, type: 'public' } } });
-    }
+    } else if (!user) setAuthModalType('login_signup');
+    else navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, type: 'public' } } });
   };
 
   const {
