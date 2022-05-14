@@ -1,4 +1,4 @@
-import React, { Dispatch, EventHandler, SetStateAction } from 'react';
+import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 interface INavbar {
   setCodeFormOpen: Dispatch<SetStateAction<boolean>>;
@@ -13,7 +13,7 @@ interface INavbarActions {
 
 interface IMenuList {
   setDrawer: Dispatch<SetStateAction<boolean>>;
-  toggleMenu: (e: any | undefined) => void;
+  toggleMenu: (e: MouseEvent<HTMLElement> | undefined) => void;
   anchorEl: HTMLElement | null;
 }
 
