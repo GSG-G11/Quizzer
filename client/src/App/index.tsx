@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { PublicQuizzes } from '../Pages';
+import { PublicQuizzes, QuizDetails } from '../Pages';
 import { PrivateQuizForm, Navbar } from '../Components';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
@@ -21,7 +21,7 @@ function App() {
         {/* Student Routes */}
         <Route path="/student">
           <Route index element={<PublicQuizzes />} />
-          <Route path="quiz-details" element={<div>Quiz Details</div>} />
+          <Route path="quiz-details" element={<QuizDetails />} />
           <Route path="leaderboard" element={<div>Leaderboard</div>} />
           <Route path="quiz/enroll" element={<RequireAuth element={<div>Quiz Page</div>} userRole="student" />} />
         </Route>
