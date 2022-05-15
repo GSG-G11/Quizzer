@@ -15,5 +15,38 @@
 .access {
   justify-content: center;
   padding-top: 10px;
-  
+}
+
+.badge {
+  right: -3;
+    top: 13;
+    padding: '10 4px';
+}
+
+
+.uploadImgInput {
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.uploadImgLabel {
+  cursor: pointer;
+  color: var(--secondary);
+}
+
+@media screen and (max-width: 480px) {
+  .accessSubmit {
+    width: 40%;
+    font-size: 15px;
+  }
+  .avatar {
+      font-size: 20px;
+      width: 20px;
+  }
+  .uploadImgLabel {
+    font-size: 20px;
+    padding-top: 10px;
+    justify-content: center;
+  }
 }

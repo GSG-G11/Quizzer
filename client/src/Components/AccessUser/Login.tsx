@@ -17,15 +17,18 @@ function Login({ role: enteredRole, setLoginModal }: IAccessUser) {
 
   const initialValues = { email: '', password: '', role: enteredRole };
 
+  const handleError = () => {
+    showSnackBar(errors[0], 'error');
+  };
+
   const loginSubmit = (userInfo: IUserInfo) => {
     login(userInfo);
-    if (errors.length) return showSnackBar(errors[0], 'error');
     return setAuthModalType(null);
   };
 
   return (
     <Form
-      onSubmit={loginSubmit}
+      onSubmit={errors.length ? handleError : loginSubmit}
       initialValues={initialValues}
       validationSchema={loginSchema}
     >
