@@ -8,9 +8,10 @@ import { useAuth } from '../../Hooks';
 import { IMenuList } from './Interfaces';
 import { IUser } from '../../Auth/interfaces';
 
-function MenuList({ setDrawer, toggleMenu, anchorEl }: IMenuList) {
-  const { role, username } = useAuth().user as IUser;
-  const { logout } = useAuth();
+function MenuList({ setDrawer, toggleMenu, anchorEl }:IMenuList) {
+  const { user, logout } = useAuth();
+  const { username = '', role } = user || {};
+
   const navigate = useNavigate();
 
   const hideDrawerAndMenu = () => {

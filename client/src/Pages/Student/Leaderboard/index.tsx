@@ -38,7 +38,14 @@ function Leaderboard() {
     try {
       setLoading(true);
       const { data: { data: participants } } = await axios.get(`/api/v1/student/leaderboard/${name}`);
-      publicQuizzes[publicQuizIdx].participants = participants;
+      publicQuizzes[publicQuizIdx].participants = participants
+        .slice(0, 10)
+        .sort(
+          (
+            a: { username: string, score: number },
+            b: { username: string, score: number },
+          ) => b.score - a.score,
+        );
       publicQuizzes[publicQuizIdx].clicked = true;
     } catch (err: any) {
       if (err.response.status === 500) navigate('/error');

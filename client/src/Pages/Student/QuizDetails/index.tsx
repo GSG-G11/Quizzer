@@ -25,7 +25,7 @@ type Quiz = {
 function QuizDetails() {
   const { state: { quiz } }: any = useLocation();
   const navigate = useNavigate();
-  const { isAuthModalOpen, setAuthModalOpen } = useAuth();
+  const { setAuthModalType, user } = useAuth();
   const { showSnackBar } = useSnackBar();
   const isPrivateQuiz = quiz.id;
   const quizDetails: Quiz = { ...quiz };
@@ -50,14 +50,13 @@ function QuizDetails() {
         navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, questions, type: 'private' } } });
       } catch ({ response: { data: { message } } }) {
         if (message === 'Unauthorized') {
-          setAuthModalOpen(!isAuthModalOpen);
+          setAuthModalType('login_signup');
         } else if (message === "Student can't attend a quiz more than once") {
           showSnackBar('You have already enrolled in this quiz', 'warning');
         }
       }
-    } else {
-      navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, type: 'public' } } });
-    }
+    } else if (!user) setAuthModalType('login_signup');
+    else navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, type: 'public' } } });
   };
 
   const {
@@ -76,10 +75,10 @@ function QuizDetails() {
 
   return (
     <Container className={classes.container}>
-      <Typography variant="h4" color="primary" className={classes.title}>{title}</Typography>
-      <Typography>{quizSource}</Typography>
-      <Typography className={classes.description}>{description}</Typography>
-      <Stack flexDirection="row" justifyContent="center" alignItems="center">
+      <Typography component="div" variant="h4" color="primary" className={classes.title}>{title}</Typography>
+      <Typography component="div">{quizSource}</Typography>
+      <Typography component="div" className={classes.description}>{description}</Typography>
+      <Stack component="div" flexDirection="row" justifyContent="center" alignItems="center">
         <span className={classes.timeLimit}>
           Exact Time Limit:
           {' '}
@@ -91,7 +90,7 @@ function QuizDetails() {
           <AccessTimeFilledIcon className={classes.timeIcon} />
         </span>
       </Stack>
-      <Stack>
+      <Stack component="div">
         <Button variant="contained" className={classes.enrollBtn} color="primary" onClick={handleEnroll}>Enroll now</Button>
       </Stack>
     </Container>

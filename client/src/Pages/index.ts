@@ -1,1 +1,1 @@
-export { QuizDetails, Leaderboard } from './Student';
+export { QuizDetails, Leaderboard, PublicQuizzes } from './Student';

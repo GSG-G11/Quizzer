@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PrivateQuizForm, Navbar, QuizResult } from '../Components';
-import { QuizDetails, Leaderboard } from '../Pages';
+import { QuizDetails, Leaderboard, PublicQuizzes } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
@@ -9,19 +9,19 @@ import Hello from '../Hello';
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
-  const { isAuthModalOpen, user } = useAuth();
+  const { authModalType, user } = useAuth();
 
   return (
     <>
       <Navbar setCodeFormOpen={setCodeFormOpen} />
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
-      {isAuthModalOpen && !user && <>Login Form</>}
+      {authModalType === 'login_signup' && !user && <>Login Form</>}
 
       <Routes>
         <Route index element={<Hello />} />
         {/* Student Routes */}
         <Route path="/student">
-          <Route index element={<div>Public Quizzes</div>} />
+          <Route index element={<PublicQuizzes />} />
           <Route path="quiz-details" element={<QuizDetails />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="quiz/enroll" element={<RequireAuth element={<QuizResult />} userRole="student" />} />
