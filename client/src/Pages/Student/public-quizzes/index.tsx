@@ -8,11 +8,13 @@ import {
 } from '../../../mui';
 import { categories, autoCompleteOptions } from './categories';
 import { ICategory, IQuestions } from './interfaces';
+import { useSnackBar } from '../../../Hooks';
 
 function PublicQuizzes() {
   const [categoriesList, setCategoriesList] = useState<ICategory[]>(categories);
   const [searchTerm, setSearchTerm] = useState<string| null>(null);
   const navigate = useNavigate();
+  const { showSnackBar } = useSnackBar();
 
   const handleSearchTermChange = (_e:SyntheticEvent<Element>, newValue:string|null) => {
     setSearchTerm(newValue);
@@ -27,17 +29,21 @@ function PublicQuizzes() {
     const StringsToReplace = new Map([['&', 'and'], [' ', '_']]);
     const formattedCategoryString = selectedCategory.replace(/\s|&/g, (match:string) => StringsToReplace.get(match) || match);
 
-    const quizUrl = `https://the-trivia-api.com/api/questions?categories=${formattedCategoryString}&limit=10&region=PS&difficulty=easy`;
-    const { data } = await axios.get(quizUrl);
+    try {
+      const quizUrl = `https://the-trivia-api.com/api/questions?categories=${formattedCategoryString}&limit=10&region=PS&difficulty=easy`;
+      const { data } = await axios.get(quizUrl);
 
-    const getQuestions = ({ correctAnswer, incorrectAnswers, question }:IQuestions) => ({
-      correctAnswer, incorrectAnswers, question,
-    });
-    const questions = data.map(getQuestions);
+      const getQuestions = ({ correctAnswer, incorrectAnswers, question }:IQuestions) => ({
+        correctAnswer, incorrectAnswers, question,
+      });
+      const questions = data.map(getQuestions);
 
-    const quiz = { title: selectedCategory, description, questions };
+      const quiz = { title: selectedCategory, description, questions };
 
-    navigate('/student/quiz-details', { state: quiz });
+      navigate('/student/quiz-details', { state: quiz });
+    } catch (error:any) {
+      showSnackBar(error.response.data.message, 'error');
+    }
   };
 
   useEffect(() => {
@@ -67,7 +73,7 @@ function PublicQuizzes() {
       <Grid container alignContent="center" justifyContent="center" spacing={4} sx={{ marginBlock: '1rem' }}>
         {!categoriesList.length && <Typography variant="h6" component="p" color="secondary.dark">No Quiz Found!</Typography>}
 
-        {categoriesList.map(({ category, miniDescription }) => (
+        {categoriesList.map(({ category, miniDescription }, i) => (
           <Grid item key={category} xs={11} sm={7} md={4}>
             <Card elevation={5} sx={{ borderRadius: '10px' }}>
               <CardContent>
