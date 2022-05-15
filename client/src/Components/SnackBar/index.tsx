@@ -32,7 +32,7 @@ function SnackBarProvider({ children }: { children: ReactNode }) {
       <Snackbar
         open={open}
         autoHideDuration={6000}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         onClose={handleClose}
       >
         <Alert onClose={handleClose} severity={typeColor}>

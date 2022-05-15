@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { PrivateQuizForm, Navbar, RoleModal } from '../Components';
+import {
+  PrivateQuizForm, Navbar, RoleModal,
+} from '../Components';
+import { QuizDetails, Leaderboard, PublicQuizzes } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
@@ -18,13 +21,13 @@ function App() {
       {authModalType === 'login_signup' && !user && <>Login Form</>}
 
       <Routes>
-        <Route index element={<h1>Hello, Quizzer</h1>} />
+        <Route index element={<>Hello Quizzer</>} />
         {/* Student Routes */}
         <Route path="/student">
-          <Route index element={<div>Public Quizzes</div>} />
-          <Route path="quiz-details" element={<div>Quiz Details</div>} />
-          <Route path="leaderboard" element={<div>Leaderboard</div>} />
-          <Route path="quiz/enroll" element={<RequireAuth element={<div>Quiz Page</div>} userRole="student" />} />
+          <Route index element={<PublicQuizzes />} />
+          <Route path="quiz-details" element={<QuizDetails />} />
+          <Route path="leaderboard" element={<Leaderboard />} />
+          <Route path="quiz/enroll" element={<RequireAuth element={<>Quiz Page</>} userRole="student" />} />
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">

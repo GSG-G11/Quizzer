@@ -8,11 +8,10 @@ import NavbarActions from './NavbarActions';
 import classes from './Navbar.module.css';
 import { useAuth } from '../../Hooks';
 import { INavbar } from './Interfaces';
-import { IUser } from '../../Auth/interfaces';
 
 function Navbar({ setCodeFormOpen }:INavbar) {
   const [drawerOpen, setDrawer] = useState<boolean>(false);
-  const user = useAuth().user as IUser;
+  const { role } = useAuth().user || {};
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(useTheme().breakpoints.down('md'));
 
@@ -22,7 +21,7 @@ function Navbar({ setCodeFormOpen }:INavbar) {
       <Container maxWidth="lg" disableGutters>
 
         <Toolbar>
-          <Typography variant="h4" className={classes.logo} onClick={() => navigate(user ? `/${user.role}` : '/')}>Quizzer</Typography>
+          <Typography variant="h4" className={classes.logo} onClick={() => navigate(role || '/')}>Quizzer</Typography>
 
           {isSmallScreen && (
           <>
