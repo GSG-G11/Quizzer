@@ -1,20 +1,35 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { PublicQuizzes, QuizDetails } from '../Pages';
-import { PrivateQuizForm, Navbar } from '../Components';
+import { PublicQuizzes, QuizDetails, TakeQuiz } from '../Pages';
+import { PrivateQuizForm, Navbar, RoleModal } from '../Components';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
 
+function Form() {
+  const { login } = useAuth();
+  const submit = (e:any) => {
+    e.preventDefault();
+    login({ email: 'amjad@gmail.com', password: 'amjad123', role: 'student' });
+  };
+  return (
+    <form onSubmit={submit}>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
+  const [role, setRole] = useState<string>('student');
   const { authModalType, user } = useAuth();
 
   return (
     <>
       <Navbar setCodeFormOpen={setCodeFormOpen} />
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
-      {authModalType === 'login_signup' && !user && <>Login Form</>}
+      <RoleModal setRole={setRole} />
+      {authModalType === 'login_signup' && !user && <Form />}
 
       <Routes>
         <Route index element={<h1>Hello, Quizzer</h1>} />
@@ -23,7 +38,7 @@ function App() {
           <Route index element={<PublicQuizzes />} />
           <Route path="quiz-details" element={<QuizDetails />} />
           <Route path="leaderboard" element={<div>Leaderboard</div>} />
-          <Route path="quiz/enroll" element={<RequireAuth element={<div>Quiz Page</div>} userRole="student" />} />
+          <Route path="quiz/enroll" element={<RequireAuth element={<TakeQuiz />} userRole="student" />} />
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">

@@ -25,9 +25,9 @@ type Quiz = {
 function QuizDetails() {
   const { state: { quiz } }: any = useLocation();
   const navigate = useNavigate();
-  const { setAuthModalType } = useAuth();
+  const { setAuthModalType, user } = useAuth();
   const { showSnackBar } = useSnackBar();
-  const isPrivateQuiz = quiz?.id;
+  const isPrivateQuiz = quiz.id;
   const quizDetails: Quiz = { ...quiz };
 
   if (!isPrivateQuiz) {

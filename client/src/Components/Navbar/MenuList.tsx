@@ -5,8 +5,8 @@ import {
 } from '@mui/material';
 import { properCase } from '../../Utils';
 import { useAuth } from '../../Hooks';
-
 import { IMenuList } from './Interfaces';
+import { IUser } from '../../Auth/interfaces';
 
 function MenuList({ setDrawer, toggleMenu, anchorEl }:IMenuList) {
   const { user, logout } = useAuth();
