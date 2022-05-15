@@ -1,0 +1,14 @@
+.container {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-top: 1.2rem;
+}
+
+.questionMark {
+  display: inline-block;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  padding: 3px 10px;
+  font-weight: bold;
+  margin-right: 5px;
+}

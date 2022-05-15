@@ -19,6 +19,8 @@ import {
   List,
   ListItem,
   Stack,
+  Container,
+  Typography,
 } from '@mui/material';
 
 export {
@@ -41,4 +43,6 @@ export {
   List,
   ListItem,
   Stack,
+  Container,
+  Typography,
 };
