@@ -5,7 +5,6 @@ import { QuizDetails, Leaderboard, PublicQuizzes } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
-import Hello from '../Hello';
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
@@ -18,7 +17,7 @@ function App() {
       {authModalType === 'login_signup' && !user && <>Login Form</>}
 
       <Routes>
-        <Route index element={<Hello />} />
+        <Route index element={<>Hello Quizzer</>} />
         {/* Student Routes */}
         <Route path="/student">
           <Route index element={<PublicQuizzes />} />
