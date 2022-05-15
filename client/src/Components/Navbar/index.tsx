@@ -10,6 +10,7 @@ import classes from './Navbar.module.css';
 import { INavbar } from './Interfaces';
 import { useAuth } from '../../Hooks';
 
+
 function Navbar({ setCodeFormOpen }:INavbar) {
   const [drawerOpen, setDrawer] = useState<boolean>(false);
   const { role } = useAuth().user || {};

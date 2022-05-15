@@ -40,7 +40,7 @@ function PublicQuizzes() {
 
       const quiz = { title: selectedCategory, description, questions };
 
-      navigate('/student/quiz-details', { state: quiz });
+      navigate('/student/quiz-details', { state: { quiz } });
     } catch (error:any) {
       showSnackBar(error.response.data.message, 'error');
     }

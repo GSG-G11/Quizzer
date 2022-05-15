@@ -5,7 +5,6 @@ import {
 } from '@mui/material';
 import { properCase } from '../../Utils';
 import { useAuth } from '../../Hooks';
-
 import { IMenuList } from './Interfaces';
 
 function MenuList({ setDrawer, toggleMenu, anchorEl }:IMenuList) {
