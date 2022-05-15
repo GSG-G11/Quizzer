@@ -24,10 +24,10 @@ import {
   CardActionArea,
   Container,
   Typography,
-  Stack,
   Avatar,
-  List,
   ListItem,
+  List,
+  Stack,
 } from '@mui/material';
 
 export {
