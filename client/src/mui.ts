@@ -42,11 +42,9 @@ export {
   StyledEngineProvider,
   TextField,
   Button,
-  Dialog,
   DialogTitle,
   DialogContent,
   DialogContentText,
-  Grid,
   QrCodeIcon,
   InputAdornment,
   Alert,
@@ -69,4 +67,6 @@ export {
   Stack,
   CardMedia,
   CardActionArea,
+  Dialog,
+  Grid,
 };
