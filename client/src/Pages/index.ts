@@ -1,2 +1,2 @@
-// eslint-disable-next-line import/prefer-default-export
+export { PublicQuizzes } from './Student';
 export { QuizDetails } from './Student';
