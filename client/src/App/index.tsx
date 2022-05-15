@@ -23,7 +23,7 @@ function App() {
           <Route index element={<PublicQuizzes />} />
           <Route path="quiz-details" element={<QuizDetails />} />
           <Route path="leaderboard" element={<Leaderboard />} />
-          <Route path="quiz/enroll" element={<RequireAuth element={<QuizResult />} userRole="student" />} />
+          <Route path="quiz/enroll" element={<RequireAuth element={<>Quiz Page</>} userRole="student" />} />
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">
