@@ -2,4 +2,4 @@ export { default as RoleModal } from './RoleModal';
 export { PrivateQuizForm } from './Student';
 export { default as Navbar } from './Navbar';
 export { default as SnackBarProvider } from './SnackBar';
-export { QuestionFormWrapper, QuestionTypeModal, CreateQuizForm } from './Teacher';
+export { QuestionFormWrapper, CreateQuizForm } from './Teacher';
