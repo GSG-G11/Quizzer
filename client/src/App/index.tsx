@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { PublicQuizzes, QuizDetails, TakeQuiz } from '../Pages';
+import {
+  PublicQuizzes, Quiz, Leaderboard, QuizResult,
+} from '../Pages';
+import QuizDetails from '../Pages/Student/QuizDetails';
 import { PrivateQuizForm, Navbar, RoleModal } from '../Components';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
@@ -21,7 +24,7 @@ function Form() {
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
-  const [role, setRole] = useState<string>('student');
+  const [role, setRole] = useState<'student' | 'teacher'>('student');
   const { authModalType, user } = useAuth();
 
   return (
@@ -32,13 +35,14 @@ function App() {
       {authModalType === 'login_signup' && !user && <Form />}
 
       <Routes>
-        <Route index element={<h1>Hello, Quizzer</h1>} />
+        <Route index element={<>Hello Quizzer</>} />
         {/* Student Routes */}
         <Route path="/student">
           <Route index element={<PublicQuizzes />} />
           <Route path="quiz-details" element={<QuizDetails />} />
-          <Route path="leaderboard" element={<div>Leaderboard</div>} />
-          <Route path="quiz/enroll" element={<RequireAuth element={<TakeQuiz />} userRole="student" />} />
+          <Route path="leaderboard" element={<Leaderboard />} />
+          <Route path="quiz/enroll" element={<RequireAuth element={<Quiz />} userRole="student" />} />
+          <Route path="quiz/result" element={<RequireAuth element={<QuizResult />} userRole="student" />} />
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">

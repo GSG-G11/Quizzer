@@ -13,7 +13,9 @@ const activeStyles = ({ isActive } :{ isActive:boolean }) => (isActive ? { color
 function NavbarActions({
   direction, space, avatarPosition, setDrawer, setCodeForm,
 }:INavbarActions) {
-  const { user, setAuthModalType } = useAuth();
+  const {
+    user, login, setAuthModalType, authModalType,
+  } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const toggleMenu = (e:MouseEvent<HTMLElement> | undefined) => {

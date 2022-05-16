@@ -1,0 +1,14 @@
+.title {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.container {
+  margin-bottom: 2rem;
+}
+
+.heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #666;
+}

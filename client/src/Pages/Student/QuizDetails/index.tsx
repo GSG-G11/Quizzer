@@ -32,7 +32,7 @@ function QuizDetails() {
 
   if (!isPrivateQuiz) {
     quizDetails.questions = quiz.questions.map((question: any) => ({
-      question,
+      question: question.question,
       type: 'mcq',
       answers: {
         answer: question.correctAnswer,
@@ -50,14 +50,13 @@ function QuizDetails() {
         navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, questions, type: 'private' } } });
       } catch ({ response: { data: { message } } }) {
         if (message === 'Unauthorized') {
-          setAuthModalType('role');
+          setAuthModalType('login_signup');
         } else if (message === "Student can't attend a quiz more than once") {
           showSnackBar('You have already enrolled in this quiz', 'warning');
         }
       }
-    } else {
-      navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, type: 'public' } } });
-    }
+    } else if (!user) setAuthModalType('login_signup');
+    else navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, type: 'public' } } });
   };
 
   const {
@@ -76,10 +75,10 @@ function QuizDetails() {
 
   return (
     <Container className={classes.container}>
-      <Typography variant="h4" color="primary" className={classes.title}>{title}</Typography>
-      <Typography>{quizSource}</Typography>
-      <Typography className={classes.description}>{description}</Typography>
-      <Stack flexDirection="row" justifyContent="center" alignItems="center">
+      <Typography component="div" variant="h4" color="primary" className={classes.title}>{title}</Typography>
+      <Typography component="div">{quizSource}</Typography>
+      <Typography component="div" className={classes.description}>{description}</Typography>
+      <Stack component="div" flexDirection="row" justifyContent="center" alignItems="center">
         <span className={classes.timeLimit}>
           Exact Time Limit:
           {' '}
@@ -91,7 +90,7 @@ function QuizDetails() {
           <AccessTimeFilledIcon className={classes.timeIcon} />
         </span>
       </Stack>
-      <Stack>
+      <Stack component="div">
         <Button variant="contained" className={classes.enrollBtn} color="primary" onClick={handleEnroll}>Enroll now</Button>
       </Stack>
     </Container>
