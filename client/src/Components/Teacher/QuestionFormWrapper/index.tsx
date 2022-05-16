@@ -1,11 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './QuestionForm.module.css';
-import { QuizContext } from '../../../Pages/Teacher/CreateQuiz';
-import {
-  MultipleChoiceQuestionForm,
-  TrueFalseQuestionForm,
-  ShortAnswerQuestionForm,
-} from '../QuestionsForms';
+import Question from '../Question';
 import {
   Container,
   Select,
@@ -15,8 +10,8 @@ import {
   Typography,
 } from '../../../mui';
 
-function QuestionFormWrapper() {
-  const { questionType, setQuestionType } = React.useContext(QuizContext);
+function QuestionFormWrapper({ number }: { number: number }) {
+  const [questionType, setQuestionType] = useState<'mcq' | 'true_false' | 'short_answer'>('mcq');
 
   return (
     <Container className={classes.container}>
@@ -26,7 +21,7 @@ function QuestionFormWrapper() {
             variant="standard"
             id="selectBox"
             value={questionType}
-            onChange={(e) => setQuestionType(e.target.value)}
+            onChange={(e: any) => setQuestionType(e.target.value)}
           >
             <MenuItem value="mcq">Multiple Choice</MenuItem>
             <MenuItem value="true_false">True / False</MenuItem>
@@ -39,11 +34,7 @@ function QuestionFormWrapper() {
           Point
         </Typography>
       </Stack>
-      { questionType === 'mcq'
-        ? <MultipleChoiceQuestionForm />
-        : questionType === 'true_false'
-          ? <TrueFalseQuestionForm />
-          : <ShortAnswerQuestionForm /> }
+      <Question questionType={questionType} number={number} />
     </Container>
   );
 }

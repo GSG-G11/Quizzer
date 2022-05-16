@@ -75,10 +75,10 @@ function QuizDetails() {
 
   return (
     <Container className={classes.container}>
-      <Typography variant="h4" color="primary" className={classes.title}>{title}</Typography>
-      <Typography>{quizSource}</Typography>
-      <Typography className={classes.description}>{description}</Typography>
-      <Stack flexDirection="row" justifyContent="center" alignItems="center">
+      <Typography component="div" variant="h4" color="primary" className={classes.title}>{title}</Typography>
+      <Typography component="div">{quizSource}</Typography>
+      <Typography component="div" className={classes.description}>{description}</Typography>
+      <Stack component="div" flexDirection="row" justifyContent="center" alignItems="center">
         <span className={classes.timeLimit}>
           Exact Time Limit:
           {' '}
@@ -90,7 +90,7 @@ function QuizDetails() {
           <AccessTimeFilledIcon className={classes.timeIcon} />
         </span>
       </Stack>
-      <Stack>
+      <Stack component="div">
         <Button variant="contained" className={classes.enrollBtn} color="primary" onClick={handleEnroll}>Enroll now</Button>
       </Stack>
     </Container>

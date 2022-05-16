@@ -5,12 +5,17 @@ interface CustomFormProps {
   children: ReactNode;
   initialValues: object;
   validationSchema: object;
+  enableReinitialize?: boolean;
   onSubmit: (values: any) => void;
 }
 
 function CustomForm(props: CustomFormProps) {
   const {
-    children, initialValues, validationSchema, onSubmit,
+    onSubmit,
+    children,
+    initialValues,
+    validationSchema,
+    ...rest
   } = props;
 
   return (
@@ -18,10 +23,15 @@ function CustomForm(props: CustomFormProps) {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      {...rest}
     >
       <Form>{children}</Form>
     </Formik>
   );
 }
+
+CustomForm.defaultProps = {
+  enableReinitialize: true,
+};
 
 export default CustomForm;

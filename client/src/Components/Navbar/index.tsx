@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import BurgerIcon from '@mui/icons-material/Menu';
 import NavbarActions from './NavbarActions';
 import classes from './Navbar.module.css';
-
 import { INavbar } from './Interfaces';
 import { useAuth } from '../../Hooks';
 
