@@ -9,6 +9,7 @@ import {
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
+import Landing from '../Pages/Landing';
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
@@ -18,12 +19,13 @@ function App() {
   return (
     <>
       <Navbar setCodeFormOpen={setCodeFormOpen} />
+
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
       <RoleModal setRole={setRole} />
       {authModalType === 'login_signup' && !user && <>Login Form</>}
 
       <Routes>
-        <Route index element={<>Hello Quizzer</>} />
+        <Route index element={<Landing />} />
         {/* Student Routes */}
         <Route path="/student">
           <Route index element={<PublicQuizzes />} />

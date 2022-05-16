@@ -3,6 +3,7 @@ import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
+import PublicIcon from '@mui/icons-material/Public';
 
 // Components
 import CssBaseline from '@mui/material/CssBaseline';
@@ -34,6 +35,7 @@ import {
   ListItem,
   List,
   Stack,
+  Paper,
   Select,
   FormControl,
   MenuItem,
@@ -78,6 +80,8 @@ export {
   CardActionArea,
   Dialog,
   Grid,
+  Paper,
+  PublicIcon,
   Select,
   FormControl,
   MenuItem,
