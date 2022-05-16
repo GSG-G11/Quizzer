@@ -3,24 +3,59 @@
 }
 
 .popularInfo {
-  width: 100vw;
   display: flex;
+  padding: 65px;
+  margin-top: 60px;
   justify-content: flex-start;
-  margin-top: 30px;
-  padding: 50px;
   background-color: #f7f1e8;
 }
 
 .paper {
-  width: 30%;
   display: flex;
+  width: 80%;
+  padding: 20px;
   justify-content: center;
   align-items: center;
   border: ridge;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .worldIcon {
-  font-size: 77px;
-  padding: 10px;
+  font-size: 80px;
 } 
+
+.image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 70%;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .popularInfo {
+    background-color: #ffffff;
+  }
+  .paper {
+    display: none;
+  }
+  .image {
+    height: 50%;
+    width: 100%;
+  }
+
+  .popularInfoButton {
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .popularInfoTitle {
+    text-align: center;
+    font-size: 30px;
+  }
+  .popularInfoDetails {
+    text-align: center;
+    font-size: 18px;
+  }
+}
