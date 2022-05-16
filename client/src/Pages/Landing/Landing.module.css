@@ -47,15 +47,19 @@
   .popularInfoButton {
     align-self: center;
   }
+  .popularInfoTitle {
+    text-align: center;
+  }
+  .popularInfoDetails {
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 480px) {
   .popularInfoTitle {
-    text-align: center;
     font-size: 30px;
   }
   .popularInfoDetails {
-    text-align: center;
     font-size: 18px;
   }
 }
