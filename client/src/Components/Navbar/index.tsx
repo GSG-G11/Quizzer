@@ -8,7 +8,6 @@ import NavbarActions from './NavbarActions';
 import classes from './Navbar.module.css';
 import { INavbar } from './Interfaces';
 import { useAuth } from '../../Hooks';
-import { INavbar } from './Interfaces';
 
 function Navbar({ setCodeFormOpen }:INavbar) {
   const [drawerOpen, setDrawer] = useState<boolean>(false);

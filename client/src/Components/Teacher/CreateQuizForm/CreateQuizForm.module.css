@@ -1,0 +1,18 @@
+.inputsWrapper {
+  width: 100%;
+  max-width: 600px;
+  margin-inline: auto;
+  margin-top: 1.5rem;
+}
+
+.inputsWrapper > * {
+  margin-bottom: 0.8rem;
+}
+
+.submitBtn {
+  width: fit-content;
+  margin-inline: auto;
+  color: var(--secondary);
+  margin-top: 1.5rem;
+  padding-inline: 2rem;
+}
