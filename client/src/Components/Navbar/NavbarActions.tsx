@@ -53,9 +53,16 @@ function NavbarActions({
 
         {/* Teacher Route */}
         {userId && role === 'teacher' && (
-        <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
-          <NavLink className={classes.navLink} to="/teacher" style={activeStyles}>My Quizzes</NavLink>
-        </ListItem>
+        <>
+          <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
+            <NavLink className={classes.navLink} to="/teacher/" style={activeStyles}>My Quizzes</NavLink>
+          </ListItem>
+          <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
+            <NavLink className={classes.navLink} to="/teacher/quiz/new" style={activeStyles}>Create Quiz</NavLink>
+          </ListItem>
+
+        </>
+
         )}
 
         {!userId && (
