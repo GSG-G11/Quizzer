@@ -49,6 +49,7 @@ function TableQuizzes({
               ? (
                 <Typography
                   padding="20px"
+                  textAlign="center"
                   sx={{ width: { xs: '80%', sm: '186%' } }}
                 >
                   You have no quiz, create a new quiz by click
