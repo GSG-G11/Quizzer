@@ -3,9 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import {
   PrivateQuizForm, Navbar, RoleModal,
 } from '../Components';
-import { QuizDetails, Leaderboard, PublicQuizzes } from '../Pages';
+import {
+  QuizDetails, Leaderboard, PublicQuizzes, MyQuizzes,
+} from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
+import QuizzesProvider from '../Contexts/Quizzes/quizzesContext';
 import './index.css';
 
 function App() {
@@ -31,8 +34,9 @@ function App() {
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">
-          <Route index element={(<RequireAuth element={<div>Teacher Quizzes page</div>} userRole="teacher" />)} />
-          <Route path="quiz/:quizId" element={(<RequireAuth element={<div>Teacher Quizzes page</div>} userRole="teacher" />)} />
+
+          <Route index element={(<RequireAuth element={<QuizzesProvider><MyQuizzes /></QuizzesProvider>} userRole="teacher" />)} />
+          <Route path="quiz/:quizId" element={(<RequireAuth element={<div>Teacher Quiz page</div>} userRole="teacher" />)} />
           <Route path="quiz/new" element={<RequireAuth element={<div>Create Quiz Page</div>} userRole="teacher" />} />
           <Route path="profile" element={<RequireAuth element={<div>Teacher Profile</div>} userRole="teacher" />} />
         </Route>

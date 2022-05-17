@@ -1,0 +1,41 @@
+.addQuiz {
+  color: var(--secondary);
+  font-size: 18px;
+}
+
+.table {
+  border: 1px solid;
+}
+
+.row {
+  justify-content: center;
+}
+.head {
+  background-color: #ECEBEB;
+}
+
+.pagination {
+  background-color: #ECEBEB;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-left: 1px solid;
+}
+
+.confirmDeleteBtn {
+  color: var(--secondary);
+  font-size: 16px;
+}
+
+.cancelDeleteBtn{
+  color: var(--primary);
+  font-size: 16px;
+
+}
+
+.quizDeleteIcon :hover {
+  color: rgb(130, 17, 17);
+}
+
+.quizTitle:hover {
+  color: #BB0000;
+}

@@ -3,6 +3,9 @@ import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
+import AddIcon from '@mui/icons-material/Add';
+import PersonIcon from '@mui/icons-material/Person';
+import DeleteIcon from '@mui/icons-material/Delete';
 // Components
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -33,6 +36,17 @@ import {
   ListItem,
   List,
   Stack,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  TableContainer,
+  Paper,
+  TablePagination,
+  Box,
+  DialogActions,
+  Divider,
 } from '@mui/material';
 
 export {
@@ -69,4 +83,18 @@ export {
   CardActionArea,
   Dialog,
   Grid,
+  AddIcon,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Paper,
+  TablePagination,
+  TableContainer,
+  PersonIcon,
+  DeleteIcon,
+  Box,
+  DialogActions,
+  Divider,
 };
