@@ -1,0 +1,61 @@
+.popularInfo {
+  display: flex;
+  padding: 65px;
+  margin-top: 60px;
+  justify-content: flex-start;
+  background-color: #f7f1e8;
+}
+
+.paper {
+  display: flex;
+  width: 80%;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  border: ridge;
+  border-radius: 15px;
+}
+
+.worldIcon {
+  font-size: 80px;
+} 
+
+.image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 70%;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .popularInfo {
+    background-color: #ffffff;
+  }
+  .paper {
+    display: none;
+  }
+  .image {
+    height: 50%;
+    width: 100%;
+  }
+
+  .popularInfoButton {
+    align-self: center;
+  }
+  .popularInfoTitle {
+    text-align: center;
+  }
+  .popularInfoDetails {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .popularInfoTitle {
+    font-size: 30px;
+  }
+  .popularInfoDetails {
+    font-size: 18px;
+  }
+}
