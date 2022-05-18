@@ -16,16 +16,16 @@ const root = createRoot(document.getElementById('root') as HTMLElement);
 const app = (
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <SnackBarProvider>
+      <SnackBarProvider>
+        <AuthProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <StyledEngineProvider injectFirst>
               <App />
             </StyledEngineProvider>
           </ThemeProvider>
-        </SnackBarProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </SnackBarProvider>
     </BrowserRouter>
   </StrictMode>
 );

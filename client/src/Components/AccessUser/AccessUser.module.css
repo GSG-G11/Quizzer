@@ -1,0 +1,58 @@
+.googleEmail {
+  justify-content: flex-start;
+  font-weight: 600;
+  height: 160%;
+}
+
+.accessSubmit {
+  color: #F9AA33;
+  font-weight: 600;
+  font-size: 20px;
+  width: 30%;
+}
+
+.access {
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.badge {
+  right: -3;
+    top: 13;
+    padding: '10 4px';
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  margin-inline: auto;
+}
+
+.uploadImgLabel {
+  font-size: 15px;
+}
+
+
+.uploadImgInput {
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.uploadImgLabel {
+  cursor: pointer;
+  color: var(--secondary);
+}
+
+@media screen and (max-width: 480px) {
+  .accessSubmit {
+    width: 40%;
+    font-size: 15px;
+  }
+  
+  .uploadImgLabel {
+    font-size: 20px;
+    padding-top: 10px;
+    justify-content: center;
+  }
+}
