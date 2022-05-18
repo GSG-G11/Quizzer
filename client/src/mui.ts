@@ -96,10 +96,10 @@ export {
   Radio,
   InputLabel,
   FormLabel,
-  Divider,
   EmailIcon,
   VisibilityIcon,
   GoogleIcon,
   VisibilityOffIcon,
   PersonIcon,
+  Divider,
 };
