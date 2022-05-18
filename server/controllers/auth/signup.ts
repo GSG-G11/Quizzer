@@ -27,8 +27,10 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       bio,
       avatar,
     });
-    const userInfo = { userId: user.id, username, role };
-    const token = await signToken(user);
+    const userInfo = {
+      userId: user.id, username, role, bio, avatar,
+    };
+    const token = await signToken(userInfo);
 
     res
       .status(201)

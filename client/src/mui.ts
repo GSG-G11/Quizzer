@@ -7,6 +7,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import EmailIcon from '@mui/icons-material/Email';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import GoogleIcon from '@mui/icons-material/Google';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import PersonIcon from '@mui/icons-material/Person';
 
 // Components
@@ -99,5 +100,6 @@ export {
   EmailIcon,
   VisibilityIcon,
   GoogleIcon,
+  VisibilityOffIcon,
   PersonIcon,
 };

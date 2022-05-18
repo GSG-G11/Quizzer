@@ -5,7 +5,7 @@ import spinner from '../../Assets/spinner.gif';
 import classes from './AccessUser.module.css';
 import { useAuth, useSnackBar } from '../../Hooks';
 import { Form, Input, Submit } from '../FormUI';
-import { IAccessUser, IUserInfo } from './Interfaces';
+import { IAccessUserProperties, IUserInfo } from './Interfaces';
 import { signupSchema } from '../../Validation';
 import { signInWithPopup, GoogleAuthProvider, auth } from '../../Firebase/config';
 import {
@@ -22,11 +22,14 @@ import {
   VisibilityIcon,
   GoogleIcon,
   PersonIcon,
+  VisibilityOffIcon,
 } from '../../mui';
 
-function Signup({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
+function Signup({
+  role: enteredRole, setLoginModalOpen, passwordsType, setPasswordsType,
+}: IAccessUserProperties) {
   const { showSnackBar } = useSnackBar();
-  const { signup, errors } = useAuth();
+  const { signup, setErrors, errors } = useAuth();
   const [image, setImage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -110,10 +113,11 @@ function Signup({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
             <Input
               name="username"
               variant="outlined"
-              placeholder="Enter your username"
+              placeholder="Enter your name"
+              label="Full Name"
               type="text"
               margin="dense"
-              style={{ width: '100%', paddingTop: '20px' }}
+              style={{ width: '100%', marginTop: '30px' }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -128,6 +132,7 @@ function Signup({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
               name="email"
               variant="outlined"
               placeholder="Enter your email"
+              label="Email"
               type="text"
               margin="dense"
               style={{ width: '100%' }}
@@ -145,13 +150,27 @@ function Signup({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
               name="password"
               variant="outlined"
               placeholder="Enter your password"
-              type="password"
+              label="Password"
+              type={passwordsType ? 'password' : 'text'}
               margin="dense"
               style={{ width: '100%' }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <VisibilityIcon />
+                    {
+                    passwordsType ? (
+                      <VisibilityOffIcon
+                        onClick={() => { setPasswordsType(!passwordsType); }}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    )
+                      : (
+                        <VisibilityIcon
+                          onClick={() => { setPasswordsType(!passwordsType); }}
+                          style={{ cursor: 'pointer' }}
+                        />
+                      )
+                    }
                   </InputAdornment>
                 ),
               }}
@@ -162,13 +181,27 @@ function Signup({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
               name="passwordConfirmation"
               variant="outlined"
               placeholder="Confirm password"
-              type="password"
+              label="Password Confirm"
+              type={passwordsType ? 'password' : 'text'}
               margin="dense"
               style={{ width: '100%' }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <VisibilityIcon />
+                    {
+                    passwordsType ? (
+                      <VisibilityOffIcon
+                        onClick={() => { setPasswordsType(!passwordsType); }}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    )
+                      : (
+                        <VisibilityIcon
+                          onClick={() => { setPasswordsType(!passwordsType); }}
+                          style={{ cursor: 'pointer' }}
+                        />
+                      )
+                    }
                   </InputAdornment>
                 ),
               }}
@@ -182,7 +215,7 @@ function Signup({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
             <Input
               name="bio"
               variant="outlined"
-              placeholder="Write your bio here"
+              label="Write your bio here"
               fullWidth
               multiline
               rows={5}
@@ -190,10 +223,15 @@ function Signup({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
             />
           </Grid>
           <Grid item sm={3} xs={12}>
-            <Avatar style={{ width: '100px' }} src={loading ? spinner : image} className={classes.avatar} alt="profile-picture" />
-
             <label className={classes.uploadImgLabel}>
-              Add your Avatar
+              <Avatar
+                src={loading ? spinner : image}
+                sx={{ alignSelf: 'center' }}
+                className={classes.avatar}
+                alt="profile-picture"
+              />
+
+              Upload Image
               <Input
                 name="avatar"
                 variant="outlined"
@@ -213,7 +251,7 @@ function Signup({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
           <DialogContentText paddingBottom="50x">
             Already have an account?
           </DialogContentText>
-          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => setLoginModalOpen(true)}>&nbsp;log in</Typography>
+          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => { setLoginModalOpen(true); setErrors([]); }}>&nbsp;log in</Typography>
         </Grid>
       </DialogContent>
     </Form>

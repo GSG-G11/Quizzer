@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import classes from './AccessUser.module.css';
+import React, { useEffect } from 'react';
 import { useAuth, useSnackBar } from '../../Hooks';
+import classes from './AccessUser.module.css';
 import { Form, Input, Submit } from '../FormUI';
-import { IAccessUser, IUserInfo } from './Interfaces';
+import { IUserInfo, IAccessUserProperties } from './Interfaces';
 import { loginSchema } from '../../Validation';
 import { signInWithPopup, GoogleAuthProvider, auth } from '../../Firebase/config';
 import {
@@ -16,11 +16,17 @@ import {
   EmailIcon,
   VisibilityIcon,
   GoogleIcon,
+  VisibilityOffIcon,
 } from '../../mui';
 
-function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
+function Login({
+  role: enteredRole,
+  setLoginModalOpen,
+  passwordsType,
+  setPasswordsType,
+}: IAccessUserProperties) {
   const { showSnackBar } = useSnackBar();
-  const { login, errors } = useAuth();
+  const { login, setErrors, errors } = useAuth();
 
   useEffect(() => {
     if (errors.length) showSnackBar(errors[0], 'error');
@@ -77,9 +83,10 @@ function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
               name="email"
               variant="outlined"
               placeholder="Enter your email"
+              label="Email"
               type="text"
               margin="dense"
-              style={{ width: '100%', paddingTop: '20px' }}
+              style={{ width: '100%', marginTop: '30px' }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -94,13 +101,27 @@ function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
               name="password"
               variant="outlined"
               placeholder="Enter your password"
-              type="text"
+              label="Password"
+              type={passwordsType ? 'password' : 'text'}
               margin="dense"
               style={{ width: '100%' }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <VisibilityIcon />
+                    {
+                    passwordsType ? (
+                      <VisibilityOffIcon
+                        onClick={() => { setPasswordsType(!passwordsType); }}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    )
+                      : (
+                        <VisibilityIcon
+                          onClick={() => { setPasswordsType(!passwordsType); }}
+                          style={{ cursor: 'pointer' }}
+                        />
+                      )
+                    }
                   </InputAdornment>
                 ),
               }}
@@ -114,7 +135,7 @@ function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
           <DialogContentText paddingBottom="50x">
             Don’t have an account?
           </DialogContentText>
-          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => setLoginModalOpen(false)}>&nbsp;Sign up</Typography>
+          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => { setLoginModalOpen(false); setErrors([]); }}>&nbsp;Sign up</Typography>
         </Grid>
       </DialogContent>
     </Form>
