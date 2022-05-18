@@ -4,11 +4,14 @@ import {
   PrivateQuizForm, Navbar, RoleModal,
 } from '../Components';
 import {
-  QuizDetails, Leaderboard, PublicQuizzes, TeacherProfile,
+  TeacherProfile,
+  QuizDetails, Leaderboard, PublicQuizzes, MyQuizzes, CreateQuiz,
 } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
+import QuizzesProvider from '../Contexts/Quizzes/quizzesContext';
 import './index.css';
+import Landing from '../Pages/Landing';
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
@@ -18,12 +21,13 @@ function App() {
   return (
     <>
       <Navbar setCodeFormOpen={setCodeFormOpen} />
+
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
       <RoleModal setRole={setRole} />
       {authModalType === 'login_signup' && !user && <>Login Form</>}
 
       <Routes>
-        <Route index element={<>Hello Quizzer</>} />
+        <Route index element={<Landing />} />
         {/* Student Routes */}
         <Route path="/student">
           <Route index element={<PublicQuizzes />} />
@@ -33,9 +37,10 @@ function App() {
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">
-          <Route index element={(<RequireAuth element={<div>Teacher Quizzes page</div>} userRole="teacher" />)} />
-          <Route path="quiz/:quizId" element={(<RequireAuth element={<div>Teacher Quizzes page</div>} userRole="teacher" />)} />
-          <Route path="quiz/new" element={<RequireAuth element={<div>Create Quiz Page</div>} userRole="teacher" />} />
+
+          <Route index element={(<RequireAuth element={<QuizzesProvider><MyQuizzes /></QuizzesProvider>} userRole="teacher" />)} />
+          <Route path="quiz/:quizId" element={(<RequireAuth element={<div>Teacher Quiz page</div>} userRole="teacher" />)} />
+          <Route path="quiz/new" element={<RequireAuth element={<CreateQuiz />} userRole="teacher" />} />
           <Route path="profile" element={<RequireAuth element={<TeacherProfile />} userRole="teacher" />} />
         </Route>
         <Route path="*" element={<div>page not found</div>} />
