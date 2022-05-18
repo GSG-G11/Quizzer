@@ -10,6 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {
   InputAdornment,
+  Icon,
   Button,
   Dialog,
   DialogContent,
@@ -90,4 +91,5 @@ export {
   Radio,
   InputLabel,
   FormLabel,
+  Icon,
 };

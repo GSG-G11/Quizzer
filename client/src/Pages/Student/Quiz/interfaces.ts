@@ -13,10 +13,10 @@ interface IQuestions extends Array<any> {
 interface IQuestionCard {
   question: string;
   options: string[];
-  setMsqAnswers: Dispatch<SetStateAction<{}>>;
+  setAnswers: Dispatch<SetStateAction<{}>>;
   hasSubmitted: boolean;
-  quizType: 'public' | 'private';
   questionType: TQuestionType;
+  qNumber: number;
 }
 
 type TQuiz = {

@@ -1,28 +1,15 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {
-  PrivateQuizForm, Navbar, RoleModal, QuizResult,
+  PrivateQuizForm, Navbar, RoleModal,
 } from '../Components';
 import {
-  Leaderboard, PublicQuizzes, CreateQuiz, Quiz, QuizDetails,
+  Leaderboard, PublicQuizzes, CreateQuiz, Quiz, QuizDetails, QuizResult,
 } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import './index.css';
 import Landing from '../Pages/Landing';
-
-function Form() {
-  const { login } = useAuth();
-  const submit = (e:any) => {
-    e.preventDefault();
-    login({ email: 'amjad@gmail.com', password: 'amjad123', role: 'student' });
-  };
-  return (
-    <form onSubmit={submit}>
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
@@ -35,7 +22,7 @@ function App() {
 
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
       <RoleModal setRole={setRole} />
-      {authModalType === 'login_signup' && !user && <Form />}
+      {authModalType === 'login_signup' && !user && <>form</>}
 
       <Routes>
         <Route index element={<Landing />} />

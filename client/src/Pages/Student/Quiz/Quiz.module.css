@@ -1,0 +1,22 @@
+.header {
+  position: absolute;
+  left: 0;
+  top: -78px;
+  padding: 2rem;
+  color: var(--secondary);
+  width: 100%;
+  background-color: var(--primary-dark);
+  margin:0;
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  margin-top: 6rem !important;
+}
+
+.result_btn {
+  width: fit-content;
+  margin:auto
+}
