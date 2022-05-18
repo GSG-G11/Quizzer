@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Button, Card, CardActionArea, CardContent, CardMedia, Dialog, Grid, Typography,
+  Card, CardActionArea, CardContent, CardMedia, Dialog, Grid, Typography,
 } from '../../mui';
 import { useAuth } from '../../Hooks';
 import teacher from '../../Assets/teacher.png';
 import student from '../../Assets/student.png';
 
 interface IRole {
-  setRole: (role: string) => void;
+  setRole: (role: 'teacher' | 'student') => void;
 }
 
 function RoleModal({ setRole }: IRole) {
@@ -17,7 +17,7 @@ function RoleModal({ setRole }: IRole) {
 
     <Dialog
       open={authModalType === 'role'}
-      onClose={() => setAuthModalType(null)}
+      onClose={() => { setAuthModalType(null); setRole('student'); }}
     >
       <Grid
         container

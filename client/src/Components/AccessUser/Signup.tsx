@@ -16,11 +16,15 @@ import { IAccessUser, IUserInfo } from './Interfaces';
 import { signupSchema } from '../../Validation';
 import spinner from '../../Assets/spinner.gif';
 
-function Signup({ role: enteredRole, setLoginModal }: IAccessUser) {
+function Signup({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
   const { showSnackBar } = useSnackBar();
-  const { signup, setAuthModalType, errors } = useAuth();
+  const { signup, errors } = useAuth();
   const [image, setImage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (errors.length) showSnackBar(errors[0], 'error');
+  }, [errors]);
 
   const initialValues = {
     email: '', password: '', passwordConfirmation: '', role: enteredRole, username: '', bio: '', avatar: '',
@@ -30,28 +34,26 @@ function Signup({ role: enteredRole, setLoginModal }: IAccessUser) {
     const { files } = e.target;
     const formData = new FormData();
     formData.append('file', files[0]);
-    formData.append('upload_preset', 'uaoogcr3');
+    formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET as string);
     setLoading(true);
 
-    const { data } = await axios.post('https://api.cloudinary.com/v1_1/duhkssuw2/image/upload', formData);
-
-    setImage(data.secure_url);
-    setLoading(false);
-  };
-
-  const handleError = () => {
-    showSnackBar(errors[0], 'error');
+    try {
+      const { data } = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, formData);
+      setImage(data.secure_url);
+      setLoading(false);
+    } catch (err: any) {
+      showSnackBar('Something went wrong while uploading image', 'error');
+    }
   };
 
   const signupSubmit = (userInfo: IUserInfo) => {
-    signup(userInfo);
-    showSnackBar('User created successfully', 'success');
-    setAuthModalType(null);
+    const newUser = { ...userInfo, avatar: image };
+    signup(newUser);
   };
 
   return (
     <Form
-      onSubmit={errors.length ? handleError : signupSubmit}
+      onSubmit={signupSubmit}
       initialValues={initialValues}
       validationSchema={signupSchema}
     >
@@ -152,7 +154,7 @@ function Signup({ role: enteredRole, setLoginModal }: IAccessUser) {
             />
           </Grid>
           <Grid item sm={3} xs={12}>
-            <Avatar style={{ width: '100%', height: '88%' }} src={loading ? spinner : image} className={classes.avatar} alt="profile-picture" />
+            <Avatar style={{ width: '100px' }} src={loading ? spinner : image} className={classes.avatar} alt="profile-picture" />
 
             <label className={classes.uploadImgLabel}>
               Add your Avatar
@@ -175,7 +177,7 @@ function Signup({ role: enteredRole, setLoginModal }: IAccessUser) {
           <DialogContentText paddingBottom="50x">
             Already have an account?
           </DialogContentText>
-          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => setLoginModal(true)}>&nbsp;log in</Typography>
+          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => setLoginModalOpen(true)}>&nbsp;log in</Typography>
         </Grid>
       </DialogContent>
     </Form>

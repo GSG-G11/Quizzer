@@ -1,7 +1,7 @@
 interface IAccessUser {
     role: string;
-    isLoginModal: boolean
-    setLoginModal: (isLoginModal: boolean) => void
+    isLoginModalOpen: boolean
+    setLoginModalOpen: (isLoginModalOpen: boolean) => void
   }
 
   interface IUserInfo {

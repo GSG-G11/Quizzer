@@ -2,18 +2,19 @@
   box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
   position: static;
   background-color: white;
+  padding:0 !important;
 }
 
 .logo {
   flex-grow: 1;
   cursor: pointer;
-  color: var(--primary);
+  color: var(--primary-dark);
   font-weight: bold;
 }
 
 .navLink {
   font-weight: bold;
-  color: var(--primary);
+  color: var(--primary-dark);
   width: max-content;
 }
 
@@ -21,7 +22,7 @@
   min-width: none;
   margin-inline: 1rem;
   cursor: pointer;
-  background-color: var(--primary);
+  background-color: var(--primary-dark);
   color: var(--secondary);
 }
 

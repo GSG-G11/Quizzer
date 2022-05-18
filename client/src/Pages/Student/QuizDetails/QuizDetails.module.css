@@ -1,0 +1,50 @@
+.container * {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.teacher {
+  color: var(--primary-dark);
+  font-weight: normal;
+}
+
+.teacherWrapper {
+  color: var(--primary-dark);
+  font-weight: bold;
+}
+
+.description {
+  margin-block: 1.5rem;
+  color: var(--primary-dark);
+}
+
+.spanIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.3rem;
+  color: var(--primary-dark);
+  font-weight: bold;
+}
+
+.timeLimit {
+  color: var(--primary-dark);
+}
+
+.timeIcon {
+  margin-left: 0.1rem;
+}
+
+.enrollBtn {
+  margin-inline: auto;
+  color: var(--secondary);
+  margin-top: 3rem;
+  padding-inline: 50px;
+}

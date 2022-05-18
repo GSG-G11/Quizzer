@@ -10,7 +10,7 @@ interface CustomFormProps {
 
 function CustomForm(props: CustomFormProps) {
   const {
-    children, initialValues, validationSchema, onSubmit,
+    onSubmit, children, initialValues, validationSchema,
   } = props;
 
   return (

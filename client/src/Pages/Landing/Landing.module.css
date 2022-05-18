@@ -1,0 +1,91 @@
+.popularInfoTitle {
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  color: var(--primary-dark);
+}
+
+.popularInfoDetails {
+  max-width: 460px;
+  width: 100%;
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+
+.link {
+  margin-top: 1rem;
+}
+
+.button {
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+.yellowContainer {
+  margin-top: 70px;
+  background-color: #fef6e6;
+  height: 230px;
+}
+
+.stats {
+  display: flex;
+  width: 400px;
+  max-width: 100%;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--primary);
+  border-radius: 15px;
+}
+
+.image {
+  position: absolute;
+  width: 700px;
+  object-fit: cover;
+  right: 0;
+  bottom: 0;
+}
+
+@media (max-width: 1167px) {
+  .image {
+    width: 600px;
+  }
+}
+
+@media (max-width: 1063px) {
+  .image {
+    width: 500px;
+  }
+}
+
+@media (max-width: 1063px) {
+  .stats {
+    display: none;
+  }
+
+  .yellowContainer {
+    margin-top: 30vw;
+  }
+
+  .image {
+    width: 600px;
+    max-width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+  }
+
+  .hero {
+    text-align: center;
+  }
+
+  .popularInfoDetails {
+    max-width: 100%;
+    font-size: 1.3rem;
+  }
+
+  .popularInfoTitle {
+    font-size: 2rem;
+  }
+}

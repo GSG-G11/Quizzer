@@ -1,8 +1,10 @@
 :root {
   --primary: #4A6572;
+  --primary-dark: #344955;
   --secondary: #F9AA33;
   --secondary-light: #F9AA3350;
 }
+
 * {
   padding: 0;
   margin: 0;
@@ -10,7 +12,6 @@
   font-family: 'Poppins', sans-serif;
   text-transform: none !important;
 }
-
 
 a {
   text-decoration: none;

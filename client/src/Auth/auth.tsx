@@ -8,6 +8,7 @@ import React, {
 import axios from 'axios';
 import { useNavigate, useHref, useLocation } from 'react-router-dom';
 import { IUser, IUserInfo, IAuthContext } from './interfaces';
+import { useSnackBar } from '../Hooks';
 
 export const AuthContext = createContext<IAuthContext>(null!);
 
@@ -18,12 +19,15 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const href = useHref(location);
+  const { showSnackBar } = useSnackBar();
 
   const signup = async (userInfo: IUserInfo) => {
     try {
       const { data: { data: newUser } } = await axios.post('/api/v1/auth/signup', userInfo);
       setUser(newUser);
-      navigate(`/${newUser.role}`);
+      showSnackBar('New Account Created Successfully', 'success');
+      setErrors([]);
+      navigate(`${newUser.role}/`);
     } catch (err: any) {
       const { message } = err.response.data;
       if (message) setErrors([message]);
@@ -35,7 +39,8 @@ function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const { data: { data: loggedUser } } = await axios.post('/api/v1/auth/login', userInfo);
       setUser(loggedUser);
-      navigate(`/${loggedUser.role}`);
+      setErrors([]);
+      navigate(`${loggedUser.role}/`);
     } catch (err: any) {
       const { message } = err.response.data;
       setErrors([message]);
@@ -47,6 +52,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
     try {
       await axios.get('/api/v1/auth/logout');
       setUser(null);
+      setAuthModalType(null);
       navigate('/');
     } catch (err: any) {
       if (err.response.status === 500) navigate('/error');
@@ -57,8 +63,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const { data: { data: loggedUser } } = await axios.get('/api/v1/auth/is-auth');
       setUser(loggedUser);
-      navigate(`/${loggedUser.role}`);
-      if (href === '/') navigate(`/${loggedUser.role}`);
+      navigate(href === '/' ? `${loggedUser.role}/` : href);
     } catch (err: any) {
       if (err.response.status === 500) navigate('/error');
     }
@@ -77,6 +82,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
       user,
       errors,
       authModalType,
+      setErrors,
       setAuthModalType,
       signup,
       login,

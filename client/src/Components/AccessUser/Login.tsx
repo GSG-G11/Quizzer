@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button, DialogTitle, DialogContent, Grid, DialogContentText, Typography, InputAdornment,
 } from '@mui/material';
@@ -11,24 +11,20 @@ import { Form, Input, Submit } from '../FormUI';
 import { IAccessUser, IUserInfo } from './Interfaces';
 import { loginSchema } from '../../Validation';
 
-function Login({ role: enteredRole, setLoginModal }: IAccessUser) {
+function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
   const { showSnackBar } = useSnackBar();
-  const { login, setAuthModalType, errors } = useAuth();
+  const { login, errors } = useAuth();
+
+  useEffect(() => {
+    if (errors.length) showSnackBar(errors[0], 'error');
+  }, [errors]);
 
   const initialValues = { email: '', password: '', role: enteredRole };
-
-  const handleError = () => {
-    showSnackBar(errors[0], 'error');
-  };
-
-  const loginSubmit = (userInfo: IUserInfo) => {
-    login(userInfo);
-    return setAuthModalType(null);
-  };
+  const loginSubmit = (userInfo: IUserInfo) => login(userInfo);
 
   return (
     <Form
-      onSubmit={errors.length ? handleError : loginSubmit}
+      onSubmit={loginSubmit}
       initialValues={initialValues}
       validationSchema={loginSchema}
     >
@@ -87,7 +83,7 @@ function Login({ role: enteredRole, setLoginModal }: IAccessUser) {
           <DialogContentText paddingBottom="50x">
             Don’t have an account?
           </DialogContentText>
-          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => setLoginModal(false)}>&nbsp;Sign up</Typography>
+          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => setLoginModalOpen(false)}>&nbsp;Sign up</Typography>
         </Grid>
       </DialogContent>
     </Form>
