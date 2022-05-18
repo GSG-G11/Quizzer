@@ -41,7 +41,7 @@ function App() {
           <Route index element={(<RequireAuth element={<QuizzesProvider><MyQuizzes /></QuizzesProvider>} userRole="teacher" />)} />
           <Route path="quiz/:quizId" element={(<RequireAuth element={<div>Teacher Quiz page</div>} userRole="teacher" />)} />
           <Route path="quiz/new" element={<RequireAuth element={<CreateQuiz />} userRole="teacher" />} />
-          <Route path="profile" element={<RequireAuth element={<TeacherProfile />} userRole="teacher" />} />
+          <Route path="profile" element={<RequireAuth element={<QuizzesProvider><TeacherProfile /></QuizzesProvider>} userRole="teacher" />} />
         </Route>
         <Route path="*" element={<div>page not found</div>} />
         <Route path="/error" element={<div>500</div>} />
