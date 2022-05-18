@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react';
 import {
-  Button, DialogTitle, DialogContent, Grid, DialogContentText, Typography, InputAdornment,
-} from '@mui/material';
-import EmailIcon from '@mui/icons-material/Email';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import GoogleIcon from '@mui/icons-material/Google';
+  Button, DialogTitle, DialogContent, Grid, DialogContentText, Typography,
+  InputAdornment, EmailIcon, VisibilityIcon, GoogleIcon, VisibilityOffIcon,
+} from '../../mui';
 import { useAuth, useSnackBar } from '../../Hooks';
 import classes from './AccessUser.module.css';
 import { Form, Input, Submit } from '../FormUI';
-import { IAccessUser, IUserInfo } from './Interfaces';
+import { IAccessUserProperties, IUserInfo } from './Interfaces';
 import { loginSchema } from '../../Validation';
 
-function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
+function Login({
+  role: enteredRole,
+  setLoginModalOpen,
+  passwordsType,
+  setPasswordsType,
+}: IAccessUserProperties) {
   const { showSnackBar } = useSnackBar();
   const { login, errors } = useAuth();
 
@@ -46,9 +49,10 @@ function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
               name="email"
               variant="outlined"
               placeholder="Enter your email"
+              label="Email"
               type="text"
               margin="dense"
-              style={{ width: '100%', paddingTop: '20px' }}
+              style={{ width: '100%', marginTop: '30px' }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -63,13 +67,27 @@ function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
               name="password"
               variant="outlined"
               placeholder="Enter your password"
-              type="text"
+              label="Password"
+              type={passwordsType ? 'password' : 'text'}
               margin="dense"
               style={{ width: '100%' }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <VisibilityIcon />
+                    {
+                    passwordsType ? (
+                      <VisibilityOffIcon
+                        onClick={() => { setPasswordsType(!passwordsType); }}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    )
+                      : (
+                        <VisibilityIcon
+                          onClick={() => { setPasswordsType(!passwordsType); }}
+                          style={{ cursor: 'pointer' }}
+                        />
+                      )
+                    }
                   </InputAdornment>
                 ),
               }}

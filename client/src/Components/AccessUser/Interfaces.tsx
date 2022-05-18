@@ -1,7 +1,15 @@
 interface IAccessUser {
     role: string;
-    isLoginModalOpen: boolean
-    setLoginModalOpen: (isLoginModalOpen: boolean) => void
+    isLoginModalOpen?: boolean;
+    setLoginModalOpen: (isLoginModalOpen: boolean) => void;
+  }
+
+  interface IAccessUserProperties {
+    role: string;
+    isLoginModalOpen?: boolean;
+    setLoginModalOpen: (isLoginModalOpen: boolean) => void;
+    passwordsType?: boolean;
+    setPasswordsType: (passwordsType: boolean) => void;
   }
 
   interface IUserInfo {
@@ -13,4 +21,4 @@ interface IAccessUser {
     avatar?: string;
   }
 
-export { IAccessUser, IUserInfo };
+export { IAccessUser, IUserInfo, IAccessUserProperties };

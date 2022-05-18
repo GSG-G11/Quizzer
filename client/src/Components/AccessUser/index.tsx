@@ -7,6 +7,7 @@ import { IAccessUser } from './Interfaces';
 
 function AccessUser({ role, isLoginModalOpen, setLoginModalOpen }: IAccessUser) {
   const { authModalType, setAuthModalType, setErrors } = useAuth();
+  const [passwordsType, setPasswordsType] = useState<boolean>(true);
 
   return (
     <Dialog open={authModalType === 'login_signup'} onClose={() => { setAuthModalType(null); setLoginModalOpen(true); setErrors([]); }}>
@@ -15,6 +16,8 @@ function AccessUser({ role, isLoginModalOpen, setLoginModalOpen }: IAccessUser) 
           isLoginModalOpen={isLoginModalOpen}
           setLoginModalOpen={setLoginModalOpen}
           role={role}
+          passwordsType={passwordsType}
+          setPasswordsType={setPasswordsType}
         />
       )
         : (
@@ -22,6 +25,9 @@ function AccessUser({ role, isLoginModalOpen, setLoginModalOpen }: IAccessUser) 
             isLoginModalOpen={isLoginModalOpen}
             setLoginModalOpen={setLoginModalOpen}
             role={role}
+            passwordsType={passwordsType}
+            setPasswordsType={setPasswordsType}
+
           />
         )}
     </Dialog>
