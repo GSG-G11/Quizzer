@@ -1,5 +1,5 @@
 interface IAccessUser {
-    role: string;
+    role: 'teacher' | 'student';
     isLoginModalOpen: boolean
     setLoginModalOpen: (isLoginModalOpen: boolean) => void
   }

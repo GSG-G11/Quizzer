@@ -6,7 +6,7 @@ interface IUser {
 
 interface IUserInfo {
   username?: string;
-  email?: string;
+  email: string;
   bio?: string;
   password: string;
   role: 'teacher' | 'student';
