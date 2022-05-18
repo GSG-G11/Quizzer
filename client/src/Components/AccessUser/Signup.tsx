@@ -73,7 +73,7 @@ function Signup({
             <Input
               name="username"
               variant="outlined"
-              placeholder="Enter your username"
+              placeholder="Enter your name"
               label="Full Name"
               type="text"
               margin="dense"
