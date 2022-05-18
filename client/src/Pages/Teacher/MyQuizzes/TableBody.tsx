@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {
   Typography, TableRow, TableCell, TableBody,
@@ -27,19 +26,10 @@ function TableContent({
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - quizzesCount) : 0;
 
-  const handleOpenQuiz = async (quizId:any) => {
-    try {
-      const { data: { data: enrolledStudent } } = await axios.get(`/api/v1/teacher/quiz/${quizId}/enrolled-students`);
-      navigate(`/teacher/quiz/${quizId}`, { state: { enrolledStudent } });
-    } catch (err) {
-      navigate('error');
-    }
-  };
-
   return (
     <>
       <TableBody>
-        {quizzes.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((quiz:any) => (
+        {quizzes.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).reverse().map((quiz:any) => (
           <TableRow key={quiz.id} hover>
             {headers.map((header:any) => {
               if (header === 'description') return null;
@@ -64,9 +54,9 @@ function TableContent({
                       color="info"
                       style={{ cursor: 'pointer', fontWeight: 600 }}
                       className={classes.quizTitle}
-                      onClick={() => handleOpenQuiz(quiz.id)}
+                      onClick={() => navigate(`/teacher/quiz/${quiz.id}`)}
                     >
-                      {quiz[header]}
+                      {quiz[header].charAt(0).toUpperCase() + quiz[header].slice(1)}
                     </Typography>
                   </TableCell>
                 );

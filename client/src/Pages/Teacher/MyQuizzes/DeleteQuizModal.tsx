@@ -14,6 +14,13 @@ interface IDeleteModal {
   quizzes: any;
 }
 
+interface IQuiz {
+  title: string
+  id: string
+  description: string
+  students_count: number
+}
+
 function DeleteQuizModal({
   deleteModal, setDeleteModal, currentQuizId, quizzes,
 }:IDeleteModal) {
@@ -21,11 +28,11 @@ function DeleteQuizModal({
   const { showSnackBar } = useSnackBar();
   const navigate = useNavigate();
 
-  const deleteQuiz = async (quizId:any) => {
+  const deleteQuiz = async (quizId:string) => {
     try {
       setDeleteModal(true);
       await axios.delete(`/api/v1/teacher/quiz/${quizId}`);
-      setQuizzes(quizzes.filter((quiz:any) => quiz.id !== quizId));
+      setQuizzes(quizzes.filter((quiz:IQuiz) => quiz.id !== quizId));
       showSnackBar('Quiz deleted successfully!', 'info');
     } catch (err) {
       navigate('error');
