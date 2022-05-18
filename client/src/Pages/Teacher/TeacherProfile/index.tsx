@@ -1,29 +1,36 @@
 import React from 'react';
 import {
-  Container, Typography, Box, Divider, Stack,
+  Container, Typography, Grid,
 } from '../../../mui';
 import { useAuth, getQuizzes } from '../../../Hooks';
 import TeacherInfo from './TeacherInfo';
 import TeacherQuizzes from './TeacherQuizzes';
+import { IQuizzesContext } from '../../../Contexts/Quizzes/interfaces';
 
 function TeacherProfile() {
-  const { quizzes }:any | null = getQuizzes();
+  const { quizzes }:IQuizzesContext = getQuizzes();
 
   const { username }:any = useAuth().user || null;
 
   return (
     <Container>
-      <Typography textAlign="center" fontWeight="bold" fontSize="25px" style={{ padding: '50px' }}>
+      <Typography textAlign="center" color="primary" fontWeight="bold" variant="h3" style={{ padding: '40px' }}>
         My Profile
       </Typography>
-      <Stack
-        direction="row"
-        divider={<Divider orientation="vertical" flexItem sx={{ background: 'black' }} />}
+
+      <Grid
+        container
         spacing={2}
       >
-        <TeacherInfo />
-        <TeacherQuizzes quizzes={quizzes} />
-      </Stack>
+        <Grid item xs={12} sm={5}>
+
+          <TeacherInfo />
+        </Grid>
+        <Grid item xs={12} sm={7}>
+          <TeacherQuizzes quizzes={quizzes} />
+        </Grid>
+
+      </Grid>
 
     </Container>
 

@@ -2,6 +2,8 @@ interface IUser {
   role: 'teacher' | 'student';
   userId: number;
   username: string;
+  bio: string
+  avatar: string
 }
 
 interface IUserInfo {

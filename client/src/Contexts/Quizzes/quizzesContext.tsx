@@ -17,8 +17,8 @@ function QuizzesProvider({ children }: { children: ReactNode }) {
 
   const getQuizzes = async () => {
     try {
-      const { data: { data: MyQuizzes } } = await axios.get('/api/v1/teacher/quizzes');
-      setQuizzes(MyQuizzes);
+      const { data: { data: myQuizzes } } = await axios.get('/api/v1/teacher/quizzes');
+      setQuizzes(myQuizzes.reverse());
     } catch (err: any) {
       if (err.response.status === 500) navigate('/error');
     }
