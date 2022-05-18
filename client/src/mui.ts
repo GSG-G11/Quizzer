@@ -33,6 +33,7 @@ import {
   ListItem,
   List,
   Stack,
+  Paper,
 } from '@mui/material';
 
 export {
@@ -69,4 +70,5 @@ export {
   CardActionArea,
   Dialog,
   Grid,
+  Paper,
 };
