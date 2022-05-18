@@ -2,6 +2,7 @@ import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+import { ConfirmProvider } from 'material-ui-confirm';
 import { CssBaseline, StyledEngineProvider, ThemeProvider } from './mui';
 import { SnackBarProvider } from './Components';
 import AuthProvider from './Auth/auth';
@@ -15,18 +16,20 @@ if (process.env.NODE_ENV === 'production') {
 const root = createRoot(document.getElementById('root') as HTMLElement);
 const app = (
   <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <SnackBarProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <StyledEngineProvider injectFirst>
-              <App />
-            </StyledEngineProvider>
-          </ThemeProvider>
-        </SnackBarProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <ConfirmProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <SnackBarProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <StyledEngineProvider injectFirst>
+                <App />
+              </StyledEngineProvider>
+            </ThemeProvider>
+          </SnackBarProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </ConfirmProvider>
   </StrictMode>
 );
 

@@ -9,7 +9,7 @@ function Question({
       disabled={hasSubmitted}
       key={option}
       control={questionType === 'short_answer'
-        ? <TextField placeholder="enter your answer" fullWidth color="secondary" onChange={handleShortAnswer} />
+        ? <TextField placeholder="Enter your answer" fullWidth color="secondary" onChange={handleShortAnswer} autoComplete="off" />
         : <Radio sx={{ padding: '1.5rem 1rem' }} color="secondary" />}
       value={option?.toString()}
       label={option?.toString()}

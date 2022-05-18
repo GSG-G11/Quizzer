@@ -10,6 +10,7 @@ const quizzesTitles = [
   'Society & Culture',
   'Science',
   'Sport & Leisure',
+  'Arts & Literature',
 ];
 
 export default object({
