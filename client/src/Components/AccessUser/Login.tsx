@@ -1,15 +1,22 @@
-import React, { useEffect } from 'react';
-import {
-  Button, DialogTitle, DialogContent, Grid, DialogContentText, Typography, InputAdornment,
-} from '@mui/material';
-import EmailIcon from '@mui/icons-material/Email';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import GoogleIcon from '@mui/icons-material/Google';
-import { useAuth, useSnackBar } from '../../Hooks';
+import React, { useState, useEffect } from 'react';
 import classes from './AccessUser.module.css';
+import { useAuth, useSnackBar } from '../../Hooks';
 import { Form, Input, Submit } from '../FormUI';
 import { IAccessUser, IUserInfo } from './Interfaces';
 import { loginSchema } from '../../Validation';
+import { signInWithPopup, GoogleAuthProvider, auth } from '../../Firebase/config';
+import {
+  Button,
+  DialogTitle,
+  DialogContent,
+  Grid,
+  DialogContentText,
+  Typography,
+  InputAdornment,
+  EmailIcon,
+  VisibilityIcon,
+  GoogleIcon,
+} from '../../mui';
 
 function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
   const { showSnackBar } = useSnackBar();
@@ -18,6 +25,21 @@ function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
   useEffect(() => {
     if (errors.length) showSnackBar(errors[0], 'error');
   }, [errors]);
+
+  const loginWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const { user }: any = result;
+      const email = user.email as string;
+      const password = user.accessToken as string;
+
+      login({ email, password, role: enteredRole });
+    } catch (err: any) {
+      showSnackBar('Something went wrong while logging in with Google', 'error');
+    }
+  };
 
   const initialValues = { email: '', password: '', role: enteredRole };
   const loginSubmit = (userInfo: IUserInfo) => login(userInfo);
@@ -39,7 +61,16 @@ function Login({ role: enteredRole, setLoginModalOpen }: IAccessUser) {
       <DialogContent style={{ alignItems: 'center', textAlign: 'center' }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Button color="info" className={classes.googleEmail} variant="contained" startIcon={<GoogleIcon />} style={{ width: '100%' }}>Continue with Google</Button>
+            <Button
+              color="info"
+              className={classes.googleEmail}
+              variant="contained"
+              startIcon={<GoogleIcon />}
+              style={{ width: '100%' }}
+              onClick={loginWithGoogle}
+            >
+              Continue with Google
+            </Button>
           </Grid>
           <Grid item xs={12}>
             <Input
