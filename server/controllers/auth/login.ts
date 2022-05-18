@@ -17,11 +17,13 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const { rowCount: isEmailTaken, rows } = await checkEmailTakenQuery({ destination, email });
     if (!isEmailTaken) throw new CustomError('Incorrect email or password', 401);
     const {
-      password: hashedPassword, username, id: userId,
+      password: hashedPassword, username, id: userId, bio, avatar,
     } = rows[0];
     const isPasswordMatch = await compare(password, hashedPassword);
     if (!isPasswordMatch) throw new CustomError('Incorrect email or password', 401);
-    const user = { userId, username, role };
+    const user = {
+      userId, username, role, bio, avatar,
+    };
     const token = await signToken(user);
 
     res
