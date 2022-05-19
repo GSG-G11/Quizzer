@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {
   Typography, TableRow, TableCell, TableBody,
@@ -26,15 +25,6 @@ function TableContent({
   const { length: quizzesCount }:any = quizzes;
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - quizzesCount) : 0;
-
-  const handleOpenQuiz = async (quizId:any) => {
-    try {
-      const { data: { data: enrolledStudent } } = await axios.get(`/api/v1/teacher/quiz/${quizId}/enrolled-students`);
-      navigate(`/teacher/quiz/${quizId}`, { state: { enrolledStudent } });
-    } catch (err) {
-      navigate('error');
-    }
-  };
 
   return (
     <>
@@ -64,7 +54,7 @@ function TableContent({
                       color="info"
                       style={{ cursor: 'pointer', fontWeight: 600 }}
                       className={classes.quizTitle}
-                      onClick={() => handleOpenQuiz(quiz.id)}
+                      onClick={() => navigate(`/teacher/quiz/${quiz.id}`, { state: { quizTitle: quiz.title, quizDesc: quiz.description } })}
                     >
                       {quiz[header]}
                     </Typography>
