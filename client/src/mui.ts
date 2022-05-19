@@ -7,6 +7,10 @@ import AddIcon from '@mui/icons-material/Add';
 import PersonIcon from '@mui/icons-material/Person';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PublicIcon from '@mui/icons-material/Public';
+import EmailIcon from '@mui/icons-material/Email';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import GoogleIcon from '@mui/icons-material/Google';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 // Components
 import CssBaseline from '@mui/material/CssBaseline';
@@ -116,4 +120,8 @@ export {
   Radio,
   InputLabel,
   FormLabel,
+  EmailIcon,
+  VisibilityIcon,
+  GoogleIcon,
+  VisibilityOffIcon,
 };

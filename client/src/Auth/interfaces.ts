@@ -8,7 +8,7 @@ interface IUser {
 
 interface IUserInfo {
   username?: string;
-  email?: string;
+  email: string;
   bio?: string;
   password: string;
   role: 'teacher' | 'student';
@@ -22,6 +22,8 @@ interface IAuthContext {
   signup: (_: IUserInfo) => void;
   login: (_: IUserInfo) => void;
   logout: () => void;
+  setErrors: (_: string[]) => void;
+  errors: string[];
 }
 
 export { IUser, IUserInfo, IAuthContext };

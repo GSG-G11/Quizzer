@@ -4,28 +4,22 @@ import { useNavigate } from 'react-router-dom';
 import {
   Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions, Divider, Button, Typography,
 } from '../../../mui';
-import { getQuizzes, useSnackBar } from '../../../Hooks';
-import classes from './MyQuizzes.module.css';
-
-interface IDeleteModal {
-  deleteModal: boolean;
-  setDeleteModal: (deleteModal: boolean) => void;
-  currentQuizId: string;
-  quizzes: any;
-}
+import { useQuizzes, useSnackBar } from '../../../Hooks';
+import classes from './Quizzes.module.css';
+import { IDeleteModal, IQuiz } from './interfaces';
 
 function DeleteQuizModal({
   deleteModal, setDeleteModal, currentQuizId, quizzes,
 }:IDeleteModal) {
-  const { setQuizzes } = getQuizzes();
+  const { setQuizzes } = useQuizzes();
   const { showSnackBar } = useSnackBar();
   const navigate = useNavigate();
 
-  const deleteQuiz = async (quizId:any) => {
+  const deleteQuiz = async (quizId:string) => {
     try {
       setDeleteModal(true);
       await axios.delete(`/api/v1/teacher/quiz/${quizId}`);
-      setQuizzes(quizzes.filter((quiz:any) => quiz.id !== quizId));
+      setQuizzes(quizzes.filter((quiz:IQuiz) => quiz.id !== quizId));
       showSnackBar('Quiz deleted successfully!', 'info');
     } catch (err) {
       navigate('error');
