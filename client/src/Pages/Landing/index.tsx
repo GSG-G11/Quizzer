@@ -29,7 +29,7 @@ function Landing() {
             recruiters design their hiring
             tests And discover their skills.
           </Typography>
-          <Link to="/student" className={classes.link}>
+          <Link to="/student/" className={classes.link}>
             <Button variant="contained" size="large" className={classes.button}>Test Your Knowledge</Button>
           </Link>
         </Stack>

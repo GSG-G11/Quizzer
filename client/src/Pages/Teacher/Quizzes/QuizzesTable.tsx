@@ -1,14 +1,12 @@
-/* eslint-disable max-len */
 import React from 'react';
-import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import TableHeader from './TableHeader';
-import TableContent from './TableBody';
+import TableContent from './TableContent';
 import {
-  Table, Paper, TablePagination, Box, TableContainer,
+  Table, Paper, TablePagination, Box, TableContainer, Typography,
 } from '../../../mui';
 import { IQuizzes } from '../../../Contexts/Quizzes/interfaces';
-import classes from './MyQuizzes.module.css';
+import classes from './Quizzes.module.css';
 
 interface ITableQuizzes {
   quizzes: IQuizzes | null;
@@ -19,7 +17,7 @@ interface ITableQuizzes {
   setRowsPerPage: (page: number) => void;
 }
 
-function TableQuizzes({
+function QuizzesTable({
   quizzes, headers, setPage, rowsPerPage, page, setRowsPerPage,
 }:ITableQuizzes) {
   const { length: quizzesCount }:any = quizzes;
@@ -68,7 +66,12 @@ function TableQuizzes({
                 </Typography>
               )
               : (
-                <TableContent quizzes={quizzes} headers={headers} page={page} rowsPerPage={rowsPerPage} />
+                <TableContent
+                  quizzes={quizzes}
+                  headers={headers}
+                  page={page}
+                  rowsPerPage={rowsPerPage}
+                />
               )
             }
           </Table>
@@ -88,4 +91,4 @@ function TableQuizzes({
   );
 }
 
-export default TableQuizzes;
+export default QuizzesTable;

@@ -3,7 +3,7 @@ import React from 'react';
 import {
   Typography, TableHead, TableRow, TableCell,
 } from '../../../mui';
-import classes from './MyQuizzes.module.css';
+import classes from './Quizzes.module.css';
 
 function TableHeader({ headers }:any) {
   return (
