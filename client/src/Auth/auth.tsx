@@ -80,6 +80,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
       signup,
       login,
       logout,
+      getUser,
     }),
     [user, authModalType, errors],
   );

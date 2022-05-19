@@ -19,8 +19,9 @@ import {
 
 function EditTeacherProfileModal({ editProfileModal, setEditProfileModal, setUserProfile }:any) {
   const { username, bio, avatar } = useAuth().user || {};
+  const { getUser } = useAuth();
   const { showSnackBar } = useSnackBar();
-  const [image, setImage] = useState<string>('');
+  const [image, setImage] = useState<string>(avatar || '');
   const [loading, setLoading] = useState<boolean>(false);
 
   const initialValues = {
@@ -47,7 +48,7 @@ function EditTeacherProfileModal({ editProfileModal, setEditProfileModal, setUse
     try {
       await axios.patch('/api/v1/teacher/profile', userInfo);
       setUserProfile(userInfo);
-      window.location.reload();
+      getUser();
     } catch (err:any) {
       const { message } = err.response.data;
       showSnackBar(message, 'error');
@@ -58,6 +59,7 @@ function EditTeacherProfileModal({ editProfileModal, setEditProfileModal, setUse
     if (userInfo !== initialValues) {
       const updateUser = { ...userInfo, avatar: image };
       editProfile(updateUser);
+      setEditProfileModal(false);
       showSnackBar('Teacher profile is edited successfully', 'success');
     } else {
       showSnackBar('Change your information to edit', 'warning');
@@ -115,7 +117,7 @@ function EditTeacherProfileModal({ editProfileModal, setEditProfileModal, setUse
             <Grid item sm={3} xs={12}>
               <label className={classes.uploadImgLabel}>
                 <Avatar
-                  src={loading ? spinner : image}
+                  src={image === avatar && !loading ? avatar : loading ? spinner : image}
                   sx={{ alignSelf: 'center' }}
                   className={classes.avatar}
                   alt="profile-picture"
