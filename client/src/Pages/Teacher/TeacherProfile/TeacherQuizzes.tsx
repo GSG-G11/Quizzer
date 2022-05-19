@@ -30,10 +30,10 @@ function TeacherQuizzes({ quizzes }:IQuizzes) {
           <Divider sx={{ borderBottomWidth: 2, background: 'black' }} />
         </Stack>
         {
-            !quizzes
+            !quizzes.length
               ? (
                 <Stack style={{ textAlign: 'center', marginTop: '20px' }}>
-                  <Typography variant="h5" color="primary" fontWeight="bold">No Quizzes to show it.</Typography>
+                  <Typography variant="h5" color="primary" fontWeight="bold">No Quizzes to show.</Typography>
                 </Stack>
               )
               : quizzes.map((quiz:IQuiz) => (
