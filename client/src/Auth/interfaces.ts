@@ -2,6 +2,8 @@ interface IUser {
   role: 'teacher' | 'student';
   userId: number;
   username: string;
+  bio: string
+  avatar: string
 }
 
 interface IUserInfo {
@@ -20,6 +22,7 @@ interface IAuthContext {
   signup: (_: IUserInfo) => void;
   login: (_: IUserInfo) => void;
   logout: () => void;
+  getUser: () => void
   setErrors: (_: string[]) => void;
   errors: string[];
 }
