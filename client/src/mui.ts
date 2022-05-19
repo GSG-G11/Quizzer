@@ -4,6 +4,11 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
 import PublicIcon from '@mui/icons-material/Public';
+import EmailIcon from '@mui/icons-material/Email';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import GoogleIcon from '@mui/icons-material/Google';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import PersonIcon from '@mui/icons-material/Person';
 
 // Components
 import CssBaseline from '@mui/material/CssBaseline';
@@ -45,6 +50,7 @@ import {
   Radio,
   InputLabel,
   FormLabel,
+  Divider,
 } from '@mui/material';
 
 export {
@@ -92,4 +98,10 @@ export {
   InputLabel,
   FormLabel,
   Icon,
+  EmailIcon,
+  VisibilityIcon,
+  GoogleIcon,
+  VisibilityOffIcon,
+  PersonIcon,
+  Divider,
 };

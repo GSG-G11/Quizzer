@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {
-  PrivateQuizForm, Navbar, RoleModal,
+  PrivateQuizForm, Navbar, RoleModal, AccessUser,
 } from '../Components';
 import {
   Leaderboard, PublicQuizzes, CreateQuiz, Quiz, QuizDetails, QuizResult,
@@ -14,15 +14,25 @@ import Landing from '../Pages/Landing';
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
   const [role, setRole] = useState<'student' | 'teacher'>('student');
+  const [isLoginModalOpen, setLoginModalOpen] = useState<boolean>(true);
   const { authModalType, user } = useAuth();
 
   return (
     <>
       <Navbar setCodeFormOpen={setCodeFormOpen} />
-
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
       <RoleModal setRole={setRole} />
-      {authModalType === 'login_signup' && !user && <>form</>}
+      {
+        !user
+        && authModalType === 'login_signup'
+        && (
+        <AccessUser
+          role={role}
+          isLoginModalOpen={isLoginModalOpen}
+          setLoginModalOpen={setLoginModalOpen}
+        />
+        )
+      }
 
       <Routes>
         <Route index element={<Landing />} />
