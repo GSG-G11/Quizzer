@@ -54,7 +54,7 @@ function TableContent({
                       color="info"
                       style={{ cursor: 'pointer', fontWeight: 600 }}
                       className={classes.quizTitle}
-                      onClick={() => navigate(`/teacher/quiz/${quiz.id}`)}
+                      onClick={() => navigate(`/teacher/quiz/${quiz.id}`, { state: { quizTitle: quiz.title, quizDesc: quiz.description } })}
                     >
                       {quiz[header].charAt(0).toUpperCase() + quiz[header].slice(1)}
                     </Typography>
