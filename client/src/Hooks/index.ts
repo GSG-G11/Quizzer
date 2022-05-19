@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 export { default as useSnackBar, SnackBarContext } from './snackbar-hook';
 // eslint-disable-next-line import/no-cycle
 export { default as useAuth } from './use-auth';

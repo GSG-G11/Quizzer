@@ -5,7 +5,7 @@ import {
 } from '../Components';
 import {
   Leaderboard, PublicQuizzes, CreateQuiz, Quiz, QuizDetails, QuizResult, TeacherProfile,
-  MyQuizzes, Landing,
+  MyQuizzes, Landing, EnrolledStudents,
 } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
@@ -49,7 +49,7 @@ function App() {
         <Route path="/teacher">
 
           <Route index element={(<RequireAuth element={<QuizzesProvider><MyQuizzes /></QuizzesProvider>} userRole="teacher" />)} />
-          <Route path="quiz/:quizId" element={(<RequireAuth element={<div>Teacher Quiz page</div>} userRole="teacher" />)} />
+          <Route path="quiz/:quizId" element={(<RequireAuth element={<EnrolledStudents />} userRole="teacher" />)} />
           <Route path="quiz/new" element={<RequireAuth element={<CreateQuiz />} userRole="teacher" />} />
           <Route path="profile" element={<RequireAuth element={<QuizzesProvider><TeacherProfile /></QuizzesProvider>} userRole="teacher" />} />
         </Route>

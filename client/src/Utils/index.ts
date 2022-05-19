@@ -1,4 +1,17 @@
+import { AlertColor } from '@mui/material';
+import { useSnackBar } from '../Hooks';
+
 export const properCase = (str: string) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
+
+interface ICopyToClipboard {
+  str: string;
+  showSnackBar?: (text: string, typeColor: AlertColor) => void;
+}
+
+export const copyToClipboard = ({ str, showSnackBar }: ICopyToClipboard) => {
+  str && navigator.clipboard.writeText(str);
+  showSnackBar?.('copied to clipboard', 'success');
+};
 
 export const timer = ({
   examTime, setExamTime, hasSubmitted, submitAnswers,
