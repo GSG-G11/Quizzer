@@ -4,12 +4,13 @@ import {
   PrivateQuizForm, Navbar, RoleModal, AccessUser,
 } from '../Components';
 import {
-  Leaderboard, PublicQuizzes, CreateQuiz, Quiz, QuizDetails, QuizResult,
+  Leaderboard, PublicQuizzes, CreateQuiz, Quiz, QuizDetails, QuizResult, TeacherProfile,
+  MyQuizzes, Landing,
 } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
+import QuizzesProvider from '../Contexts/Quizzes/quizzesContext';
 import './index.css';
-import Landing from '../Pages/Landing';
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
@@ -46,10 +47,11 @@ function App() {
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">
-          <Route index element={(<RequireAuth element={<div>Teacher Quizzes page</div>} userRole="teacher" />)} />
-          <Route path="quiz/:quizId" element={(<RequireAuth element={<div>Teacher Quizzes page</div>} userRole="teacher" />)} />
+
+          <Route index element={(<RequireAuth element={<QuizzesProvider><MyQuizzes /></QuizzesProvider>} userRole="teacher" />)} />
+          <Route path="quiz/:quizId" element={(<RequireAuth element={<div>Teacher Quiz page</div>} userRole="teacher" />)} />
           <Route path="quiz/new" element={<RequireAuth element={<CreateQuiz />} userRole="teacher" />} />
-          <Route path="profile" element={<RequireAuth element={<div>Teacher Profile</div>} userRole="teacher" />} />
+          <Route path="profile" element={<RequireAuth element={<QuizzesProvider><TeacherProfile /></QuizzesProvider>} userRole="teacher" />} />
         </Route>
         <Route path="*" element={<div>page not found</div>} />
         <Route path="/error" element={<div>500</div>} />

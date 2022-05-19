@@ -26,4 +26,7 @@ export {
   noAnswerQuestion,
   noOptions,
   invalidTrueFalseAnswers,
+  teacherInfoSuccessEdited,
+  teacherImageError,
+  teacherNameError,
 } from './models';

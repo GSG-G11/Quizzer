@@ -17,6 +17,9 @@ import {
   noAnswerQuestion,
   invalidTrueFalseAnswers,
   successReturnData as quizzesData,
+  teacherInfoSuccessEdited,
+  teacherImageError,
+  teacherNameError,
 } from '../server/utils';
 
 const teacherToken = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQWhtZWQiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTY1MDcyNzk4Mn0.-ZZUxOdb_HAXAK1WSEHBSge_04wf2Eo3lPHPOpG_wkI';
@@ -301,5 +304,45 @@ describe('DELETE /api/v1/teacher/quiz/:quizId', () => {
       .expect(400);
 
     expect(res.body.message[0]).toBe('Must be exactly 18 characters');
+  });
+});
+
+describe('PATCH /api/v1/teacher/profile', () => {
+  it('should return 200 and message successfully', async () => {
+    const res = await supertest(app)
+      .patch('/api/v1/teacher/profile')
+      .set({ Cookie: teacherToken })
+      .send(teacherInfoSuccessEdited)
+      .expect(200);
+
+    expect(res.body.message).toBe('User profile edited successfully');
+  });
+
+  it('should return 401 Unauthorized', async () => {
+    const res = await supertest(app)
+      .patch('/api/v1/teacher/profile')
+      .expect(401);
+
+    expect(res.body.message).toBe('Unauthorized');
+  });
+
+  it('should return 400 and for image', async () => {
+    const res = await supertest(app)
+      .patch('/api/v1/teacher/profile')
+      .set({ Cookie: teacherToken })
+      .send(teacherImageError)
+      .expect(400);
+
+    expect(res.body.message[0]).toBe('Your avatar should be an image url');
+  });
+
+  it('should return 400 and return massage for username', async () => {
+    const res = await supertest(app)
+      .patch('/api/v1/teacher/profile')
+      .set({ Cookie: teacherToken })
+      .send(teacherNameError)
+      .expect(400);
+
+    expect(res.body.message[0]).toBe('Username must be at least 3 characters long');
   });
 });

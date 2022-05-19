@@ -4,3 +4,4 @@ export { default as getMyQuizzes } from './get-teacher-quizzes';
 export { createQuizQuery, createQuestionQuery } from './create-new-quiz';
 export { default as userInfo } from './get-profile';
 export { default as checkQuizExistsQuery } from './check-quiz-exists';
+export { default as editTeacherProfile } from './edit-profile';

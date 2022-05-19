@@ -32,3 +32,9 @@ export {
   noOptions,
   invalidTrueFalseAnswers,
 } from './quiz-models';
+
+export {
+  teacherInfoSuccessEdited,
+  teacherImageError,
+  teacherNameError,
+} from './teacher-profile-edited';

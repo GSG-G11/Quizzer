@@ -13,14 +13,16 @@ const activeStyles = ({ isActive } :{ isActive:boolean }) => (isActive ? { color
 function NavbarActions({
   direction, space, avatarPosition, setDrawer, setCodeForm,
 }:INavbarActions) {
-  const { user, login, setAuthModalType } = useAuth();
+  const { user, setAuthModalType } = useAuth();
   const { pathname } = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const toggleMenu = (e:MouseEvent<HTMLElement> | undefined) => {
     setAnchorEl(e?.currentTarget || null);
   };
-  const { role, userId } = user || {};
+  const {
+    role, userId, avatar, username = '',
+  } = user || {};
 
   return (
     <List sx={{ marginTop: '0.5rem' }}>
@@ -28,7 +30,7 @@ function NavbarActions({
       <Stack direction={direction} spacing={space} alignItems="center">
         {userId && (
         <>
-          <Avatar sx={{ order: avatarPosition }} className={classes.avatar} alt="profile-picture" onClick={toggleMenu} />
+          <Avatar src={avatar || ''} sx={{ order: avatarPosition }} className={classes.avatar} alt="profile-picture" onClick={toggleMenu}>{username[0].toUpperCase()}</Avatar>
           <MenuList setDrawer={setDrawer} toggleMenu={toggleMenu} anchorEl={anchorEl} />
         </>
         )}
