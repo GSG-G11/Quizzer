@@ -4,27 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import {
   Dialog, DialogContent, DialogTitle, DialogContentText, DialogActions, Divider, Button, Typography,
 } from '../../../mui';
-import { getQuizzes, useSnackBar } from '../../../Hooks';
-import classes from './MyQuizzes.module.css';
-
-interface IDeleteModal {
-  deleteModal: boolean;
-  setDeleteModal: (deleteModal: boolean) => void;
-  currentQuizId: string;
-  quizzes: any;
-}
-
-interface IQuiz {
-  title: string
-  id: string
-  description: string
-  students_count: number
-}
+import { useQuizzes, useSnackBar } from '../../../Hooks';
+import classes from './Quizzes.module.css';
+import { IDeleteModal, IQuiz } from './interfaces';
 
 function DeleteQuizModal({
   deleteModal, setDeleteModal, currentQuizId, quizzes,
 }:IDeleteModal) {
-  const { setQuizzes } = getQuizzes();
+  const { setQuizzes } = useQuizzes();
   const { showSnackBar } = useSnackBar();
   const navigate = useNavigate();
 
