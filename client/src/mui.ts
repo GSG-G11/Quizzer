@@ -3,6 +3,9 @@ import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
+import AddIcon from '@mui/icons-material/Add';
+import PersonIcon from '@mui/icons-material/Person';
+import DeleteIcon from '@mui/icons-material/Delete';
 import PublicIcon from '@mui/icons-material/Public';
 import EmailIcon from '@mui/icons-material/Email';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -41,6 +44,16 @@ import {
   List,
   Stack,
   Paper,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  TableContainer,
+  TablePagination,
+  Box,
+  DialogActions,
+  Divider,
   Select,
   FormControl,
   MenuItem,
@@ -87,6 +100,19 @@ export {
   Dialog,
   Grid,
   Paper,
+  AddIcon,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  TablePagination,
+  TableContainer,
+  PersonIcon,
+  DeleteIcon,
+  Box,
+  DialogActions,
+  Divider,
   PublicIcon,
   Select,
   FormControl,

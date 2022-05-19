@@ -2,6 +2,8 @@ interface IUser {
   role: 'teacher' | 'student';
   userId: number;
   username: string;
+  bio: string
+  avatar: string
 }
 
 interface IUserInfo {
@@ -22,6 +24,7 @@ interface IAuthContext {
   logout: () => void;
   setErrors: (_: string[]) => void;
   errors: string[];
+  getUser: () => void
 }
 
 export { IUser, IUserInfo, IAuthContext };

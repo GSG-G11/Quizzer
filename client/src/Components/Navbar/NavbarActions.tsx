@@ -21,7 +21,7 @@ function NavbarActions({
   const toggleMenu = (e:MouseEvent<HTMLElement> | undefined) => {
     setAnchorEl(e?.currentTarget || null);
   };
-  const { role, userId } = user || {};
+  const { role, userId, avatar } = user || {};
 
   return (
     <List sx={{ marginTop: '0.5rem' }}>
@@ -29,7 +29,7 @@ function NavbarActions({
 
         {userId && (
         <>
-          <Avatar sx={{ order: avatarPosition }} className={classes.avatar} alt="profile-picture" onClick={toggleMenu} />
+          <Avatar src={avatar || ''} sx={{ order: avatarPosition }} className={classes.avatar} alt="profile-picture" onClick={toggleMenu} />
           <MenuList setDrawer={setDrawer} toggleMenu={toggleMenu} anchorEl={anchorEl} />
         </>
         )}
