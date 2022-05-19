@@ -1,29 +1,60 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {
-  Button, DialogTitle, DialogContent, Grid, DialogContentText,
-  Typography, InputAdornment, Divider, Avatar, EmailIcon, VisibilityIcon,
-  GoogleIcon, VisibilityOffIcon, PersonIcon,
-} from '../../mui';
-import { useAuth, useSnackBar } from '../../Hooks';
+import spinner from '../../Assets/spinner.gif';
 import classes from './AccessUser.module.css';
+import { useAuth, useSnackBar } from '../../Hooks';
 import { Form, Input, Submit } from '../FormUI';
 import { IAccessUserProperties, IUserInfo } from './Interfaces';
 import { signupSchema } from '../../Validation';
-import spinner from '../../Assets/spinner.gif';
+import { signInWithPopup, GoogleAuthProvider, auth } from '../../Firebase/config';
+import {
+  Button,
+  DialogTitle,
+  DialogContent,
+  Grid,
+  DialogContentText,
+  Typography,
+  InputAdornment,
+  Divider,
+  Avatar,
+  EmailIcon,
+  VisibilityIcon,
+  GoogleIcon,
+  PersonIcon,
+  VisibilityOffIcon,
+} from '../../mui';
 
 function Signup({
   role: enteredRole, setLoginModalOpen, passwordsType, setPasswordsType,
 }: IAccessUserProperties) {
   const { showSnackBar } = useSnackBar();
-  const { signup, errors } = useAuth();
+  const { signup, setErrors, errors } = useAuth();
   const [image, setImage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (errors.length) showSnackBar(errors[0], 'error');
   }, [errors]);
+
+  const signupWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const { user }: any = result;
+      const email = user.email as string;
+      const password = user.accessToken as string;
+      const avatar = user.photoURL as string;
+      const username = user.displayName as string;
+
+      signup({
+        username, email, password, avatar, role: enteredRole, bio: '',
+      });
+    } catch (err: any) {
+      showSnackBar('Something went wrong while connecting with Google', 'error');
+    }
+  };
 
   const initialValues = {
     email: '', password: '', passwordConfirmation: '', role: enteredRole, username: '', bio: '', avatar: '',
@@ -67,7 +98,16 @@ function Signup({
       <DialogContent style={{ alignItems: 'center', textAlign: 'center' }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Button color="info" className={classes.googleEmail} variant="contained" startIcon={<GoogleIcon />} style={{ width: '100%' }}>Continue with Google</Button>
+            <Button
+              color="info"
+              className={classes.googleEmail}
+              variant="contained"
+              startIcon={<GoogleIcon />}
+              style={{ width: '100%' }}
+              onClick={signupWithGoogle}
+            >
+              Continue with Google
+            </Button>
           </Grid>
           <Grid item xs={12}>
             <Input
@@ -211,7 +251,7 @@ function Signup({
           <DialogContentText paddingBottom="50x">
             Already have an account?
           </DialogContentText>
-          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => setLoginModalOpen(true)}>&nbsp;log in</Typography>
+          <Typography color="secondary" style={{ cursor: 'pointer' }} onClick={() => { setLoginModalOpen(true); setErrors([]); }}>&nbsp;log in</Typography>
         </Grid>
       </DialogContent>
     </Form>

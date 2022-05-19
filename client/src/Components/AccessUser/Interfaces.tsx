@@ -1,11 +1,11 @@
 interface IAccessUser {
-    role: string;
-    isLoginModalOpen?: boolean;
+    role: 'teacher' | 'student';
+    isLoginModalOpen: boolean;
     setLoginModalOpen: (isLoginModalOpen: boolean) => void;
   }
 
   interface IAccessUserProperties {
-    role: string;
+    role: 'teacher' | 'student';
     isLoginModalOpen?: boolean;
     setLoginModalOpen: (isLoginModalOpen: boolean) => void;
     passwordsType?: boolean;
@@ -13,8 +13,8 @@ interface IAccessUser {
   }
 
   interface IUserInfo {
-    email: string
-    password: string
+    email: string;
+    password: string;
     role: 'student' | 'teacher';
     username?: string;
     bio?: string;
