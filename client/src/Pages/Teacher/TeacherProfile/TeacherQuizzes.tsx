@@ -30,10 +30,10 @@ function TeacherQuizzes({ quizzes }:IQuizzes) {
           <Divider sx={{ borderBottomWidth: 2, background: 'black' }} />
         </Stack>
         {
-            !quizzes
+            !quizzes.length
               ? (
                 <Stack style={{ textAlign: 'center', marginTop: '20px' }}>
-                  <Typography variant="h5" color="primary" fontWeight="bold">No Quizzes to show it.</Typography>
+                  <Typography variant="h5" color="primary" fontWeight="bold">No Quizzes to show.</Typography>
                 </Stack>
               )
               : quizzes.map((quiz:IQuiz) => (
@@ -43,6 +43,7 @@ function TeacherQuizzes({ quizzes }:IQuizzes) {
                       style={{
                         fontWeight: 'bold', fontSize: '20px', margin: '20px', cursor: 'pointer',
                       }}
+                      className={classes.quizTitle}
                       onClick={() => navigate(`/teacher/quiz/${quiz.id}`, { state: { quizTitle: quiz.title, quizDesc: quiz.description } })}
                     >
                       {quiz.title.charAt(0).toUpperCase() + quiz.title.slice(1)}
