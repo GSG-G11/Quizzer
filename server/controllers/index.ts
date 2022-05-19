@@ -17,4 +17,5 @@ export {
   getQuizzes,
   getEnrolledStudents,
   getProfile,
+  editProfile,
 } from './teacher';

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-unused-prop-types */
 import axios from 'axios';
 import React, { useEffect, useId, useState } from 'react';
@@ -66,14 +67,16 @@ function EnrolledStudents() {
             <Typography variant="h6">Score</Typography>
           </Stack>
 
+          {!students.length && <Typography variant="body1">No students enrolled yet!</Typography>}
+
           <Stack p="2rem" alignItems="flex-start" maxHeight="500px" overflow="auto" direction="row" divider={<Divider orientation="vertical" flexItem />} columnGap={20}>
             <Stack spacing={4} sx={{ transform: 'translate(120%)' }}>
-              {students.map(({ username }:IEnrolledStudents) => <Typography key={useId()} variant="body1" fontWeight="bold" textAlign="right">{username}</Typography>)}
+              {students.map(({ username }:IEnrolledStudents, i) => <Typography key={i} variant="body1" fontWeight="bold" textAlign="right">{username}</Typography>)}
             </Stack>
 
             <Stack spacing={4} sx={{ transform: 'translate(-120%)' }}>
-              {students.map(({ mark, student_score: studentScore }:IEnrolledStudents) => (
-                <Typography key={useId()} variant="body1" textAlign="left" fontWeight="bold">
+              {students.map(({ mark, student_score: studentScore }:IEnrolledStudents, i) => (
+                <Typography key={i} variant="body1" textAlign="left" fontWeight="bold">
                   {studentScore}
                   /
                   {mark}
