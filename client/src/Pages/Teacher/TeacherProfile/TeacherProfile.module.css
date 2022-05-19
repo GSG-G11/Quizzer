@@ -29,6 +29,10 @@
   color: var(--secondary);
 }
 
+.quizTitle:hover {
+  color: #BB0000;
+} 
+
 @media screen and (max-width: 480px) {
   .editSubmit {
     font-size: 15px;

@@ -43,7 +43,8 @@ function TeacherQuizzes({ quizzes }:IQuizzes) {
                       style={{
                         fontWeight: 'bold', fontSize: '20px', margin: '20px', cursor: 'pointer',
                       }}
-                      onClick={() => navigate(`/teacher/quiz/${quiz.id}`)}
+                      className={classes.quizTitle}
+                      onClick={() => navigate(`/teacher/quiz/${quiz.id}`, { state: { quizTitle: quiz.title, quizDesc: quiz.description } })}
                     >
                       {quiz.title.charAt(0).toUpperCase() + quiz.title.slice(1)}
                     </Typography>
