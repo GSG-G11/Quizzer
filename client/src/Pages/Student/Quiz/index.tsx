@@ -23,7 +23,7 @@ function Quiz() {
   const {
     title, questions, time, teacher_name: teacherName, mark, type, id: quizId,
   } = quiz;
-  const [examTime, setExamTime] = useState({ minutes: time || 5, seconds: 0 });
+  const [examTime, setExamTime] = useState({ minutes: time || 6, seconds: 0 });
 
   const submitAnswers = async ({ hasPressedSubmitBtn }:{hasPressedSubmitBtn:boolean}) => {
     if (examTime.seconds > 0 && examTime.minutes > 0 && hasPressedSubmitBtn) {
@@ -60,17 +60,18 @@ function Quiz() {
 
   // * block user from navigating away from quiz
   useBlocker(async () => {
-    const hasPressedSubmitBtn = false;
     await confirm({ description: 'are you sure you want to leave?, your score will submitted if you did', title: 'Warning' });
+    const hasPressedSubmitBtn = false;
     await sendScore({ hasPressedSubmitBtn });
     navigate('/student/');
   }, !hasSubmitted);
 
   const onConfirmRefresh = (event:any) => {
     event.preventDefault();
-    sendScore({ hasPressedSubmitBtn: false });
     // eslint-disable-next-line no-param-reassign
     event.returnValue = 'Are you sure you want to leave the page?, you score will be submitted if you did!';
+
+    sendScore({ hasPressedSubmitBtn: false });
     return event;
   };
 
@@ -78,7 +79,7 @@ function Quiz() {
 
   useEffect(() => {
     const timerId = timer({
-      setHasSubmitted, setExamTime, examTime, hasSubmitted,
+      submitAnswers, setExamTime, examTime, hasSubmitted,
     });
 
     return () => clearInterval(timerId);
