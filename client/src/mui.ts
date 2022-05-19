@@ -17,6 +17,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {
   InputAdornment,
+  Icon,
   Button,
   Dialog,
   DialogContent,
@@ -80,6 +81,8 @@ export {
   Autocomplete,
   Card,
   CardActions,
+  Container,
+  Typography,
   CardContent,
   AccessTimeFilledIcon,
   Accordion,
@@ -91,8 +94,6 @@ export {
   List,
   ListItem,
   Stack,
-  Container,
-  Typography,
   CardMedia,
   CardActionArea,
   Dialog,
@@ -120,6 +121,7 @@ export {
   Radio,
   InputLabel,
   FormLabel,
+  Icon,
   EmailIcon,
   VisibilityIcon,
   GoogleIcon,

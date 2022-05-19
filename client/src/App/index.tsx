@@ -4,14 +4,13 @@ import {
   PrivateQuizForm, Navbar, RoleModal, AccessUser,
 } from '../Components';
 import {
-  TeacherProfile,
-  QuizDetails, Leaderboard, PublicQuizzes, MyQuizzes, CreateQuiz,
+  Leaderboard, PublicQuizzes, CreateQuiz, Quiz, QuizDetails, QuizResult, TeacherProfile,
+  MyQuizzes, Landing,
 } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
 import QuizzesProvider from '../Contexts/Quizzes/quizzesContext';
 import './index.css';
-import Landing from '../Pages/Landing';
 
 function App() {
   const [codeFormOpen, setCodeFormOpen] = useState<boolean>(false);
@@ -43,7 +42,8 @@ function App() {
           <Route index element={<PublicQuizzes />} />
           <Route path="quiz-details" element={<QuizDetails />} />
           <Route path="leaderboard" element={<Leaderboard />} />
-          <Route path="quiz/enroll" element={<RequireAuth element={<>Quiz Page</>} userRole="student" />} />
+          <Route path="quiz/enroll" element={<RequireAuth element={<Quiz />} userRole="student" />} />
+          <Route path="quiz/result" element={<RequireAuth element={<QuizResult />} userRole="student" />} />
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">
