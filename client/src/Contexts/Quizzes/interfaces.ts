@@ -1,4 +1,5 @@
 interface IQuizzes {
+  [x: string]: any;
   [index: number]: {
   title: string;
   id: string;

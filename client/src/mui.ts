@@ -11,7 +11,6 @@ import EmailIcon from '@mui/icons-material/Email';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import GoogleIcon from '@mui/icons-material/Google';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import PersonIcon from '@mui/icons-material/Person';
 
 // Components
 import CssBaseline from '@mui/material/CssBaseline';
@@ -43,6 +42,7 @@ import {
   ListItem,
   List,
   Stack,
+  Paper,
   Table,
   TableHead,
   TableRow,
@@ -53,7 +53,6 @@ import {
   Box,
   DialogActions,
   Divider,
-  Paper,
   Select,
   FormControl,
   MenuItem,
@@ -62,7 +61,6 @@ import {
   Radio,
   InputLabel,
   FormLabel,
-  Divider,
 } from '@mui/material';
 
 export {
@@ -99,6 +97,7 @@ export {
   CardActionArea,
   Dialog,
   Grid,
+  Paper,
   AddIcon,
   Table,
   TableHead,
@@ -112,7 +111,6 @@ export {
   Box,
   DialogActions,
   Divider,
-  Paper,
   PublicIcon,
   Select,
   FormControl,
@@ -126,6 +124,4 @@ export {
   VisibilityIcon,
   GoogleIcon,
   VisibilityOffIcon,
-  PersonIcon,
-  Divider,
 };
