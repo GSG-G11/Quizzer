@@ -1,2 +1,2 @@
-// eslint-disable-next-line import/prefer-default-export
 export { default as CreateQuiz } from './CreateQuiz';
+export { default as EnrolledStudents } from './EnrolledStudents';

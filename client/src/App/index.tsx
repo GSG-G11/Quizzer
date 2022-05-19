@@ -4,7 +4,7 @@ import {
   PrivateQuizForm, Navbar, RoleModal, AccessUser,
 } from '../Components';
 import {
-  QuizDetails, Leaderboard, PublicQuizzes, CreateQuiz,
+  QuizDetails, Leaderboard, PublicQuizzes, CreateQuiz, EnrolledStudents,
 } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
@@ -46,7 +46,7 @@ function App() {
         {/* Teacher Routes */}
         <Route path="/teacher">
           <Route index element={(<RequireAuth element={<div>Teacher Quizzes page</div>} userRole="teacher" />)} />
-          <Route path="quiz/:quizId" element={(<RequireAuth element={<div>Teacher Quizzes page</div>} userRole="teacher" />)} />
+          <Route path="quiz/:quizId" element={(<RequireAuth element={<EnrolledStudents />} userRole="teacher" />)} />
           <Route path="quiz/new" element={<RequireAuth element={<CreateQuiz />} userRole="teacher" />} />
           <Route path="profile" element={<RequireAuth element={<div>Teacher Profile</div>} userRole="teacher" />} />
         </Route>
