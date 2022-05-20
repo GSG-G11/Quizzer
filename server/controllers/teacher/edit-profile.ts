@@ -15,12 +15,12 @@ export default async (req:UserAuth, res:Response, next:NextFunction) => {
       username, bio, avatar,
     } = await editProfileSchema.validate(req.body);
 
-    await editTeacherProfile({
+    const { rows: { 0: { is_verified: isVerified } } } = await editTeacherProfile({
       username, bio, avatar, teacherId,
     });
 
     const userInfo = {
-      userId: teacherId, username, role, bio, avatar,
+      userId: teacherId, username, role, bio, avatar, isVerified,
     };
 
     const token = await signToken(userInfo);
