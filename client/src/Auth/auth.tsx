@@ -30,6 +30,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
       showSnackBar('A Confirmation email was sent to you, verify your account to start using Quizzer', 'success');
       setErrors([]);
     } catch (err: any) {
+      console.log(err);
       const { message } = err.response?.data;
       if (message) setErrors([message]);
       if (err.response.status === 500) navigate('/error');
