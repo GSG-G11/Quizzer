@@ -2,7 +2,7 @@ const categories = [
   {
     category: 'Arts & Literature',
     miniDescription:
-      'Test your knowledge on the world’s most famous paintings, plays, novels and much more.',
+      'Test your knowledge on the world’s most famous paintings,novels and much more.',
     description:
       'These art and literature quiz questions are guaranteed to test your cultural knowledge. From famous paintings and plays, to novels, poems and sculptures, how much do you know?',
   },
@@ -30,14 +30,14 @@ const categories = [
   {
     category: 'Geography',
     miniDescription:
-      'Test your knowledge on the world’s capitals, continents, oceans, cities, rivers, seas, and more.',
+      'Test your knowledge on the world’s capitals, continents, oceans, cities, seas, and more.',
     description:
       'Do you still remember the capital of Australia, or which U.S. state is the largest? See if you can ace this geography quiz—without looking at a map! No matter how you fare, you’ll pick up some nice geography trivia by the end of it',
   },
   {
     category: 'History',
     miniDescription:
-      'test your knowledge on the world’s most famous historical figures, events and much more.',
+      'test your knowledge on the world’s most famous historical, events and much more.',
     description:
       'Get your history trivia fix with ten excellent historical trivia questions, and fun new and ancient facts. Take the quiz for fun or host the perfect trivia night with this World History Trivia Round. It’s time to assemble your friends and family or Zoom them in. Let the history round begin!',
   },
@@ -57,7 +57,7 @@ const categories = [
   },
   {
     category: 'Society & Culture',
-    miniDescription: 'Test your knowledge of cultural norms, customs, history and societies around the worldTest.',
+    miniDescription: 'Test your knowledge of cultural norms, customs, and societies around the worldTest.',
     description: `With this interactive world culture test you can find out your knowledge about the societies around the world, customs, geography, history and other aspects of the world
     `,
   },

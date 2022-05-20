@@ -3,6 +3,8 @@ interface IUser {
   userId: number;
   username: string;
   isVerified: boolean;
+  bio: string;
+  avatar: string;
 }
 
 interface IUserInfo {
@@ -21,6 +23,7 @@ interface IAuthContext {
   signup: (_: IUserInfo) => void;
   login: (_: IUserInfo) => void;
   logout: () => void;
+  getUser: () => void
   setErrors: (_: string[]) => void;
   errors: string[];
 }

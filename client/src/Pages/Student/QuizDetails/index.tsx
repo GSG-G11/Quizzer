@@ -32,7 +32,7 @@ function QuizDetails() {
 
   if (!isPrivateQuiz) {
     quizDetails.questions = quiz.questions.map((question: any) => ({
-      question,
+      question: question.question,
       type: 'mcq',
       answers: {
         answer: question.correctAnswer,

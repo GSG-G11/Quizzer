@@ -13,6 +13,7 @@ export {
   getMyQuizzes,
   deleteQuiz,
   userInfo,
+  editTeacherProfile,
 } from './teacher';
 
 export {
