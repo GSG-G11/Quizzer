@@ -41,7 +41,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     };
     const token = await signToken(userInfo) as string;
     await createHash(role, user.id, token);
-    const link = `http://quizzer-zak.herokuapp.com/api/v1/auth/confirmation/${token}`;
+    const link = `http://quizzer-g11.herokuapp.com/api/v1/auth/confirmation/${token}`;
 
     const transporter = createTransport({
       service: 'gmail',
