@@ -17,17 +17,17 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const { rowCount: isEmailTaken, rows } = await checkEmailTakenQuery({ destination, email });
     if (!isEmailTaken) throw new CustomError('Incorrect email or password', 401);
     const {
-      password: hashedPassword, username, id: userId, bio, avatar,
+      password: hashedPassword, username, id: userId, bio, avatar, is_verified: isVerified,
     } = rows[0];
     const isPasswordMatch = await compare(password, hashedPassword);
     if (!isPasswordMatch) throw new CustomError('Incorrect email or password', 401);
     const user = {
-      userId, username, role, bio, avatar,
+      userId, username, role, bio, avatar, isVerified,
     };
     const token = await signToken(user);
 
     res
-      .cookie('token', token, { maxAge: 2592000000, httpOnly: true, secure: process.env.NODE_ENV === 'production' })
+      .cookie('token', token, { maxAge: 2592000000, secure: process.env.NODE_ENV === 'production' })
       .json({ data: user, message: 'User Logged Successfully' });
   } catch (err) {
     err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);

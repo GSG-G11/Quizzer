@@ -1,12 +1,21 @@
 import { Response, Request, NextFunction } from 'express';
 import { hash } from 'bcrypt';
 import dotenv from 'dotenv';
+import { createTransport } from 'nodemailer';
 import { createNewUserQuery, checkEmailTakenQuery } from '../../queries';
 import { signToken } from '../../utils';
 import { signupSchema } from '../../validation';
 import { CustomError } from '../../errors';
+import createHash from '../../queries/auth/create-hash';
 
 dotenv.config();
+
+const {
+  env: {
+    APP_MAIL,
+    MAIL_PASSWORD,
+  },
+} = process;
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -28,13 +37,30 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       avatar,
     });
     const userInfo = {
-      userId: user.id, username, role, bio, avatar,
+      userId: user.id, username, role, bio, avatar, isVerified: false,
     };
-    const token = await signToken(userInfo);
+    const token = await signToken(userInfo) as string;
+    await createHash(role, user.id, token);
+    const link = `http://localhost:5000/api/v1/auth/confirmation/${token}`;
+
+    const transporter = createTransport({
+      service: 'gmail',
+      auth: {
+        user: APP_MAIL,
+        pass: MAIL_PASSWORD,
+      },
+    });
+
+    await transporter.sendMail({
+      from: APP_MAIL,
+      to: email,
+      subject: 'Quizzer Account Confirmation Email',
+      html: `Click on <a href="${link}">THIS</a> link to verify your account`,
+    });
 
     res
       .status(201)
-      .cookie('token', token, { maxAge: 2592000000, httpOnly: true, secure: process.env.NODE_ENV === 'production' })
+      .cookie('token', token, { maxAge: 2592000000, secure: process.env.NODE_ENV === 'production' })
       .json({ data: userInfo, message: 'User Created Successfully' });
   } catch (err) {
     err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);
