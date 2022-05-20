@@ -1,0 +1,46 @@
+.editProfileBtn {
+  color: var(--secondary);
+}
+
+.editSubmit {
+  color: #F9AA33;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  margin-inline: auto;
+}
+
+.uploadImgLabel {
+  font-size: 15px;
+}
+
+.uploadImgInput {
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.uploadImgLabel {
+  cursor: pointer;
+  color: var(--secondary);
+}
+
+.quizTitle:hover {
+  color: #BB0000;
+} 
+
+@media screen and (max-width: 480px) {
+  .editSubmit {
+    font-size: 15px;
+  }
+  
+  .uploadImgLabel {
+    font-size: 20px;
+    padding-top: 10px;
+    justify-content: center;
+  }
+}

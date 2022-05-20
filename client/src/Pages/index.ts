@@ -1,9 +1,10 @@
 export {
   QuizDetails,
-  Leaderboard,
   PublicQuizzes,
   Quiz,
   QuizResult,
+  StudentProfile,
+  Leaderboard,
 } from './Student';
 export {
   MyQuizzes,

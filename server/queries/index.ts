@@ -25,4 +25,6 @@ export {
   getQuestionsQuery,
   getLeaderboardQuery,
   updateLeaderboardQuery,
+  getStdProfile,
+  editStdProfile,
 } from './student';

@@ -7,6 +7,7 @@ import {
   AccessUser,
 } from '../Components';
 import {
+  StudentProfile,
   Leaderboard,
   PublicQuizzes,
   CreateQuiz,
@@ -56,6 +57,7 @@ function App() {
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="quiz/enroll" element={<RequireAuth element={<Quiz />} userRole="student" />} />
           <Route path="quiz/result" element={<RequireAuth element={<QuizResult />} userRole="student" />} />
+          <Route path="profile" element={<RequireAuth element={<StudentProfile />} userRole="student" />} />
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">

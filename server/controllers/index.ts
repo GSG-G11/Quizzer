@@ -13,6 +13,8 @@ export {
   checkUserAttendQuiz,
   leaderboard,
   updateLeaderboard,
+  getStudentProfile,
+  editStudentProfile,
 } from './student';
 
 export {

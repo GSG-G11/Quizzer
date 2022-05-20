@@ -16,6 +16,7 @@ export {
 
 export { default as quizQuestions } from './questions';
 export { default as successReturnData } from './quizzes-models';
+export { default as studentQuizzes } from './student-quizzes-modal';
 
 export {
   validQuiz,
@@ -38,3 +39,9 @@ export {
   teacherImageError,
   teacherNameError,
 } from './teacher-profile-edited';
+
+export {
+  studentInfoSuccessEdited,
+  studentImageError,
+  studentNameError,
+} from './student-profile.edited';
