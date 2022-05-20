@@ -7,10 +7,9 @@ const clientError = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const serverError = (err: any, req: Request, res: Response, next: NextFunction) => {
-  console.log(err);
   res
     .status(err.status || 500)
-    .json(err);
+    .json({ message: err.status ? err.message : 'Internal Server Error' });
 };
 
 export { clientError, serverError, CustomError };
