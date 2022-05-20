@@ -10,7 +10,7 @@ const serverError = (err: any, req: Request, res: Response, next: NextFunction) 
   console.log(err);
   res
     .status(err.status || 500)
-    .json({ message: err.status ? err.message : err });
+    .json(err);
 };
 
 export { clientError, serverError, CustomError };
