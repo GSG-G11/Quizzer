@@ -41,7 +41,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     };
     const token = await signToken(userInfo) as string;
     await createHash(role, user.id, token);
-    const link = `http://localhost:5000/api/v1/auth/confirmation/${token}`;
+    const link = `http://quizzer-zak.herokuapp.com/api/v1/auth/confirmation/${token}`;
 
     const transporter = createTransport({
       service: 'gmail',
@@ -60,7 +60,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
     res
       .status(201)
-      .cookie('token', token, { maxAge: 2592000000, secure: process.env.NODE_ENV === 'production' })
+      .cookie('token', token, { maxAge: 2592000000 })
       .json({ data: userInfo, message: 'User Created Successfully' });
   } catch (err) {
     err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);
