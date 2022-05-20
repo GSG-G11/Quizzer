@@ -8,6 +8,8 @@ import {
 } from '../../../mui';
 import { CreateQuizForm, QuestionFormWrapper } from '../../../Components';
 import { useSnackBar } from '../../../Hooks';
+import { copyToClipboard } from '../../../Utils';
+import classes from './CreateQuiz.module.css';
 
 const initialValues: any = {
   title: '',
@@ -32,7 +34,8 @@ function CreateQuiz() {
         const { data: { data } }: any = await axios.post('/api/v1/teacher/quiz', quiz);
         const quizId = data.quiz.id;
         navigate('/teacher');
-        showSnackBar(`Quiz created successfully, Quiz Code: ${quizId}`, 'success');
+        copyToClipboard({ str: quizId });
+        showSnackBar('Quiz created successfully, Quiz code copied to your clipboard', 'success');
       } catch (err: any) {
         if (err.response.status === 500) navigate('/error');
         else showSnackBar(err.response.data.message, 'error');
@@ -118,8 +121,10 @@ function CreateQuiz() {
             style={{ marginBlock: '2rem' }}
           >
             <Button
+              size="large"
               type="button"
-              variant="contained"
+              // color="secondary"
+              variant="outlined"
               onClick={() => {
                 setQuiz((prev: any) => ({ ...prev, questionsNumber: prev.questionsNumber + 1 }));
               }}
@@ -127,6 +132,7 @@ function CreateQuiz() {
               Add Question
             </Button>
             <Button
+              className={classes.btn}
               type="submit"
               variant="contained"
             >

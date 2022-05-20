@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
-  Paper, Typography, Stack, PersonIcon, Box, Divider,
+  Paper, Typography, Stack, Box, Divider,
 } from '../../../mui';
 import classes from './StudentProfile.module.css';
 
@@ -13,7 +13,6 @@ function StudentQuizzes() {
   const getStudentProfile = async () => {
     try {
       const { data: { data: studentQuizzesAttend } } = await axios.get('/api/v1/student/profile');
-      // console.log(data);
 
       setStudentQuizzes(studentQuizzesAttend);
     } catch (err) {
@@ -57,10 +56,9 @@ function StudentQuizzes() {
                   <Stack direction="row" justifyContent="space-between">
                     <Typography
                       style={{
-                        fontWeight: 'bold', fontSize: '20px', margin: '20px', cursor: 'pointer',
+                        fontWeight: 'bold', fontSize: '20px', margin: '20px',
                       }}
-                      className={classes.quizTitle}
-                      onClick={() => navigate('quiz-details')}
+
                     >
                       {quiz.title.charAt(0).toUpperCase() + quiz.title.slice(1)}
                     </Typography>

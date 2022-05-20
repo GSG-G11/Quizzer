@@ -59,7 +59,7 @@ function EditStudentProfileModal({ editProfileModal, setEditProfileModal, setUse
       const updateUser = { ...userInfo, avatar: image };
       editProfile(updateUser);
       setEditProfileModal(false);
-      showSnackBar('Teacher profile is edited successfully', 'success');
+      showSnackBar('Student profile is edited successfully', 'success');
     } else {
       showSnackBar('Change your information to edit', 'warning');
     }

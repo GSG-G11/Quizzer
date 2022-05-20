@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {
-  PrivateQuizForm, Navbar, RoleModal, AccessUser,
+  PrivateQuizForm,
+  Navbar,
+  RoleModal,
+  AccessUser,
 } from '../Components';
 import {
-  Leaderboard, PublicQuizzes, CreateQuiz, Quiz, QuizDetails, QuizResult, TeacherProfile,
-  MyQuizzes, Landing, EnrolledStudents, StudentProfile,
+  StudentProfile,
+  Leaderboard,
+  PublicQuizzes,
+  CreateQuiz,
+  Quiz,
+  QuizDetails,
+  QuizResult,
+  TeacherProfile,
+  MyQuizzes,
+  Landing,
+  EnrolledStudents,
+  Error,
 } from '../Pages';
 import RequireAuth from '../Auth/RequireAuth';
 import { useAuth } from '../Hooks';
@@ -48,14 +61,13 @@ function App() {
         </Route>
         {/* Teacher Routes */}
         <Route path="/teacher">
-
           <Route index element={(<RequireAuth element={<QuizzesProvider><MyQuizzes /></QuizzesProvider>} userRole="teacher" />)} />
           <Route path="quiz/:quizId" element={(<RequireAuth element={<EnrolledStudents />} userRole="teacher" />)} />
           <Route path="quiz/new" element={<RequireAuth element={<CreateQuiz />} userRole="teacher" />} />
           <Route path="profile" element={<RequireAuth element={<QuizzesProvider><TeacherProfile /></QuizzesProvider>} userRole="teacher" />} />
         </Route>
-        <Route path="*" element={<div>page not found</div>} />
-        <Route path="/error" element={<div>500</div>} />
+        <Route path="*" element={<Error status={404} />} />
+        <Route path="/error" element={<Error status={500} />} />
       </Routes>
     </>
   );

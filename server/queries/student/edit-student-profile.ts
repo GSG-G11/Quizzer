@@ -11,6 +11,6 @@ export default ({
   username, bio, avatar, teacherId,
 }: ITeacherInfo) => connections
   .query(
-    'UPDATE students SET username = $1, bio = $2 , avatar= $3 WHERE id = $4;',
+    'UPDATE students SET username = $1, bio = $2 , avatar= $3 WHERE id = $4 RETURNING is_verified;',
     [username, bio, avatar, teacherId],
   );
