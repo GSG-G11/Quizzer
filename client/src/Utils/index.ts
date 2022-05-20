@@ -10,12 +10,12 @@ interface ICopyToClipboard {
 
 export const copyToClipboard = ({ str, showSnackBar }: ICopyToClipboard) => {
   str && navigator.clipboard.writeText(str);
-  showSnackBar?.('copied to clipboard', 'success');
+  showSnackBar?.('Copied to clipboard', 'success');
 };
 
 export const timer = ({
-  examTime, setExamTime, hasSubmitted, submitAnswers,
-}:any) => setInterval(() => {
+  examTime, setExamTime, hasSubmitted, sendScore,
+}: any) => setInterval(() => {
   const { seconds: sec, minutes: min } = examTime;
 
   if (sec > 0) setExamTime(({ seconds, minutes }:any) => ({ minutes, seconds: seconds - 1 }));
@@ -27,10 +27,10 @@ export const timer = ({
           examTime,
           setExamTime,
           hasSubmitted,
-          submitAnswers,
+          sendScore,
         }),
       );
-      if (!hasSubmitted) submitAnswers({ hasPressedSubmitBtn: true });
+      if (!hasSubmitted) sendScore({ hasPressedSubmitBtn: true });
     } else setExamTime(({ minutes }:any) => ({ minutes: minutes - 1, seconds: 59 }));
   }
 }, 1000);

@@ -7,6 +7,8 @@ import {
 import DeleteQuizModal from './QuizDeleteModal';
 import classes from './Quizzes.module.css';
 import { ITableBody, IQuiz } from './interfaces';
+import { copyToClipboard } from '../../../Utils';
+import { useSnackBar } from '../../../Hooks';
 
 function TableContent({
   quizzes, rowsPerPage, page, headers,
@@ -14,6 +16,7 @@ function TableContent({
   const navigate = useNavigate();
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [currentQuizId, setCurrentQuizId] = useState<string>('');
+  const { showSnackBar } = useSnackBar();
 
   const { length: quizzesCount }:any = quizzes;
 
@@ -62,7 +65,8 @@ function TableContent({
                     align="center"
                   >
                     <Typography
-                      style={{ fontWeight: 600 }}
+                      onClick={() => copyToClipboard({ str: quiz[header], showSnackBar })}
+                      style={{ fontWeight: 600, cursor: 'pointer' }}
                     >
                       {quiz[header]}
                     </Typography>
