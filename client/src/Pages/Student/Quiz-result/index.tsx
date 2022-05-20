@@ -26,7 +26,7 @@ function QuizResult() {
         <Typography variant="subtitle1">
           Your score is
           {' '}
-          <Typography fontWeight="bold" color={hasPassed ? 'success' : 'error'} variant="body1" display="inline" fontSize="1.2rem">
+          <Typography fontWeight="bold" color={hasPassed ? 'success.main' : 'error'} variant="body1" display="inline" fontSize="1.2rem">
             {score}
             /
             {mark}

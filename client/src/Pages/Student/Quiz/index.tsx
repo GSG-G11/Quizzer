@@ -75,7 +75,10 @@ function Quiz() {
     return event;
   };
 
-  window.addEventListener('beforeunload', onConfirmRefresh, { capture: true });
+  useEffect(() => {
+    window.addEventListener('beforeunload', onConfirmRefresh, { capture: true });
+    return () => window.removeEventListener('beforeunload', onConfirmRefresh, { capture: true });
+  }, []);
 
   useEffect(() => {
     const timerId = timer({
