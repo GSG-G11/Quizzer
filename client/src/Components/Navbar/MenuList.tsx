@@ -27,8 +27,7 @@ function MenuList({ setDrawer, toggleMenu, anchorEl }: IMenuList) {
           <Typography color="initial" variant="subtitle2" mb="0.5rem">{properCase(username)}</Typography>
         </Typography>
 
-        {role === 'teacher' && <MenuItem onClick={() => { hideDrawerAndMenu(); navigate('/teacher/profile'); }}>Profile</MenuItem>}
-        {role === 'student' && <MenuItem onClick={() => { hideDrawerAndMenu(); navigate('/student/profile'); }}>Profile</MenuItem>}
+        <MenuItem onClick={() => { hideDrawerAndMenu(); navigate(`/${role}/profile`); }}>Profile</MenuItem>
         {pathname !== '/student/quiz/enroll' && <MenuItem onClick={() => { hideDrawerAndMenu(); logout(); }}>Logout</MenuItem>}
       </Stack>
     </Menu>

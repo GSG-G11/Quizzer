@@ -85,7 +85,7 @@ function EnrolledStudents() {
               </TableRow>
             )}
 
-            {students.length && (
+            {!!students.length && (
             <>
               <TableCell sx={{ textAlign: 'center' }}>Student Name</TableCell>
               <TableCell sx={{ textAlign: 'center' }}>Score</TableCell>

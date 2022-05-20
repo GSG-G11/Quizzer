@@ -23,8 +23,6 @@ export default async (req:UserAuth, res:Response, next:NextFunction) => {
       userId: teacherId, username, role, bio, avatar, isVerified,
     };
 
-    console.log(isVerified);
-
     const token = await signToken(userInfo);
 
     res
