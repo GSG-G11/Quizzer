@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import axios from 'axios';
-// eslint-disable-next-line import/no-unresolved
 import spinner from '../../../Assets/spinner.gif';
 import classes from './TeacherProfile.module.css';
 import { useAuth, useSnackBar } from '../../../Hooks';

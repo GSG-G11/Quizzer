@@ -1,12 +1,13 @@
 BEGIN;
 
-DROP TABLE IF EXISTS students, teachers, quizzes, questions, scores, leaderboard CASCADE;
+DROP TABLE IF EXISTS students, teachers, quizzes, questions, scores, leaderboard, teachers_hashes, students_hashes CASCADE;
 DROP TYPE IF EXISTS quiz_type;
 
 CREATE TYPE quiz_type AS ENUM('mcq', 'true_false', 'short_answer');
 
 CREATE TABLE students (
   id SERIAL PRIMARY KEY,
+  is_verified BOOLEAN NOT NULL DEFAULT false,
   username VARCHAR(50) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
   password TEXT NOT NULL,
@@ -16,11 +17,24 @@ CREATE TABLE students (
 
 CREATE TABLE teachers (
   id SERIAL PRIMARY KEY,
+  is_verified BOOLEAN NOT NULL DEFAULT false,
   username VARCHAR(50) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
   password TEXT NOT NULL,
   bio TEXT,
   avatar TEXT
+);
+
+CREATE TABLE teachers_hashes (
+  user_id INTEGER PRIMARY KEY,
+  hash TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES teachers (id) ON DELETE CASCADE
+);
+
+CREATE TABLE students_hashes (
+  user_id INTEGER PRIMARY KEY,
+  hash TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES students (id) ON DELETE CASCADE
 );
 
 CREATE TABLE quizzes (
