@@ -1,17 +1,16 @@
-/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import TableQuizzes from './TableQuizzes';
+import QuizzesTable from './QuizzesTable';
 import {
   Button, Typography, Container, AddIcon, Grid,
 } from '../../../mui';
 
-import classes from './MyQuizzes.module.css';
-import { getQuizzes } from '../../../Hooks';
+import classes from './Quizzes.module.css';
+import { useQuizzes } from '../../../Hooks';
 
 function MyQuizzes() {
   const navigate = useNavigate();
-  const { quizzes } = getQuizzes();
+  const { quizzes } = useQuizzes();
   const headers = ['title', 'id', 'description', 'students_count'];
 
   const [page, setPage] = useState<number>(0);
@@ -46,7 +45,7 @@ function MyQuizzes() {
 
       {quizzes
           && (
-          <TableQuizzes
+          <QuizzesTable
             quizzes={quizzes}
             headers={headers}
             page={page}

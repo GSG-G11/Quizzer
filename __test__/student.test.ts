@@ -2,7 +2,9 @@ import supertest from 'supertest';
 import app from '../server/app';
 import dbBuild from '../server/database/build';
 import dbConnection from '../server/database/connections';
-import { quizQuestions } from '../server/utils';
+import {
+  quizQuestions, studentQuizzes, studentImageError, studentInfoSuccessEdited, studentNameError,
+} from '../server/utils';
 
 beforeAll(dbBuild);
 afterAll(() => dbConnection.end());
@@ -153,5 +155,66 @@ describe('/api/v1/student/questions/:quizId', () => {
       .expect('Content-Type', /json/);
 
     expect(res.body.message).toEqual('Unauthorized');
+  });
+});
+
+describe('GET /api/v1/student/profile', () => {
+  it('should return 200 and all quizzes profile data as json response', async () => {
+    const { body: { data } } = await supertest(app)
+      .get('/api/v1/student/profile')
+      .expect(200)
+      .set({ Cookie: token })
+      .expect('Content-Type', /json/);
+
+    expect(data).toEqual(studentQuizzes);
+  });
+
+  it('should return 401 Unauthorized and json response', async () => {
+    const { body: { message } } = await supertest(app)
+      .get('/api/v1/teacher/profile')
+      .expect(401)
+      .expect('Content-Type', /json/);
+
+    expect(message).toEqual('Unauthorized');
+  });
+});
+
+describe('PATCH /api/v1/student/profile', () => {
+  it('should return 200 and message successfully', async () => {
+    const res = await supertest(app)
+      .patch('/api/v1/student/profile')
+      .set({ Cookie: token })
+      .send(studentInfoSuccessEdited)
+      .expect(200);
+
+    expect(res.body.message).toBe('User profile edited successfully');
+  });
+
+  it('should return 401 Unauthorized', async () => {
+    const res = await supertest(app)
+      .patch('/api/v1/student/profile')
+      .expect(401);
+
+    expect(res.body.message).toBe('Unauthorized');
+  });
+
+  it('should return 400 and for image', async () => {
+    const res = await supertest(app)
+      .patch('/api/v1/student/profile')
+      .set({ Cookie: token })
+      .send(studentImageError)
+      .expect(400);
+
+    expect(res.body.message[0]).toBe('Your avatar should be an image url');
+  });
+
+  it('should return 400 and return massage for username', async () => {
+    const res = await supertest(app)
+      .patch('/api/v1/student/profile')
+      .set({ Cookie: token })
+      .send(studentNameError)
+      .expect(400);
+
+    expect(res.body.message[0]).toBe('Username must be at least 3 characters long');
   });
 });

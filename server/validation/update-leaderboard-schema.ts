@@ -8,8 +8,9 @@ const quizzesTitles = [
   'General Knowledge',
   'Geography',
   'Society & Culture',
-  'Science',
+  'History',
   'Sport & Leisure',
+  'Arts & Literature',
 ];
 
 export default object({

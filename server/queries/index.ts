@@ -1,4 +1,10 @@
-export { createNewUserQuery, checkEmailTakenQuery } from './auth';
+export {
+  createNewUserQuery,
+  checkEmailTakenQuery,
+  verifyAccount,
+  createHash,
+  deleteHash,
+} from './auth';
 export {
   createQuizQuery,
   createQuestionQuery,
@@ -19,4 +25,6 @@ export {
   getQuestionsQuery,
   getLeaderboardQuery,
   updateLeaderboardQuery,
+  getStdProfile,
+  editStdProfile,
 } from './student';

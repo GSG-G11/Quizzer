@@ -11,13 +11,13 @@ import EmailIcon from '@mui/icons-material/Email';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import GoogleIcon from '@mui/icons-material/Google';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import PersonIcon from '@mui/icons-material/Person';
 
 // Components
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {
   InputAdornment,
+  Icon,
   Button,
   Dialog,
   DialogContent,
@@ -62,7 +62,6 @@ import {
   Radio,
   InputLabel,
   FormLabel,
-  Divider,
 } from '@mui/material';
 
 export {
@@ -82,6 +81,8 @@ export {
   Autocomplete,
   Card,
   CardActions,
+  Container,
+  Typography,
   CardContent,
   AccessTimeFilledIcon,
   Accordion,
@@ -93,8 +94,6 @@ export {
   List,
   ListItem,
   Stack,
-  Container,
-  Typography,
   CardMedia,
   CardActionArea,
   Dialog,
@@ -122,10 +121,9 @@ export {
   Radio,
   InputLabel,
   FormLabel,
+  Icon,
   EmailIcon,
   VisibilityIcon,
   GoogleIcon,
   VisibilityOffIcon,
-  PersonIcon,
-  Divider,
 };

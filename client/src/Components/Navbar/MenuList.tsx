@@ -1,16 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Divider, Menu, MenuItem, Typography, Stack,
 } from '@mui/material';
 import { properCase } from '../../Utils';
 import { useAuth } from '../../Hooks';
 import { IMenuList } from './Interfaces';
+import { IUser } from '../../Auth/interfaces';
 
 function MenuList({ setDrawer, toggleMenu, anchorEl }: IMenuList) {
   const { user, logout } = useAuth();
   const { username = '', role } = user || {};
-
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const hideDrawerAndMenu = () => {
@@ -27,7 +28,8 @@ function MenuList({ setDrawer, toggleMenu, anchorEl }: IMenuList) {
         </Typography>
 
         {role === 'teacher' && <MenuItem onClick={() => { hideDrawerAndMenu(); navigate('/teacher/profile'); }}>Profile</MenuItem>}
-        <MenuItem onClick={() => { hideDrawerAndMenu(); logout(); }}>Logout</MenuItem>
+        {role === 'student' && <MenuItem onClick={() => { hideDrawerAndMenu(); navigate('/student/profile'); }}>Profile</MenuItem>}
+        {pathname !== '/student/quiz/enroll' && <MenuItem onClick={() => { hideDrawerAndMenu(); logout(); }}>Logout</MenuItem>}
       </Stack>
     </Menu>
   );

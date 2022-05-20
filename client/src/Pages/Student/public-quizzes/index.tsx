@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Skeleton, Stack } from '@mui/material';
 import {
   Autocomplete, Button, Card, CardActions, CardContent, Container, Grid, TextField, Typography,
 } from '../../../mui';
@@ -15,12 +16,14 @@ function PublicQuizzes() {
   const [searchTerm, setSearchTerm] = useState<string| null>(null);
   const navigate = useNavigate();
   const { showSnackBar } = useSnackBar();
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const handleSearchTermChange = (_e:SyntheticEvent<Element>, newValue:string|null) => {
     setSearchTerm(newValue);
   };
 
   const handleButtonClick = async ({ target }:MouseEvent) => {
+    setLoading(true);
     const selectedCategory = (target as Element).id;
     const description = categoriesList
       .find(({ category }) => category === selectedCategory)?.description;
@@ -41,6 +44,7 @@ function PublicQuizzes() {
       const quiz = { title: selectedCategory, description, questions };
 
       navigate('/student/quiz-details', { state: { quiz } });
+      setLoading(false);
     } catch (error:any) {
       showSnackBar(error.response.data.message, 'error');
     }
@@ -56,37 +60,53 @@ function PublicQuizzes() {
 
   return (
     <Container maxWidth="lg" sx={{ marginTop: '3rem' }}>
-      <Typography color="primary.dark" variant="h5" fontWeight="bold" textAlign="center">Test Your Knowledge in many fields</Typography>
+      {isLoading && (
+      <Stack width="100%" alignItems="center">
+        <Skeleton animation="wave" width="150px" height={50} style={{ marginBottom: 6 }} />
+        <Skeleton animation="wave" width="150px" height={30} style={{ marginBottom: 6 }} />
+        <Skeleton animation="wave" width="100%" height={180} style={{ marginBottom: 6 }} />
+        <Skeleton animation="wave" width="150px" height={30} style={{ marginBottom: 6 }} />
+        <Skeleton animation="wave" width="160px" height={70} style={{ marginBottom: 6 }} />
+      </Stack>
+      )}
 
-      <Grid container justifyContent="center" mt={4}>
-        <Grid item xs={12} md={6}>
-          <Autocomplete
-            fullWidth
-            options={autoCompleteOptions}
-            onChange={handleSearchTermChange}
-            freeSolo
-            renderInput={(params:any) => <TextField {...params} label="Search a Quiz by name" />}
-          />
+      {
+  !isLoading && (
+  <>
+    <Typography color="primary.dark" variant="h5" fontWeight="bold" textAlign="center">Test Your Knowledge in many fields</Typography>
+
+    <Grid container justifyContent="center" mt={4}>
+      <Grid item xs={12} md={6}>
+        <Autocomplete
+          fullWidth
+          options={autoCompleteOptions}
+          onChange={handleSearchTermChange}
+          freeSolo
+          renderInput={(params:any) => <TextField {...params} label="Search a Quiz by name" />}
+        />
+      </Grid>
+    </Grid>
+
+    <Grid container alignContent="center" justifyContent="center" spacing={4} sx={{ marginBlock: '1rem' }}>
+      {!categoriesList.length && <Typography variant="h6" component="p" color="secondary.dark">No Quiz Found!</Typography>}
+
+      {categoriesList.map(({ category, miniDescription }, i) => (
+        <Grid item key={category} xs={11} sm={7} md={4}>
+          <Card elevation={5} sx={{ borderRadius: '10px' }}>
+            <CardContent>
+              <Typography color="#344955" fontWeight="bold" textAlign="center" gutterBottom variant="h5">{category}</Typography>
+              <Typography variant="body2" color="primary">{miniDescription}</Typography>
+            </CardContent>
+            <CardActions sx={{ marginBottom: '0.5rem', justifyContent: 'center' }}>
+              <Button id={category} variant="contained" sx={{ color: 'secondary.main' }} onClick={handleButtonClick}>Details</Button>
+            </CardActions>
+          </Card>
         </Grid>
-      </Grid>
-
-      <Grid container alignContent="center" justifyContent="center" spacing={4} sx={{ marginBlock: '1rem' }}>
-        {!categoriesList.length && <Typography variant="h6" component="p" color="secondary.dark">No Quiz Found!</Typography>}
-
-        {categoriesList.map(({ category, miniDescription }, i) => (
-          <Grid item key={category} xs={11} sm={7} md={4}>
-            <Card elevation={5} sx={{ borderRadius: '10px' }}>
-              <CardContent>
-                <Typography color="#344955" fontWeight="bold" textAlign="center" gutterBottom variant="h5">{category}</Typography>
-                <Typography variant="body2" color="primary">{miniDescription}</Typography>
-              </CardContent>
-              <CardActions sx={{ marginBottom: '0.5rem', justifyContent: 'center' }}>
-                <Button id={category} variant="contained" sx={{ color: 'secondary.main' }} onClick={handleButtonClick}>Details</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+      ))}
+    </Grid>
+  </>
+  )
+}
     </Container>
   );
 }

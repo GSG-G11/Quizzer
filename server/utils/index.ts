@@ -29,4 +29,8 @@ export {
   teacherInfoSuccessEdited,
   teacherImageError,
   teacherNameError,
+  studentQuizzes,
+  studentImageError,
+  studentInfoSuccessEdited,
+  studentNameError,
 } from './models';

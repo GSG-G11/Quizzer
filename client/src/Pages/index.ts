@@ -1,2 +1,7 @@
-export { QuizDetails, Leaderboard, PublicQuizzes } from './Student';
-export { MyQuizzes, CreateQuiz, TeacherProfile } from './Teacher';
+export {
+  QuizDetails, Leaderboard, PublicQuizzes, Quiz, QuizResult, StudentProfile,
+} from './Student';
+export {
+  MyQuizzes, CreateQuiz, TeacherProfile, EnrolledStudents,
+} from './Teacher';
+export { default as Landing } from './Landing';

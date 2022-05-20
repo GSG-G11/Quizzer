@@ -2,13 +2,13 @@ import React from 'react';
 import {
   Container, Typography, Grid,
 } from '../../../mui';
-import { getQuizzes } from '../../../Hooks';
+import { useQuizzes } from '../../../Hooks';
 import TeacherInfo from './TeacherInfo';
 import TeacherQuizzes from './TeacherQuizzes';
 import { IQuizzesContext } from '../../../Contexts/Quizzes/interfaces';
 
 function TeacherProfile() {
-  const { quizzes }:IQuizzesContext = getQuizzes();
+  const { quizzes }:IQuizzesContext = useQuizzes();
 
   return (
     <Container>

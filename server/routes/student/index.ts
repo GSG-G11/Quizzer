@@ -8,6 +8,8 @@ import {
   checkUserAttendQuiz,
   addPrivateQuizScore,
   sendEmail,
+  getStudentProfile,
+  editStudentProfile,
 } from '../../controllers';
 
 import checkAuth from '../../middlewares/auth';
@@ -21,6 +23,7 @@ router
 router.get('/quiz/:quizId', getQuiz);
 router.use(checkAuth('student'));
 router.get('/questions/:quizId', getQuestions);
+router.route('/profile').get(getStudentProfile).patch(editStudentProfile);
 router.post('/score', checkUserAttendQuiz, addPrivateQuizScore, sendEmail);
 
 export default router;

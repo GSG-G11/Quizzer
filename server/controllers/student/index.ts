@@ -5,3 +5,5 @@ export { default as sendEmail } from './send-email';
 export { default as checkUserAttendQuiz } from './check-user-attend-quiz';
 export { default as getQuiz } from './get-quiz';
 export { default as getQuestions } from './get-questions';
+export { default as getStudentProfile } from './get-student-profile';
+export { default as editStudentProfile } from './edit-student-profile';
