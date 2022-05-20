@@ -1,4 +1,5 @@
 import { Timer as TimerIcon } from '@mui/icons-material';
+import LinearProgress from '@mui/material/LinearProgress';
 import React, { useEffect, useId, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useConfirm } from 'material-ui-confirm';
@@ -13,7 +14,7 @@ import { useBlocker, useSnackBar } from '../../../Hooks';
 import { timer } from '../../../Utils';
 
 function Quiz() {
-  const [score, setScore] = useState<number>(0);
+  let studentScore: number = 0;
   const [answers, setAnswers] = useState<any>({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const { showSnackBar } = useSnackBar();
@@ -34,12 +35,11 @@ function Quiz() {
 
     questions.forEach(({ question, answers: { answer } }: IQuestions) => {
       const CorrectAnswer = answers[question]?.toLowerCase() === answer.toString().toLowerCase();
-
-      if (CorrectAnswer) setScore((prev) => prev + 1);
+      if (CorrectAnswer) studentScore += 1;
     });
 
     setHasSubmitted(true);
-    return score;
+    return studentScore;
   };
 
   const sendScore = async ({ hasPressedSubmitBtn }:{ hasPressedSubmitBtn:boolean }) => {
@@ -48,17 +48,16 @@ function Quiz() {
       const endPoint = type === 'public' ? `leaderboard/${title}` : 'score';
       const url = `/api/v1/student/${endPoint}`;
       const { data } = await axios.post(url, { score: myScore, quizId });
-      showSnackBar(data.message, 'success');
+      navigate('/student/quiz/result', { state: { score: myScore, mark }, replace: true });
+      type === 'public'
+        ? showSnackBar('Added To Leaderboard', 'success')
+        : showSnackBar('Quiz Result Sent To Your Email', 'success');
     } catch (error:any) {
       showSnackBar(error.response.message, 'error');
     }
   };
 
-  const navigateToResultPage = () => {
-    navigate('/student/quiz/result', { state: { score, mark }, replace: true });
-  };
-
-  // * block user from navigating away from quiz
+  // block user from navigating away from quiz
   useBlocker(async () => {
     await confirm({ description: 'are you sure you want to leave?, your score will submitted if you did', title: 'Warning' });
     const hasPressedSubmitBtn = false;
@@ -82,7 +81,7 @@ function Quiz() {
 
   useEffect(() => {
     const timerId = timer({
-      submitAnswers, setExamTime, examTime, hasSubmitted,
+      sendScore, setExamTime, examTime, hasSubmitted,
     });
 
     return () => clearInterval(timerId);
@@ -113,17 +112,6 @@ function Quiz() {
         </Grid>
 
         <Grid item xs={12} className={classes.timer}>
-          {hasSubmitted && (
-          <Button
-            className={classes.result_btn}
-            variant="outlined"
-            size="large"
-            onClick={navigateToResultPage}
-          >
-            See Result
-          </Button>
-
-          )}
           <Icon sx={{ width: '100%', textAlign: 'end' }}>
             <TimerIcon />
           </Icon>
@@ -150,19 +138,12 @@ function Quiz() {
         </Grid>
 
         <Grid item xs={12} textAlign="center">
-          {!hasSubmitted && (
-            <Button onClick={() => sendScore({ hasPressedSubmitBtn: true })} variant="contained" disabled={hasSubmitted}>
-              Submit
-            </Button>
+          {hasSubmitted && type === 'private' && (
+          <LinearProgress style={{ marginBlock: '30px' }} />
           )}
-
-          {hasSubmitted && (
-            <Button
-              variant="outlined"
-              size="large"
-              onClick={navigateToResultPage}
-            >
-              See Result
+          {!hasSubmitted && (
+            <Button onClick={() => sendScore({ hasPressedSubmitBtn: true })} size="large" className={classes.btn} variant="contained" disabled={hasSubmitted}>
+              Submit
             </Button>
           )}
         </Grid>

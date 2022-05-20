@@ -20,3 +20,9 @@
   width: fit-content;
   margin:auto
 }
+
+.btn {
+  color: var(--secondary);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

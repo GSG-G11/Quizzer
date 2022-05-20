@@ -4,7 +4,6 @@ import compression from 'compression';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import morgan from 'morgan';
 import router from './routes';
 import { clientError, serverError } from './errors';
 
@@ -31,7 +30,6 @@ if (NODE_ENV === 'development' || NODE_ENV === 'test') {
   app.get('/', (req, res) => {
     res.json({ message: 'Server Is Running' });
   });
-  app.use(morgan('dev'));
 }
 
 if (NODE_ENV === 'production') {
