@@ -63,7 +63,7 @@ function Quiz() {
     await confirm({ description: 'are you sure you want to leave?, your score will submitted if you did', title: 'Warning' });
     const hasPressedSubmitBtn = false;
     await sendScore({ hasPressedSubmitBtn });
-    navigate('/student/');
+    navigate('/student/', { replace: true });
   }, !hasSubmitted);
 
   const onConfirmRefresh = (event:any) => {
