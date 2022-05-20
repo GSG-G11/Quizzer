@@ -5,7 +5,8 @@ import React, { useEffect, useId, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {
-  Typography, Divider, Container, Stack,
+  Typography, Container, Stack, Paper, Table,
+  TableBody, TableCell, TableContainer, TableHead, TableRow,
 } from '../../../mui';
 import { useSnackBar } from '../../../Hooks';
 import { copyToClipboard } from '../../../Utils';
@@ -33,15 +34,17 @@ function EnrolledStudents() {
     }
   };
 
+  const hasPassed = (score:number, mark:number) => score > (mark / score);
+
   useEffect(() => {
     getEnrolledStudents();
   }, []);
 
   return (
     <Container maxWidth="sm">
-      <Stack spacing={3} alignItems="center" mt="3rem">
-        <Typography variant="h4" fontWeight="500" letterSpacing="2px">{quizTitle || 'quiz title'}</Typography>
-        <Typography variant="caption" fontSize="1rem" letterSpacing="2px">{quizDesc || 'quiz Desc'}</Typography>
+      <Stack alignItems="center" spacing={5} mt={5}>
+        <Typography variant="h4" fontWeight="500" letterSpacing="2px">{quizTitle || 'Quiz Title'}</Typography>
+        <Typography variant="caption" fontSize="1rem" letterSpacing="2px">{quizDesc || 'Quiz Desc'}</Typography>
         <Stack
           position="relative"
           onClick={() => copyToClipboard({ str: quizId, showSnackBar })}
@@ -49,44 +52,57 @@ function EnrolledStudents() {
           onMouseLeave={() => setIsShowCopyIcon(false)}
           sx={{ cursor: 'pointer', '&:hover': { filter: 'opacity(0.5) blur(0.3px)' } }}
           direction="row"
-          border="1px #aaa solid"
+          border="1px #ddd solid"
           boxShadow={isCopyIconShow ? '0px 0px 5px #aaa' : 'none'}
           p="1rem"
           spacing="6rem"
+          maxWidth="400px"
         >
-          <Typography variant="caption" fontSize="1rem" fontWeight="bold" color="primary.dark">Code</Typography>
-          <Divider flexItem orientation="vertical" />
+          <Typography variant="caption" sx={{ fontSize: { xs: '.8rem', md: '1rem' } }} fontWeight="bold" color="primary.dark">
+            {'Code =>'}
+          </Typography>
           {isCopyIconShow && <ContentCopyIcon sx={{ position: 'absolute', left: '21%' }} />}
           <Typography variant="caption" fontWeight="bold" color="secondary.dark" sx={{ fontSize: { xs: '.7rem', md: '1rem' } }}>{quizId}</Typography>
         </Stack>
-
-        <Stack alignItems="center" rowGap={3} boxShadow="0 10px 10px #aaa">
-          <Typography bgcolor="primary.dark" color="secondary" p="0.5rem" width="100%" textAlign="center" variant="h5" borderRadius="4px 4px 0 0">Enrolled Students</Typography>
-          <Stack direction="row" justifyContent="space-around" width="92%">
-            <Typography variant="h6">Student Name</Typography>
-            <Typography variant="h6">Score</Typography>
-          </Stack>
-
-          {!students.length && <Typography variant="body1">No students enrolled yet!</Typography>}
-
-          <Stack p="2rem" alignItems="flex-start" maxHeight="500px" overflow="auto" direction="row" divider={<Divider orientation="vertical" flexItem />} columnGap={20}>
-            <Stack spacing={4} sx={{ transform: 'translate(120%)' }}>
-              {students.map(({ username }:IEnrolledStudents, i) => <Typography key={i} variant="body1" fontWeight="bold" textAlign="right">{username}</Typography>)}
-            </Stack>
-
-            <Stack spacing={4} sx={{ transform: 'translate(-120%)' }}>
-              {students.map(({ mark, student_score: studentScore }:IEnrolledStudents, i) => (
-                <Typography key={i} variant="body1" textAlign="left" fontWeight="bold">
-                  {studentScore}
-                  /
-                  {mark}
-                </Typography>
-              ))}
-            </Stack>
-          </Stack>
-        </Stack>
       </Stack>
+
+      <TableContainer component={Paper} sx={{ maxWidth: 450, margin: '3rem auto' }}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow sx={{ backgroundColor: 'primary.dark', color: 'white' }}>
+              <TableCell sx={{ textAlign: 'center', color: 'secondary.main' }} colSpan={4}>
+                {students.length}
+                {' '}
+                Enrolled Students
+              </TableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {!students.length && (
+              <TableRow>
+                <TableCell colSpan={3} sx={{ textAlign: 'center', color: 'primary.dark' }}>No students enrolled yet!</TableCell>
+              </TableRow>
+            )}
+
+            {students.length && (
+            <>
+              <TableCell sx={{ textAlign: 'center' }}>Student Name</TableCell>
+              <TableCell sx={{ textAlign: 'center' }}>Score</TableCell>
+            </>
+            )}
+
+            {students.map(({ username, mark, student_score: studentScore }, i) => (
+              <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell sx={{ textAlign: 'center' }} align="right">{username}</TableCell>
+                <TableCell sx={{ textAlign: 'center', color: hasPassed(studentScore, mark) ? 'success.main' : 'error.main' }} align="right">{`${studentScore}/${mark}`}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Container>
+
   );
 }
 
