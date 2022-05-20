@@ -2,6 +2,7 @@ interface IUser {
   role: 'teacher' | 'student';
   userId: number;
   username: string;
+  isVerified: boolean;
 }
 
 interface IUserInfo {

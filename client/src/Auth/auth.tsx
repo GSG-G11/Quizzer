@@ -24,10 +24,10 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const signup = async (userInfo: IUserInfo) => {
     try {
       const { data: { data: newUser } } = await axios.post('/api/v1/auth/signup', userInfo);
-      setUser(newUser);
-      showSnackBar('New Account Created Successfully', 'success');
+      if (newUser.isVerified) setUser(newUser);
+      setAuthModalType(null);
+      showSnackBar('A Confirmation email was sent to you, verify your account to start using Quizzer', 'success');
       setErrors([]);
-      navigate(`${newUser.role}/`);
     } catch (err: any) {
       const { message } = err.response.data;
       if (message) setErrors([message]);
@@ -38,9 +38,12 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (userInfo: IUserInfo) => {
     try {
       const { data: { data: loggedUser } } = await axios.post('/api/v1/auth/login', userInfo);
-      setUser(loggedUser);
+      if (loggedUser.isVerified) {
+        setUser(loggedUser);
+        navigate(`${loggedUser.role}/`);
+      }
+      setAuthModalType(null);
       setErrors([]);
-      navigate(`${loggedUser.role}/`);
     } catch (err: any) {
       const { message } = err.response.data;
       setErrors([message]);
@@ -62,9 +65,12 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const getUser = async () => {
     try {
       const { data: { data: loggedUser } } = await axios.get('/api/v1/auth/is-auth');
-      setUser(loggedUser);
-      navigate(href === '/' ? `${loggedUser.role}/` : href);
+      if (loggedUser.isVerified) {
+        setUser(loggedUser);
+        navigate(href === '/' ? `${loggedUser.role}/` : href);
+      }
     } catch (err: any) {
+      setUser(null);
       if (err.response.status === 500) navigate('/error');
     }
   };
