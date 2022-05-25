@@ -1,5 +1,4 @@
 import { AlertColor } from '@mui/material';
-import { useSnackBar } from '../Hooks';
 
 export const properCase = (str: string) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 
@@ -18,10 +17,15 @@ export const timer = ({
 }: any) => setInterval(() => {
   const { seconds: sec, minutes: min } = examTime;
 
-  if (sec > 0) setExamTime(({ seconds, minutes }:any) => ({ minutes, seconds: seconds - 1 }));
+  if (sec > 0) {
+    setExamTime(({ seconds, minutes }: { seconds: number; minutes: number }) => ({
+      minutes,
+      seconds: seconds - 1,
+    }));
+  }
 
-  if (sec <= 0) {
-    if (min <= 0) {
+  if (sec === 0) {
+    if (min === 0) {
       clearInterval(
         timer({
           examTime,

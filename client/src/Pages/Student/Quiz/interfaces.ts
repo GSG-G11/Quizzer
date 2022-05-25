@@ -2,12 +2,19 @@ import { Dispatch, SetStateAction } from 'react';
 
 type TQuestionType = 'mcq' | 'short_answer' | 'true_false';
 
-interface IQuestions extends Array<any> {
+interface IQuestion extends Array<any> {
   question: string;
   answers: { answer: string; options: string[] };
   type: TQuestionType;
   id?: number;
   quiz_id?: 'string';
+}
+
+interface IQuestions {
+  questions: IQuestion[];
+  answers: any;
+  setAnswers: Dispatch<SetStateAction<any>>;
+  hasSubmitted: boolean;
 }
 
 interface IQuestionCard {
@@ -17,13 +24,14 @@ interface IQuestionCard {
   hasSubmitted: boolean;
   questionType: TQuestionType;
   qNumber: number;
+  answers:any;
 }
 
 type TQuiz = {
   description: string;
   id?: string;
   mark?:number
-  questions: IQuestions;
+  questions: IQuestion;
   teacher_id?: string;
   teacher_name?: string;
   time?: number;
@@ -37,5 +45,5 @@ interface ILocation {
   search: string;
 }
 export {
-  IQuestions, ILocation, IQuestionCard,
+  IQuestions, IQuestion, ILocation, IQuestionCard,
 };

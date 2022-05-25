@@ -21,7 +21,7 @@ function QuizResult() {
           {hasPassed ? 'Congratulations you passed' : 'You Failed to Pass the quiz'}
         </Typography>
         <Box>
-          <img src={hasPassed ? success : failed} alt="" style={{ mixBlendMode: 'hard-light' }} />
+          <img src={hasPassed ? success : failed} alt="" style={{ mixBlendMode: 'hard-light', width: '100%' }} />
         </Box>
         <Typography variant="subtitle1">
           Your score is
