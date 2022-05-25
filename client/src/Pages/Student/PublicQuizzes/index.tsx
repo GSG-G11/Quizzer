@@ -14,6 +14,7 @@ import {
   Grid,
   TextField,
   Typography,
+  CardActionArea,
 } from '../../../mui';
 
 function PublicQuizzes() {
@@ -25,8 +26,9 @@ function PublicQuizzes() {
     setSearchTerm(newValue);
   };
 
-  const handleButtonClick = ({ target }: MouseEvent) => {
-    const selectedCategory = (target as Element).id;
+  const handleButtonClick = ({ currentTarget }: MouseEvent) => {
+    console.log(currentTarget);
+    const selectedCategory = (currentTarget as Element).id;
     navigate(`/student/quiz-details?type=public&id=${selectedCategory.split('&').join('_')}`);
   };
 
@@ -41,7 +43,7 @@ function PublicQuizzes() {
   return (
     <Container maxWidth="lg" sx={{ marginTop: '3rem' }}>
       <>
-        <Typography color="primary.dark" variant="h5" fontWeight="bold" textAlign="center">Test Your Knowledge in many fields</Typography>
+        <Typography color="primary.dark" variant="h4" textAlign="center">Test Your Knowledge in many fields</Typography>
         <Grid container justifyContent="center" mt={4}>
           <Grid item xs={12} md={6}>
             <Autocomplete
@@ -54,20 +56,19 @@ function PublicQuizzes() {
           </Grid>
         </Grid>
 
-        <Grid container alignContent="center" justifyContent="center" spacing={4} sx={{ marginBlock: '1rem' }}>
+        <Grid container alignContent="center" justifyContent="center" alignItems="stretch" spacing={4} sx={{ marginBlock: '1rem' }}>
           {!categoriesList.length && <Typography variant="h6" component="p" color="secondary.dark">No Quiz Found!</Typography>}
 
           {categoriesList.map(({ category, miniDescription }, i) => (
             <Grid item key={category} xs={11} sm={7} md={4}>
-              <Card elevation={5} sx={{ borderRadius: '10px' }}>
-                <CardContent>
-                  <Typography color="#344955" fontWeight="bold" textAlign="center" gutterBottom variant="h5">{category}</Typography>
-                  <Typography variant="body2" color="primary">{miniDescription}</Typography>
-                </CardContent>
-                <CardActions sx={{ marginBottom: '0.5rem', justifyContent: 'center' }}>
-                  <Button id={category} variant="contained" sx={{ color: 'secondary.main' }} onClick={handleButtonClick}>Details</Button>
-                </CardActions>
-              </Card>
+              <CardActionArea id={category} onClick={handleButtonClick}>
+                <Card style={{ boxShadow: 'rgb(52 73 85 / 20%) 0px 10px 15px, rgb(52 73 85 / 5%) 0px -1px 10px' }} sx={{ borderRadius: '10px' }}>
+                  <CardContent>
+                    <Typography color="#344955" fontWeight="bold" textAlign="center" gutterBottom variant="h5">{category}</Typography>
+                    <Typography variant="body2" color="primary" textAlign="center">{miniDescription}</Typography>
+                  </CardContent>
+                </Card>
+              </CardActionArea>
             </Grid>
           ))}
         </Grid>
