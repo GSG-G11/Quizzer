@@ -32,7 +32,7 @@ function QuizResult() {
             {mark}
           </Typography>
         </Typography>
-        <Button variant="contained" sx={{ color: 'secondary.light' }} onClick={() => navigate('/student/')}>Go Home</Button>
+        <Button variant="contained" sx={{ color: 'secondary.light' }} onClick={() => navigate('/student')}>Go Home</Button>
       </Stack>
     </Container>
   );

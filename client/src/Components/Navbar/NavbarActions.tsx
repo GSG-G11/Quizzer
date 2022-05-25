@@ -41,11 +41,11 @@ function NavbarActions({
             {(!userId || role === 'student') && (
             <>
               <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
-                <NavLink className={classes.navLink} to="/student/" style={activeStyles}>Public Quizzes</NavLink>
+                <NavLink className={classes.navLink} to="/student" end style={activeStyles}>Public Quizzes</NavLink>
               </ListItem>
 
               <ListItem sx={{ width: 'initial' }} className={classes.listItem} onClick={() => setDrawer(false)}>
-                <NavLink className={classes.navLink} to="/student/leaderboard" style={activeStyles}>Leaderboard</NavLink>
+                <NavLink className={classes.navLink} to="/student/leaderboard" end style={activeStyles}>Leaderboard</NavLink>
               </ListItem>
 
               <ListItem sx={{ width: 'initial' }} onClick={() => { setDrawer(false); setCodeForm(true); }}>

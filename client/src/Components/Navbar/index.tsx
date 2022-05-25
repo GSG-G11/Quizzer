@@ -24,7 +24,7 @@ function Navbar({ setCodeFormOpen }:INavbar) {
         <Container maxWidth="lg" disableGutters>
 
           <Toolbar>
-            <Typography variant="h4" className={classes.logo} onClick={() => navigate(role ? `${role}/` : '/')}>Quizzer</Typography>
+            <Typography variant="h4" className={classes.logo} onClick={() => navigate(role ? `${role}` : '/')}>Quizzer</Typography>
 
             {isSmallScreen && (
             <>
