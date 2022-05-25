@@ -26,7 +26,7 @@ function QuestionCard({
       </Typography>
 
       <Container maxWidth="lg">
-        <RadioGroup onChange={chooseAnswer} sx={{ fontSize: '1px' }}>
+        <RadioGroup onChange={chooseAnswer}>
           {/* mcq / true-false question */}
           {questionType !== 'short_answer' && options.map((option:string) => (
             <QuestionInput
