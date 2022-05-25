@@ -59,7 +59,7 @@ function PublicQuizzes() {
   }, [searchTerm]);
 
   return (
-    <Container maxWidth="lg" sx={{ marginTop: '3rem' }}>
+    <Container maxWidth="lg" sx={{ marginBlock: '3rem' }}>
       {isLoading && (
       <Stack width="100%" alignItems="center">
         <Skeleton animation="wave" width="150px" height={50} style={{ marginBottom: 6 }} />
