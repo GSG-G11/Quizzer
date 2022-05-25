@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { FormControlLabel, Radio, TextField } from '@mui/material';
+
+import { IQuestionInput } from '../../../../Pages/Student/Quiz/interfaces';
 
 function QuestionInput({
   hasSubmitted, option, questionType, handleShortAnswer, question, answers,
-}:any) {
+}:IQuestionInput) {
   return (
     <FormControlLabel
       disabled={hasSubmitted}

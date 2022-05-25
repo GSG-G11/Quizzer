@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 
 type TQuestionType = 'mcq' | 'short_answer' | 'true_false';
 
@@ -24,13 +24,23 @@ interface IQuestionCard {
   hasSubmitted: boolean;
   questionType: TQuestionType;
   qNumber: number;
-  answers:any;
+  answers: any;
+}
+
+interface IQuestionInput {
+  hasSubmitted: boolean;
+  option?: string | boolean
+  questionType: TQuestionType;
+  handleShortAnswer?: (e: ChangeEvent<HTMLInputElement>) => void;
+  question: string;
+  answers: any;
+  key?: string;
 }
 
 type TQuiz = {
   description: string;
   id?: string;
-  mark?:number
+  mark?: number;
   questions: IQuestion;
   teacher_id?: string;
   teacher_name?: string;
@@ -45,5 +55,5 @@ interface ILocation {
   search: string;
 }
 export {
-  IQuestions, IQuestion, ILocation, IQuestionCard,
+  IQuestions, IQuestion, ILocation, IQuestionCard, IQuestionInput,
 };
