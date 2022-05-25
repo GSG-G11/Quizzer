@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react';
+import React from 'react';
 import { FormControlLabel, Radio, TextField } from '@mui/material';
 
 import { IQuestionInput } from '../../../../Pages/Student/Quiz/interfaces';
