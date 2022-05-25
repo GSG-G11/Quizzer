@@ -6,11 +6,13 @@ import Signup from './Signup';
 import { IAccessUser } from './Interfaces';
 
 function AccessUser({ role, isLoginModalOpen, setLoginModalOpen }: IAccessUser) {
-  const { authModalType, setAuthModalType, setErrors } = useAuth();
+  const {
+    authModalType, setAuthModalType, setErrors, setQuizAttemptedToEnroll,
+  } = useAuth();
   const [passwordsType, setPasswordsType] = useState<boolean>(true);
 
   return (
-    <Dialog open={authModalType === 'login_signup'} onClose={() => { setAuthModalType(null); setLoginModalOpen(true); setErrors([]); }}>
+    <Dialog open={authModalType === 'login_signup'} onClose={() => { setAuthModalType(null); setLoginModalOpen(true); setErrors([]); setQuizAttemptedToEnroll(''); }}>
       {isLoginModalOpen ? (
         <Login
           isLoginModalOpen={isLoginModalOpen}

@@ -62,6 +62,7 @@ import {
   Radio,
   InputLabel,
   FormLabel,
+  Skeleton,
 } from '@mui/material';
 
 export {
@@ -126,4 +127,5 @@ export {
   VisibilityIcon,
   GoogleIcon,
   VisibilityOffIcon,
+  Skeleton,
 };
