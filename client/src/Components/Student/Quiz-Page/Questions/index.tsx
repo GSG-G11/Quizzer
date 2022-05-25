@@ -1,6 +1,7 @@
-import { Divider } from '@mui/material';
 import React, { useState, SyntheticEvent } from 'react';
-import { Tabs, Tab, Box } from '../../../../mui';
+import {
+  Tabs, Tab, Box, Divider,
+} from '../../../../mui';
 import { IQuestion, IQuestions } from '../../../../Pages/Student/Quiz/interfaces';
 import QuestionCard from '../QuestionCard';
 import TabPanel from './TabPanel';
