@@ -27,4 +27,5 @@ export {
   updateLeaderboardQuery,
   getStdProfile,
   editStdProfile,
+  getPublicQuizzes,
 } from './student';

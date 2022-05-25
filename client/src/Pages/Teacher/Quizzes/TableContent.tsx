@@ -27,7 +27,6 @@ function TableContent({
       <TableBody>
         {quizzes
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-          .reverse()
           .map((quiz:IQuiz) => (
             <TableRow key={quiz.id} hover>
               {headers.map((header:any) => {
