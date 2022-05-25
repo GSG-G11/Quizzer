@@ -42,6 +42,7 @@
         <li><a href="#problem">Problem</a></li>
         <li><a href="#solution">Solution</a></li>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#database-schema">Database Schema</a></li>
       </ul>
     </li>
     <li>
@@ -102,6 +103,10 @@ One of the biggest features of the app is the simplicity and user-friendly exper
 * [Material UI](https://mui.com/)
 * [Cloudinary](https://cloudinary.com/)
 * [Nodemailer](https://nodemailer.com/about/)
+
+### Database Schema <span id="database-schema"></span>
+![image](https://user-images.githubusercontent.com/78752405/169612140-1be9fd75-9a0e-480b-80c6-312f492eed46.png)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
