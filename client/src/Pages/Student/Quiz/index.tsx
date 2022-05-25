@@ -1,54 +1,64 @@
 import { Timer as TimerIcon } from '@mui/icons-material';
 import LinearProgress from '@mui/material/LinearProgress';
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useConfirm } from 'material-ui-confirm';
 import axios from 'axios';
-import { QuestionCard } from '../../../Components/Student';
+import { Questions } from '../../../Components/Student';
 import {
   Typography, Grid, Button, Container, Icon,
 } from '../../../mui';
-import { IQuestions, ILocation } from './interfaces';
+import { IQuestion, ILocation } from './interfaces';
 import classes from './Quiz.module.css';
 import { useBlocker, useSnackBar } from '../../../Hooks';
 import { timer } from '../../../Utils';
 
 function Quiz() {
-  let studentScore: number = 0;
   const [answers, setAnswers] = useState<any>({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const { showSnackBar } = useSnackBar();
   const navigate = useNavigate();
+  let { current: score } = useRef(0);
   const confirm = useConfirm();
-  const { state: { quiz } } = useLocation() as ILocation;
   const {
-    title, questions, time, teacher_name: teacherName, mark, type, id: quizId,
-  } = quiz;
+    state: {
+      quiz: {
+        title, questions, time, teacher_name: teacherName, mark, type, id: quizId,
+      },
+    },
+  } = useLocation() as ILocation;
   const [examTime, setExamTime] = useState({ minutes: time || 6, seconds: 0 });
 
-  const submitAnswers = async ({ hasPressedSubmitBtn }:{hasPressedSubmitBtn:boolean}) => {
-    if (examTime.seconds > 0 && examTime.minutes > 0 && hasPressedSubmitBtn) {
+  const submitAnswers = async ({ hasPressedSubmitBtn }:{ hasPressedSubmitBtn:boolean }) => {
+    const hasTimeLeft = examTime.seconds > 0 || examTime.minutes > 0;
+
+    if (hasTimeLeft && hasPressedSubmitBtn) {
       await confirm({ description: 'are you sure you want to submit?', title: 'warning' });
+    }
+
+    const hasUnAnsweredQuestions = Object.keys(answers).length < questions.length;
+    if (hasUnAnsweredQuestions && hasTimeLeft && hasPressedSubmitBtn) {
+      await confirm({ description: 'You still have unanswered questions! are you sure you want to continue?', title: 'warning' });
     }
 
     setExamTime({ minutes: 0, seconds: 0 });
 
-    questions.forEach(({ question, answers: { answer } }: IQuestions) => {
+    questions.forEach(({ question, answers: { answer } }: IQuestion) => {
       const CorrectAnswer = answers[question]?.toLowerCase() === answer.toString().toLowerCase();
-      if (CorrectAnswer) studentScore += 1;
+      if (CorrectAnswer) score += 1;
     });
 
     setHasSubmitted(true);
-    return studentScore;
   };
 
   const sendScore = async ({ hasPressedSubmitBtn }:{ hasPressedSubmitBtn:boolean }) => {
-    const myScore = await submitAnswers({ hasPressedSubmitBtn });
+    await submitAnswers({ hasPressedSubmitBtn });
     try {
       const endPoint = type === 'public' ? `leaderboard/${title}` : 'score';
       const url = `/api/v1/student/${endPoint}`;
-      const { data } = await axios.post(url, { score: myScore, quizId });
-      navigate('/student/quiz/result', { state: { score: myScore, mark }, replace: true });
+      await axios.post(url, { score, quizId });
+
+      navigate('/student/quiz/result', { state: { score, mark }, replace: true });
       type === 'public'
         ? showSnackBar('Added To Leaderboard', 'success')
         : showSnackBar('Quiz Result Sent To Your Email', 'success');
@@ -57,19 +67,17 @@ function Quiz() {
     }
   };
 
-  // block user from navigating away from quiz
+  // * prompt user from navigating away from quiz
   useBlocker(async () => {
-    await confirm({ description: 'are you sure you want to leave?, your score will submitted if you did', title: 'Warning' });
-    const hasPressedSubmitBtn = false;
-    await sendScore({ hasPressedSubmitBtn });
+    await sendScore({ hasPressedSubmitBtn: true });
     navigate('/student/', { replace: true });
   }, !hasSubmitted);
 
+  // * prompt user from refreshing
   const onConfirmRefresh = (event:any) => {
     event.preventDefault();
     // eslint-disable-next-line no-param-reassign
-    event.returnValue = 'Are you sure you want to leave the page?, you score will be submitted if you did!';
-
+    event.returnValue = '';
     sendScore({ hasPressedSubmitBtn: false });
     return event;
   };
@@ -124,23 +132,17 @@ function Quiz() {
         </Grid>
 
         <Grid item xs={12} gap="5rem" sx={{ display: 'flex' }} flexDirection="column">
-          {questions.map((question: IQuestions, i:number) => (
-            <QuestionCard
-              key={useId()}
-              qNumber={i + 1}
-              question={question.question}
-              options={question.answers.options}
-              setAnswers={setAnswers}
-              hasSubmitted={hasSubmitted}
-              questionType={question.type}
-            />
-          ))}
+          <Questions
+            questions={questions}
+            setAnswers={setAnswers}
+            hasSubmitted={hasSubmitted}
+            answers={answers}
+          />
         </Grid>
 
         <Grid item xs={12} textAlign="center">
-          {hasSubmitted && type === 'private' && (
-          <LinearProgress style={{ marginBlock: '30px' }} />
-          )}
+          {hasSubmitted && (<LinearProgress style={{ marginBlock: '30px' }} />)}
+
           {!hasSubmitted && (
             <Button onClick={() => sendScore({ hasPressedSubmitBtn: true })} size="large" className={classes.btn} variant="contained" disabled={hasSubmitted}>
               Submit
