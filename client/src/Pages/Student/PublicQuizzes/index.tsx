@@ -38,7 +38,7 @@ function PublicQuizzes() {
   }, [searchTerm]);
 
   return (
-    <Container maxWidth="lg" sx={{ marginTop: '3rem' }}>
+    <Container maxWidth="lg" sx={{ marginBlock: '3rem' }}>
       <>
         <Typography color="primary.dark" variant="h4" textAlign="center">Test Your Knowledge in many fields</Typography>
         <Grid container justifyContent="center" mt={4}>

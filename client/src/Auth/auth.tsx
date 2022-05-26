@@ -46,7 +46,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
           navigate(`/student/quiz/enroll?type=private&id=${quizAttemptedToEnroll}`);
           return;
         }
-        navigate(`${loggedUser.role}/`);
+        navigate(`${loggedUser.role}`);
       }
       setAuthModalType(null);
       setErrors([]);

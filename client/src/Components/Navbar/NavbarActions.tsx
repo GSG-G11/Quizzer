@@ -11,7 +11,7 @@ import { INavbarActions } from './Interfaces';
 const activeStyles = ({ isActive } :{ isActive:boolean }) => (isActive ? { color: '#F9AA33' } : {});
 
 function NavbarActions({
-  direction, space, avatarPosition, setDrawer, setCodeForm,
+  direction, space, avatarPosition, setDrawer, setCodeForm, setRole,
 }:INavbarActions) {
   const { user, setAuthModalType } = useAuth();
   const { pathname } = useLocation();
@@ -70,7 +70,7 @@ function NavbarActions({
 
             {!userId && (
             <ListItem sx={{ width: 'initial' }}>
-              <Button onClick={() => setAuthModalType('role')} variant="contained" sx={{ color: 'secondary.light' }}>Log In</Button>
+              <Button onClick={() => { setAuthModalType('role'); setRole('student'); }} variant="contained" sx={{ color: 'secondary.light' }}>Log In</Button>
             </ListItem>
             )}
           </>

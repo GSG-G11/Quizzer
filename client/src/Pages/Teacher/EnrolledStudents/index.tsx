@@ -86,10 +86,10 @@ function EnrolledStudents() {
             )}
 
             {!!students.length && (
-            <>
-              <TableCell sx={{ textAlign: 'center' }}>Student Name</TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>Score</TableCell>
-            </>
+              <>
+                <TableCell sx={{ fontWeight: 'bold', textAlign: 'center' }}>Student Name</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', textAlign: 'center' }}>Score</TableCell>
+              </>
             )}
 
             {students.map(({ username, mark, student_score: studentScore }, i) => (

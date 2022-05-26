@@ -33,7 +33,7 @@ function App() {
 
   return (
     <>
-      <Navbar setCodeFormOpen={setCodeFormOpen} />
+      <Navbar setCodeFormOpen={setCodeFormOpen} setRole={setRole} />
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
       <RoleModal setRole={setRole} />
       {
@@ -41,6 +41,7 @@ function App() {
         && authModalType === 'login_signup'
         && (
         <AccessUser
+          setRole={setRole}
           role={role}
           isLoginModalOpen={isLoginModalOpen}
           setLoginModalOpen={setLoginModalOpen}

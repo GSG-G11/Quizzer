@@ -89,7 +89,7 @@ function QuizDetails() {
   );
 
   return (
-    <Container className={classes.container}>
+    <Container className={classes.container} sx={{ marginBlock: '3rem' }}>
       {
         !loading
           ? (

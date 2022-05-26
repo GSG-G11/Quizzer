@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Alert,
-  AppBar, Box, Container, Drawer, IconButton, Toolbar, Typography, useMediaQuery, useTheme,
+  AppBar, Container, Drawer, IconButton, Toolbar, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import BurgerIcon from '@mui/icons-material/Menu';
@@ -10,7 +10,7 @@ import classes from './Navbar.module.css';
 import { INavbar } from './Interfaces';
 import { useAuth } from '../../Hooks';
 
-function Navbar({ setCodeFormOpen }:INavbar) {
+function Navbar({ setCodeFormOpen, setRole }:INavbar) {
   const [drawerOpen, setDrawer] = useState<boolean>(false);
   const { user } = useAuth();
   const { role, isVerified } = useAuth().user || {};
@@ -29,7 +29,7 @@ function Navbar({ setCodeFormOpen }:INavbar) {
             {isSmallScreen && (
             <>
               <Drawer open={drawerOpen} onClose={() => setDrawer(false)} anchor="right">
-                <NavbarActions setCodeForm={setCodeFormOpen} direction="column" space={2} avatarPosition={0} setDrawer={setDrawer} />
+                <NavbarActions setRole={setRole} setCodeForm={setCodeFormOpen} direction="column" space={2} avatarPosition={0} setDrawer={setDrawer} />
               </Drawer>
 
               <IconButton onClick={() => setDrawer(true)}>
@@ -39,7 +39,13 @@ function Navbar({ setCodeFormOpen }:INavbar) {
             )}
 
             {
-            !isSmallScreen && <NavbarActions setCodeForm={setCodeFormOpen} setDrawer={setDrawer} />
+            !isSmallScreen && (
+            <NavbarActions
+              setRole={setRole}
+              setCodeForm={setCodeFormOpen}
+              setDrawer={setDrawer}
+            />
+            )
             }
           </Toolbar>
         </Container>

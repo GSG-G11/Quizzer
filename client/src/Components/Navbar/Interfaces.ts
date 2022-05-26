@@ -2,6 +2,7 @@ import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 interface INavbar {
   setCodeFormOpen: Dispatch<SetStateAction<boolean>>;
+  setRole: Dispatch<SetStateAction<'student' | 'teacher'>>;
 }
 interface INavbarActions {
   direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
@@ -9,6 +10,7 @@ interface INavbarActions {
   avatarPosition?: number;
   setDrawer: Dispatch<SetStateAction<boolean>>;
   setCodeForm: Dispatch<SetStateAction<boolean>>;
+  setRole: Dispatch<SetStateAction<'student' | 'teacher'>>;
 }
 
 interface IMenuList {
