@@ -16,10 +16,7 @@ function TeacherProfile() {
         My Profile
       </Typography>
 
-      <Grid
-        container
-        spacing={2}
-      >
+      <Grid container spacing={2} marginY="2.5rem">
         <Grid item xs={12} sm={5}>
 
           <TeacherInfo />

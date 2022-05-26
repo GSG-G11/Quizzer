@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Container, Typography, Grid,
 } from '../../../mui';
-import { useQuizzes } from '../../../Hooks';
 import StudentInfo from './StudentInfo';
 import StudentQuizzes from './StudentQuizzes';
 
@@ -13,10 +12,7 @@ function StudentProfile() {
         My Profile
       </Typography>
 
-      <Grid
-        container
-        spacing={2}
-      >
+      <Grid container spacing={2} marginY="2.5rem">
         <Grid item xs={12} sm={5}>
 
           <StudentInfo />

@@ -33,7 +33,7 @@ function App() {
 
   return (
     <>
-      <Navbar setCodeFormOpen={setCodeFormOpen} />
+      <Navbar setCodeFormOpen={setCodeFormOpen} setRole={setRole} />
       <PrivateQuizForm codeFormOpen={codeFormOpen} setCodeFormOpen={setCodeFormOpen} />
       <RoleModal setRole={setRole} />
       {
@@ -41,6 +41,7 @@ function App() {
         && authModalType === 'login_signup'
         && (
         <AccessUser
+          setRole={setRole}
           role={role}
           isLoginModalOpen={isLoginModalOpen}
           setLoginModalOpen={setLoginModalOpen}
@@ -56,7 +57,7 @@ function App() {
           <Route path="quiz-details" element={<QuizDetails />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="quiz/enroll" element={<Quiz />} />
-          <Route path="quiz/result" element={<RequireAuth element={<QuizResult />} userRole="student" />} />
+          <Route path="quiz/result" element={<QuizResult />} />
           <Route path="profile" element={<RequireAuth element={<StudentProfile />} userRole="student" />} />
         </Route>
         {/* Teacher Routes */}

@@ -16,11 +16,6 @@
   margin-top: 6rem !important;
 }
 
-.result_btn {
-  width: fit-content;
-  margin:auto
-}
-
 .btn {
   color: var(--secondary);
   margin-top: 2rem;

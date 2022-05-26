@@ -1,13 +1,20 @@
-import { Dispatch, SetStateAction } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 
-type TQuestionType = 'mcq' | 'short_answer' | 'true_false';
+type TQuestionType = 'mcq' | 'short_answer' | 'true_false' | string;
 
-interface IQuestions extends Array<any> {
+interface IQuestion {
   question: string;
   answers: { answer: string; options: string[] };
   type: TQuestionType;
-  id?: number;
-  quiz_id?: 'string';
+  id: string;
+  quiz_id?: string;
+}
+
+interface IQuestions {
+  questions: IQuestion[];
+  answers: any;
+  setAnswers: Dispatch<SetStateAction<any>>;
+  hasSubmitted: boolean;
 }
 
 interface IQuestionCard {
@@ -17,25 +24,49 @@ interface IQuestionCard {
   hasSubmitted: boolean;
   questionType: TQuestionType;
   qNumber: number;
+  answers: any;
 }
 
-type TQuiz = {
-  description: string;
-  id?: string;
-  mark?:number
-  questions: IQuestions;
+interface IQuestionInput {
+  hasSubmitted: boolean;
+  option?: string | boolean;
+  questionType: TQuestionType;
+  handleShortAnswer?: (e: ChangeEvent<HTMLInputElement>) => void;
+  question: string;
+  answers: any;
+  key?: string;
+}
+
+interface IQuiz {
+  id: string;
+  mark: number;
+  questions: IQuestion[];
   teacher_id?: string;
-  teacher_name?: string;
-  time?: number;
+  teacher_name: string;
+  time: number;
   title: string;
-  type: 'public' | 'private';
-};
-
-interface ILocation {
-  pathname: string;
-  state: { quiz: TQuiz };
-  search: string;
+  type: 'public' | 'private' | string;
 }
+
+interface IApiPublicQuestions {
+  category: string;
+  id: string;
+  correctAnswer: string;
+  incorrectAnswers: string[];
+  question: string;
+  tags: string[];
+  type: string;
+  difficulty: string;
+}
+
+type THasPressedSubmitBtn = { hasPressedSubmitBtn: boolean };
+
 export {
-  IQuestions, ILocation, IQuestionCard,
+  IQuestions,
+  IQuestion,
+  IQuestionCard,
+  IQuestionInput,
+  IApiPublicQuestions,
+  IQuiz,
+  THasPressedSubmitBtn,
 };

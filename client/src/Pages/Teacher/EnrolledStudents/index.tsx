@@ -34,7 +34,7 @@ function EnrolledStudents() {
     }
   };
 
-  const hasPassed = (score:number, mark:number) => score > (mark / score);
+  const hasPassed = (score: number, mark: number) => score >= mark / 2;
 
   useEffect(() => {
     getEnrolledStudents();
@@ -59,9 +59,9 @@ function EnrolledStudents() {
           maxWidth="400px"
         >
           <Typography variant="caption" sx={{ fontSize: { xs: '.8rem', md: '1rem' } }} fontWeight="bold" color="primary.dark">
-            {'Code =>'}
+            Code
           </Typography>
-          {isCopyIconShow && <ContentCopyIcon sx={{ position: 'absolute', left: '21%' }} />}
+          {isCopyIconShow && <ContentCopyIcon sx={{ position: 'absolute', left: '20%' }} />}
           <Typography variant="caption" fontWeight="bold" color="secondary.dark" sx={{ fontSize: { xs: '.7rem', md: '1rem' } }}>{quizId}</Typography>
         </Stack>
       </Stack>
@@ -86,10 +86,10 @@ function EnrolledStudents() {
             )}
 
             {!!students.length && (
-            <>
-              <TableCell sx={{ textAlign: 'center' }}>Student Name</TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>Score</TableCell>
-            </>
+              <>
+                <TableCell sx={{ fontWeight: 'bold', textAlign: 'center' }}>Student Name</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', textAlign: 'center' }}>Score</TableCell>
+              </>
             )}
 
             {students.map(({ username, mark, student_score: studentScore }, i) => (
