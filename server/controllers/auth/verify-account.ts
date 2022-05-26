@@ -16,8 +16,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     if (!hashDeleted) throw new CustomError(`No such a hash for user of role ${role}`, 400);
     const token = await signToken(userInfo);
     res
-      .cookie('token', token, { maxAge: 2592000000, secure: process.env.NODE_ENV === 'production' })
-      .redirect('http://localhost:3000');
+      .cookie('token', token, { maxAge: 2592000000 })
+      .redirect('/');
   } catch (err) {
     next(err);
   }

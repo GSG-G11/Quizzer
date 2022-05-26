@@ -17,8 +17,8 @@ function QuestionCard({
   };
 
   return (
-    <Stack spacing={4} alignItems="center" direction="column">
-      <Typography alignSelf="flex-start" color="primary.dark" variant="h6" sx={{ fontSize: { xs: '.9rem', md: '1.25rem' } }}>
+    <Stack spacing={4} alignItems="center" direction="column" component="div">
+      <Typography alignSelf="flex-start" color="primary.dark" variant="h6" sx={{ fontSize: { xs: '.9rem', md: '1.25rem' } }} component="span">
         {qNumber}
         -
         {' '}

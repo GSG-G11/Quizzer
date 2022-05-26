@@ -2,15 +2,16 @@ import {
   Box, Button, Container, Stack, Typography,
 } from '@mui/material';
 import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import success from '../../../Assets/success.png';
 import failed from '../../../Assets/oops.png';
 
 function QuizResult() {
   const navigate = useNavigate();
-  const { state } = useLocation() as any;
-  const { score, mark = 10 } = state || {};
+  const [searchParam] = useSearchParams();
+  const score = Number(searchParam.get('score'));
+  const mark = Number(searchParam.get('mark'));
 
   const hasPassed = score > (mark / score);
 

@@ -11,22 +11,22 @@ function Questions({
 }:IQuestions) {
   const [value, setValue] = useState(0);
 
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   return (
 
-    <Box sx={{ width: '100%' }} component="div">
+    <Box sx={{ width: '100%' }}>
       <Tabs
-        value={value || 0}
+        value={value}
         onChange={handleChange}
         variant="scrollable"
         indicatorColor="secondary"
         allowScrollButtonsMobile
       >
-        {questions.map(({ question }:IQuestion, i:number) => (
+        {questions?.map(({ question, id }:IQuestion, i:number) => (
           <Tab
-            key={question}
+            key={id}
             sx={{ color: answers[question] && 'secondary.main', fontWeight: 'bold' }}
             label={`Question ${i + 1}`}
             wrapped
@@ -36,10 +36,9 @@ function Questions({
 
       <Divider orientation="horizontal" flexItem />
 
-      {questions.map((question: IQuestion, i:number) => (
-        <TabPanel value={value || 0} index={i} key={question.question}>
+      {questions?.map((question: IQuestion, i:number) => (
+        <TabPanel value={value} index={i} key={question.id}>
           <QuestionCard
-            key={question.question}
             qNumber={i + 1}
             question={question.question}
             options={question.answers.options}

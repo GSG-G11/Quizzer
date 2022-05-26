@@ -27,10 +27,10 @@ function PrivateQuizForm({ codeFormOpen, setCodeFormOpen }: PrivateQuizFormProps
   const handleClose = () => setCodeFormOpen(false);
 
   const initialValues = { quizId: '' };
-  const getQuizData = async ({ quizId }: { quizId: string }) => {
+  const checkQuizIdValid = async ({ quizId }: { quizId: string }) => {
     try {
-      const { data: { data: quiz } } = await axios.get(`/api/v1/student/quiz/${quizId}`);
-      navigate('/student/quiz-details', { state: { quiz } });
+      await axios.get(`/api/v1/student/quiz/${quizId}`);
+      navigate(`/student/quiz-details?type=private&id=${quizId}`);
       setCodeFormOpen(false);
     } catch (err: any) {
       showSnackBar('Invalid Quiz Code', 'error');
@@ -42,7 +42,7 @@ function PrivateQuizForm({ codeFormOpen, setCodeFormOpen }: PrivateQuizFormProps
       <Form
         initialValues={initialValues}
         validationSchema={searchForPrivateQuizSchema}
-        onSubmit={(values) => getQuizData(values)}
+        onSubmit={(values) => checkQuizIdValid(values)}
       >
         <DialogTitle className={classes.title}>Enter Code</DialogTitle>
         <DialogContent>

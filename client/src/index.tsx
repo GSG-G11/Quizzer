@@ -18,16 +18,16 @@ const app = (
   <StrictMode>
     <ConfirmProvider>
       <BrowserRouter>
-        <AuthProvider>
-          <SnackBarProvider>
+        <SnackBarProvider>
+          <AuthProvider>
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <StyledEngineProvider injectFirst>
                 <App />
               </StyledEngineProvider>
             </ThemeProvider>
-          </SnackBarProvider>
-        </AuthProvider>
+          </AuthProvider>
+        </SnackBarProvider>
       </BrowserRouter>
     </ConfirmProvider>
   </StrictMode>

@@ -27,7 +27,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const token = await signToken(user);
 
     res
-      .cookie('token', token, { maxAge: 2592000000, secure: process.env.NODE_ENV === 'production' })
+      .cookie('token', token, { maxAge: 2592000000 })
       .json({ data: user, message: 'User Logged Successfully' });
   } catch (err) {
     err.toString().includes('ValidationError') ? next(new CustomError(err.errors, 400)) : next(err);

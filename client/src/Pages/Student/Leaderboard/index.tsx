@@ -60,7 +60,7 @@ function Leaderboard() {
 
   return (
     <Container className={classes.container}>
-      <Typography variant="h4" gutterBottom className={classes.title}>Watch the ranking scores around the world</Typography>
+      <Typography variant="h4" gutterBottom color="primary.dark" className={classes.title}>Watch the ranking scores around the world</Typography>
       {
         publicQuizzes.map((quiz, quizIdx) => (
           <Accordion

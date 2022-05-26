@@ -1,4 +1,5 @@
 import { AlertColor } from '@mui/material';
+import { IApiPublicQuestions } from '../Pages/Student/Quiz/interfaces';
 
 export const properCase = (str: string) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 
@@ -38,3 +39,15 @@ export const timer = ({
     } else setExamTime(({ minutes }:any) => ({ minutes: minutes - 1, seconds: 59 }));
   }
 }, 1000);
+
+export const formatPublicQuestions = (questions: IApiPublicQuestions[]) => questions
+  .map((question: IApiPublicQuestions) => ({
+    id: `${question.id}`,
+    question: question.question,
+    type: 'mcq',
+    answers: {
+      answer: question.correctAnswer,
+      options: [...question.incorrectAnswers, question.correctAnswer]
+        .sort(() => 0.5 - Math.random()), // * shuffle answers
+    },
+  }));
