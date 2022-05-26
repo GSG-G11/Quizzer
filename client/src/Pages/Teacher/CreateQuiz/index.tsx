@@ -1,39 +1,69 @@
+/* eslint-disable no-plusplus */
 import React, {
-  useState, useEffect, useMemo, createContext,
+  useState,
+  useEffect,
+  useMemo,
+  createContext,
 } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useConfirm } from 'material-ui-confirm';
 import {
   Container, Typography, Button, Stack,
 } from '../../../mui';
 import { CreateQuizForm, QuestionFormWrapper } from '../../../Components';
-import { useSnackBar } from '../../../Hooks';
+import { useBlocker, useSnackBar } from '../../../Hooks';
 import { copyToClipboard } from '../../../Utils';
+import { IQuiz, IQuizContext } from './interfaces';
 import classes from './CreateQuiz.module.css';
 
-const initialValues: any = {
+const quizInitialValues: IQuiz = {
   title: '',
   description: '',
-  questionsNumber: '',
-  time: '',
+  time: 0,
   mark: 0,
   questions: [],
 };
 
-export const QuizContext = createContext<any>(null!);
+export const QuizContext = createContext<IQuizContext | null>(null!);
+let questionsCounter = 1;
 
 function CreateQuiz() {
-  const [quiz, setQuiz] = useState<any>(initialValues);
+  const [allowNavigate, setAllowNavigate] = useState<boolean>(false);
+  const [quiz, setQuiz] = useState<IQuiz>(quizInitialValues);
+  const [questionsNumberArray, setQuestionsNumberArray] = useState<number[]>([0, 1]);
   const [questionType, setQuestionType] = useState<'mcq' | 'true_false' | 'short_answer'>('mcq');
   const navigate = useNavigate();
   const { showSnackBar } = useSnackBar();
+  const confirm = useConfirm();
+
+  const confirmRefresh = (e: any) => {
+    e.preventDefault();
+    e.returnValue = 'Changes you made will be unsaved!';
+    return e;
+  };
+
+  const confirmNavigation = async () => {
+    await confirm({ description: 'That by submitting this, your progress will be unsaved!', title: 'Be Aware' });
+    setAllowNavigate(true);
+  };
+
+  useBlocker(async () => {
+    await confirmNavigation();
+    navigate('/teacher/');
+  }, !allowNavigate);
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', confirmRefresh, { capture: true });
+    return () => window.removeEventListener('beforeunload', confirmRefresh, { capture: true });
+  }, []);
 
   useEffect(() => {
     const addQuiz = async () => {
       try {
         const { data: { data } }: any = await axios.post('/api/v1/teacher/quiz', quiz);
         const quizId = data.quiz.id;
-        navigate('/teacher');
+        navigate('/teacher/');
         copyToClipboard({ str: quizId });
         showSnackBar('Quiz created successfully, Quiz code copied to your clipboard', 'success');
       } catch (err: any) {
@@ -42,7 +72,7 @@ function CreateQuiz() {
       }
     };
 
-    if (quiz.questionsNumber === quiz.questions.length && quiz.mark > 0) addQuiz();
+    if (questionsNumberArray.length === quiz.questions.length && quiz.mark > 0) addQuiz();
   }, [quiz]);
 
   const getOptions = (data: any, number: number) => {
@@ -55,8 +85,10 @@ function CreateQuiz() {
 
   const handleSubmit = (values: any) => setQuiz({ ...quiz, ...values });
 
-  const createNewQuiz = (e: any) => {
+  const createNewQuiz = async (e: any) => {
     e.preventDefault();
+    await confirm({ title: 'Confirm Submission', description: 'Are you sure that you want to finish creating the quiz?' });
+    setAllowNavigate(true);
     const data: any = Object.fromEntries(new FormData(e.target as any));
     const questionValues: string[] = Object.values(data);
     for (let i = 0; i < questionValues.length; i += 1) {
@@ -66,10 +98,11 @@ function CreateQuiz() {
       }
     }
 
-    const questions = [];
-    for (let i = 1; i <= quiz.questionsNumber; i += 1) {
+    const questions = questionsNumberArray.map((ele) => {
+      const i = ele + 1;
       const type = data[`question-${i}-type`];
-      questions.push({
+
+      return {
         question: data[`question-${i}`],
         type,
         answers: {
@@ -77,8 +110,9 @@ function CreateQuiz() {
             ? data[data[`question-${i}-answer`]] : type === 'true_false' ? data[`question-${i}-answer`] === 'true' : data[`question-${i}-answer`],
           options: type === 'short_answer' ? [] : type === 'true_false' ? [true, false] : getOptions(data, i),
         },
-      });
-    }
+      };
+    });
+
     setQuiz({ ...quiz, questions, mark: questions.length });
   };
 
@@ -97,22 +131,28 @@ function CreateQuiz() {
   return (
     <QuizContext.Provider value={memoizedQuiz}>
       <Container>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          color="primary.dark"
+          textAlign="center"
+          marginTop="2rem"
+          gutterBottom
+        >
+          Create a new Quiz
+        </Typography>
+        {!quiz.title && <CreateQuizForm onSubmit={handleSubmit} />}
         <form onSubmit={createNewQuiz}>
-          <Typography
-            variant="h4"
-            fontWeight="bold"
-            color="primary.dark"
-            textAlign="center"
-            marginTop="2rem"
-            gutterBottom
-          >
-            Create a new Quiz
-          </Typography>
-          {!quiz.title && <CreateQuizForm onSubmit={handleSubmit} />}
           {
-        quiz.title
-         && [...Array(quiz.questionsNumber).keys()]
-           .map((num) => <QuestionFormWrapper key={num} number={num} />)
+          quiz.title
+          && questionsNumberArray.map((num) => (
+            <QuestionFormWrapper
+              key={num}
+              number={num}
+              questionsNumberArray={questionsNumberArray}
+              setQuestionsNumberArray={setQuestionsNumberArray}
+            />
+          ))
         }
           {quiz.title && (
           <Stack
@@ -123,10 +163,12 @@ function CreateQuiz() {
             <Button
               size="large"
               type="button"
-              // color="secondary"
               variant="outlined"
               onClick={() => {
-                setQuiz((prev: any) => ({ ...prev, questionsNumber: prev.questionsNumber + 1 }));
+                setQuestionsNumberArray((prev) => ([...prev, ++questionsCounter]));
+                window.setTimeout(() => {
+                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }, 10);
               }}
             >
               Add Question

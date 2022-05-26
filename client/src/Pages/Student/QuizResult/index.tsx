@@ -13,7 +13,7 @@ function QuizResult() {
   const score = Number(searchParam.get('score'));
   const mark = Number(searchParam.get('mark'));
 
-  const hasPassed = score > (mark / score);
+  const hasPassed = score >= mark / 2;
 
   return (
     <Container>

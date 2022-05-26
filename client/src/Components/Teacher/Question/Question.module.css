@@ -6,3 +6,12 @@
 .inputStack {
   margin-block: 0.5rem;
 }
+
+.deleteBtn {
+  opacity: 0.8;
+  font-size: 1.1rem;
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+}

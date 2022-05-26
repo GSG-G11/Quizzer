@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useConfirm } from 'material-ui-confirm';
 import classes from './QuestionForm.module.css';
 import Question from '../Question';
 import {
@@ -8,10 +9,24 @@ import {
   MenuItem,
   Stack,
   Typography,
+  Box,
+  RemoveCircleIcon,
 } from '../../../mui';
 
-function QuestionFormWrapper({ number }: { number: number }) {
+function QuestionFormWrapper({ number, setQuestionsNumberArray, questionsNumberArray }:
+   { number: number,
+     setQuestionsNumberArray: (_: number[]) => void,
+     questionsNumberArray: number[]
+   }) {
   const [questionType, setQuestionType] = useState<'mcq' | 'true_false' | 'short_answer'>('mcq');
+  const confirm = useConfirm();
+
+  const deleteQuestion = async () => {
+    await confirm({ title: 'Confirm Delete Question', description: 'Are you sure that you want to delete this questions?' });
+    setQuestionsNumberArray(
+      questionsNumberArray.filter((num: number) => num !== number),
+    );
+  };
 
   return (
     <Container className={classes.container}>
@@ -29,9 +44,22 @@ function QuestionFormWrapper({ number }: { number: number }) {
           </Select>
         </FormControl>
         <Typography variant="body1" component="div" color="primary.dark" fontSize="1.1rem">
-          <Typography component="span" className={classes.questionMark}>1</Typography>
-          {' '}
-          Point
+          <Stack direction="row" alignItems="center">
+            <Box>
+              <Typography component="span" className={classes.questionMark}>1</Typography>
+              {' '}
+              <span>Point</span>
+            </Box>
+            {
+              questionsNumberArray.length > 1 && (
+              <RemoveCircleIcon
+                className={classes.deleteIcon}
+                onClick={deleteQuestion}
+                color="error"
+              />
+              )
+            }
+          </Stack>
         </Typography>
       </Stack>
       <Question questionType={questionType} number={number} />
