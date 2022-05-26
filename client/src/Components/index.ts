@@ -1,5 +1,5 @@
 export { default as RoleModal } from './RoleModal';
-export { PrivateQuizForm, QuestionCard } from './Student';
+export { PrivateQuizForm, QuestionCard, Questions } from './Student';
 export { default as Navbar } from './Navbar';
 export { default as SnackBarProvider } from './SnackBar';
 export { default as AccessUser } from './AccessUser';

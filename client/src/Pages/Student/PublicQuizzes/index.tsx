@@ -6,9 +6,7 @@ import { categories, autoCompleteOptions } from './categories';
 import { ICategory } from './interfaces';
 import {
   Autocomplete,
-  Button,
   Card,
-  CardActions,
   CardContent,
   Container,
   Grid,
@@ -27,7 +25,6 @@ function PublicQuizzes() {
   };
 
   const handleButtonClick = ({ currentTarget }: MouseEvent) => {
-    console.log(currentTarget);
     const selectedCategory = (currentTarget as Element).id;
     navigate(`/student/quiz-details?type=public&id=${selectedCategory.split('&').join('_')}`);
   };
@@ -41,7 +38,7 @@ function PublicQuizzes() {
   }, [searchTerm]);
 
   return (
-    <Container maxWidth="lg" sx={{ marginTop: '3rem' }}>
+    <Container maxWidth="lg" sx={{ marginBlock: '3rem' }}>
       <>
         <Typography color="primary.dark" variant="h4" textAlign="center">Test Your Knowledge in many fields</Typography>
         <Grid container justifyContent="center" mt={4}>

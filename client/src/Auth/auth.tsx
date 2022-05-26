@@ -1,4 +1,3 @@
-/* eslint-disable no-unsafe-optional-chaining */
 import React, {
   createContext,
   useState,
@@ -31,7 +30,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
       showSnackBar('A Confirmation email was sent to you, verify your account to start using Quizzer', 'success');
       setErrors([]);
     } catch (err: any) {
-      const { message } = err.response?.data;
+      const { message } = err.response?.data || {};
       if (message) setErrors([message]);
       if (err.response.status === 500) navigate('/error');
     }
@@ -47,7 +46,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
           navigate(`/student/quiz/enroll?type=private&id=${quizAttemptedToEnroll}`);
           return;
         }
-        navigate(`${loggedUser.role}/`);
+        navigate(`${loggedUser.role}`);
       }
       setAuthModalType(null);
       setErrors([]);
@@ -55,7 +54,6 @@ function AuthProvider({ children }: { children: ReactNode }) {
       if (err.response.status === 500) navigate('/error');
       const { message } = err.response.data;
       if (message === "Student can't attend a quiz more than once") {
-        navigate(`/student/quiz-details?type=private&id=${quizAttemptedToEnroll}`);
         showSnackBar('You have already enrolled in this quiz', 'warning');
         return;
       }
@@ -80,7 +78,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
       const { data: { data: loggedUser } } = await axios.get('/api/v1/auth/is-auth');
       if (loggedUser.isVerified) {
         setUser(loggedUser);
-        navigate(href === '/' ? `${loggedUser.role}/` : href);
+        navigate(href === '/' ? `${loggedUser.role}` : href);
       }
     } catch (err: any) {
       setUser(null);

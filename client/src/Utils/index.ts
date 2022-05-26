@@ -1,5 +1,5 @@
 import { AlertColor } from '@mui/material';
-import { useSnackBar } from '../Hooks';
+import { IApiPublicQuestions } from '../Pages/Student/Quiz/interfaces';
 
 export const properCase = (str: string) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 
@@ -18,10 +18,15 @@ export const timer = ({
 }: any) => setInterval(() => {
   const { seconds: sec, minutes: min } = examTime;
 
-  if (sec > 0) setExamTime(({ seconds, minutes }:any) => ({ minutes, seconds: seconds - 1 }));
+  if (sec > 0) {
+    setExamTime(({ seconds, minutes }: { seconds: number; minutes: number }) => ({
+      minutes,
+      seconds: seconds - 1,
+    }));
+  }
 
-  if (sec <= 0) {
-    if (min <= 0) {
+  if (sec === 0) {
+    if (min === 0) {
       clearInterval(
         timer({
           examTime,
@@ -34,3 +39,15 @@ export const timer = ({
     } else setExamTime(({ minutes }:any) => ({ minutes: minutes - 1, seconds: 59 }));
   }
 }, 1000);
+
+export const formatPublicQuestions = (questions: IApiPublicQuestions[]) => questions
+  .map((question: IApiPublicQuestions) => ({
+    id: `${question.id}`,
+    question: question.question,
+    type: 'mcq',
+    answers: {
+      answer: question.correctAnswer,
+      options: [...question.incorrectAnswers, question.correctAnswer]
+        .sort(() => 0.5 - Math.random()), // * shuffle answers
+    },
+  }));

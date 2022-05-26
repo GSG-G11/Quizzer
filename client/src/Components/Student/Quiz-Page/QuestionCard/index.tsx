@@ -1,12 +1,12 @@
-import React, { ChangeEvent, useId } from 'react';
+import React, { ChangeEvent } from 'react';
 import {
   Stack, Container, RadioGroup, Typography,
-} from '../../../mui';
-import { IQuestionCard } from '../../../Pages/Student/Quiz/interfaces';
-import Question from './Question';
+} from '../../../../mui';
+import { IQuestionCard } from '../../../../Pages/Student/Quiz/interfaces';
+import QuestionInput from './QuestionInput';
 
 function QuestionCard({
-  question, options, setAnswers, hasSubmitted, questionType, qNumber,
+  question, options, setAnswers, hasSubmitted, questionType, qNumber, answers,
 }:IQuestionCard) {
   const chooseAnswer = ({ target: { value: chosenAnswer } }:ChangeEvent<HTMLInputElement>) => {
     setAnswers((prev:{ _:string }) => ({ ...prev, [question]: chosenAnswer }));
@@ -17,8 +17,8 @@ function QuestionCard({
   };
 
   return (
-    <Stack spacing={4} alignItems="center" direction="column">
-      <Typography alignSelf="flex-start" color="primary.dark" variant="h6" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
+    <Stack spacing={4} alignItems="center" direction="column" component="div">
+      <Typography alignSelf="flex-start" color="primary.dark" variant="h6" sx={{ fontSize: { xs: '.9rem', md: '1.25rem' } }} component="span">
         {qNumber}
         -
         {' '}
@@ -29,21 +29,24 @@ function QuestionCard({
         <RadioGroup onChange={chooseAnswer}>
           {/* mcq / true-false question */}
           {questionType !== 'short_answer' && options.map((option:string) => (
-            <Question
+            <QuestionInput
               key={option}
               hasSubmitted={hasSubmitted}
               option={option}
-              questionType
+              questionType={questionType}
+              answers={answers}
+              question={question}
             />
           ))}
 
           {/* short answer question */}
           {questionType === 'short_answer' && (
-          <Question
-            key={useId()}
+          <QuestionInput
             hasSubmitted={hasSubmitted}
             questionType={questionType}
             handleShortAnswer={handleShortAnswer}
+            answers={answers}
+            question={question}
           />
           )}
         </RadioGroup>
