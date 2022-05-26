@@ -14,6 +14,7 @@ import {
 import classes from './Quiz.module.css';
 import { useBlocker, useSnackBar, useAuth } from '../../../Hooks';
 import { formatPublicQuestions, timer } from '../../../Utils';
+import { QuizSkeleton } from '../../../Components';
 
 const initQuiz = {
   id: '',
@@ -39,8 +40,10 @@ function Quiz() {
   const navigate = useNavigate();
   const confirm = useConfirm();
   const { user } = useAuth();
+  const [isLoading, setLoading] = useState(false);
 
   const fetchQuiz = async () => {
+    setLoading(true);
     const type = searchParams.get('type') as 'public' | 'private';
     const quizId = searchParams.get('id') as string;
     let questionsUrl = '';
@@ -54,7 +57,9 @@ function Quiz() {
         id: `${quizId}`, title: quizId, teacher_name: 'Quizzer Team', mark: 10, time: 6, type,
       };
       setExamTime({ minutes: 6, seconds: 0 });
-      return setQuiz({ ...publicQuizInfo, questions: formattedQuestions });
+
+      setQuiz({ ...publicQuizInfo, questions: formattedQuestions });
+      return setLoading(false);
     }
 
     // * private quiz
@@ -70,7 +75,9 @@ function Quiz() {
     ] = await Promise.all([axios.get(questionsUrl), axios.get(PrivateQuizDetailsUrl)]);
 
     setExamTime({ minutes: privateQuizInfo.time, seconds: 0 });
-    return setQuiz({ ...privateQuizInfo, questions });
+
+    setQuiz({ ...privateQuizInfo, questions });
+    return setLoading(false);
   };
 
   const submitAnswers = async ({ hasPressedSubmitBtn = false }:THasPressedSubmitBtn) => {
@@ -93,6 +100,7 @@ function Quiz() {
     });
 
     setHasSubmitted(true);
+    setLoading(false);
   };
 
   const sendScore = async ({ hasPressedSubmitBtn }:THasPressedSubmitBtn) => {
@@ -143,61 +151,66 @@ function Quiz() {
   }, [examTime]);
 
   return (
-    <Grid container marginY="5rem" position="relative">
-      <Container maxWidth="md">
+    <>
+      {isLoading && <QuizSkeleton />}
+      {!isLoading && (
+      <Grid container marginY="5rem" position="relative">
+        <Container maxWidth="md">
 
-        <Grid item className={classes.header} sx={{ fontSize: { xs: '0.4rem', md: '.5rem' } }}>
-          <Typography variant="h5" color="secondary.light" fontWeight="bold" letterSpacing="2px" gutterBottom fontSize="2em">
-            {quiz.title}
-            {' '}
-            - Quiz
-          </Typography>
-          <Typography variant="body2" fontSize="2em" letterSpacing="2.2px">
-            Assigned By
-            {' '}
-            <Typography variant="h6" component="span" color="secondary.light" fontWeight="bold" display="inline" fontSize="1.5em">
-              {quiz.teacher_name}
+          <Grid item className={classes.header} sx={{ fontSize: { xs: '0.4rem', md: '.5rem' } }}>
+            <Typography variant="h5" color="secondary.light" fontWeight="bold" letterSpacing="2px" gutterBottom fontSize="2em">
+              {quiz.title}
               {' '}
+              - Quiz
             </Typography>
-            | Timed Session |
-            {' '}
-            {quiz.questions?.length}
-            Questions
-          </Typography>
-        </Grid>
+            <Typography variant="body2" fontSize="2em" letterSpacing="2.2px">
+              Assigned By
+              {' '}
+              <Typography variant="h6" component="span" color="secondary.light" fontWeight="bold" display="inline" fontSize="1.5em">
+                {quiz.teacher_name}
+                {' '}
+              </Typography>
+              | Timed Session |
+              {' '}
+              {quiz.questions?.length}
+              Questions
+            </Typography>
+          </Grid>
 
-        <Grid item xs={12} className={classes.timer}>
-          <Icon sx={{ width: '100%', textAlign: 'end' }}>
-            <TimerIcon />
-          </Icon>
+          <Grid item xs={12} className={classes.timer}>
+            <Icon sx={{ width: '100%', textAlign: 'end' }}>
+              <TimerIcon />
+            </Icon>
 
-          <Typography color="primary" my="0.5rem" variant="body1">
-            {examTime.minutes}
-            :
-            {examTime.seconds < 10 ? `0${examTime.seconds}` : examTime.seconds}
-          </Typography>
-        </Grid>
+            <Typography color="primary" my="0.5rem" variant="body1">
+              {examTime.minutes}
+              :
+              {examTime.seconds < 10 ? `0${examTime.seconds}` : examTime.seconds}
+            </Typography>
+          </Grid>
 
-        <Grid item xs={12} gap="5rem" sx={{ display: 'flex' }} flexDirection="column" component="div">
-          <Questions
-            questions={quiz.questions}
-            setAnswers={setAnswers}
-            hasSubmitted={hasSubmitted}
-            answers={answers}
-          />
-        </Grid>
+          <Grid item xs={12} gap="5rem" sx={{ display: 'flex' }} flexDirection="column" component="div">
+            <Questions
+              questions={quiz.questions}
+              setAnswers={setAnswers}
+              hasSubmitted={hasSubmitted}
+              answers={answers}
+            />
+          </Grid>
 
-        <Grid item xs={12} textAlign="center">
-          {hasSubmitted && (<LinearProgress style={{ marginBlock: '30px' }} />)}
+          <Grid item xs={12} textAlign="center">
+            {hasSubmitted && (<LinearProgress style={{ marginBlock: '30px' }} />)}
 
-          {!hasSubmitted && (
-          <Button onClick={() => sendScore({ hasPressedSubmitBtn: true })} size="large" className={classes.btn} variant="contained" disabled={hasSubmitted}>
-            Submit
-          </Button>
-          )}
-        </Grid>
-      </Container>
-    </Grid>
+            {!hasSubmitted && (
+            <Button onClick={() => sendScore({ hasPressedSubmitBtn: true })} size="large" className={classes.btn} variant="contained" disabled={hasSubmitted}>
+              Submit
+            </Button>
+            )}
+          </Grid>
+        </Container>
+      </Grid>
+      )}
+    </>
   );
 }
 
