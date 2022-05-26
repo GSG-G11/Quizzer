@@ -8,3 +8,4 @@ export { default as getQuestionsQuery } from './get-questions';
 export { default as updateLeaderboardQuery } from './update-leaderboard';
 export { default as getStdProfile } from './get-student-profile';
 export { default as editStdProfile } from './edit-student-profile';
+export { default as getPublicQuizzes } from './get-public-quizzes';

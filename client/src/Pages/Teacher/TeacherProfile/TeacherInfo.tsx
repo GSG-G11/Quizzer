@@ -26,7 +26,7 @@ function TeacherInfo() {
           <Divider sx={{ borderBottomWidth: 2, background: 'black' }} />
         </Stack>
         <Stack style={{ marginInline: 'auto', alignItems: 'center' }}>
-          <Avatar src={userProfile.avatar} style={{ width: '200px', height: '180px' }}>{username[0].toUpperCase()}</Avatar>
+          <Avatar src={userProfile.avatar} style={{ width: '200px', height: '200px' }}>{username[0].toUpperCase()}</Avatar>
         </Stack>
         <Divider variant="middle" sx={{ background: '#948F8F', margin: '15px', marginTop: '20px' }} />
         <Stack marginBottom="20px">

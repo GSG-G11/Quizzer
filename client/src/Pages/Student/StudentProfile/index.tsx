@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Container, Typography, Grid,
 } from '../../../mui';
-import { useQuizzes } from '../../../Hooks';
 import StudentInfo from './StudentInfo';
 import StudentQuizzes from './StudentQuizzes';
 
