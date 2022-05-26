@@ -12,7 +12,7 @@ function TrueFalse({ num }: { num: number }) {
   return (
     <FormControl fullWidth>
       <TextField name={`question-${num}-type`} value="true_false" style={{ display: 'none' }} />
-      <TextField className={classes.question} label="question" variant="outlined" name={`question-${num}`} required />
+      <TextField className={classes.question} label="Question" variant="outlined" name={`question-${num}`} required />
       <RadioGroup name={`question-${num}-answer`}>
         <FormControlLabel value="true" control={<Radio />} label="True" />
         <FormControlLabel value="false" control={<Radio />} label="False" />

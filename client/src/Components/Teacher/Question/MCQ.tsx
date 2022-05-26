@@ -31,7 +31,7 @@ function MCQ({ num }: { num: number }) {
   return (
     <FormControl fullWidth>
       <TextField name={`question-${num}-type`} value="mcq" style={{ display: 'none' }} />
-      <TextField className={classes.question} label="question" variant="outlined" name={`question-${num}`} required />
+      <TextField className={classes.question} label="Question" variant="outlined" name={`question-${num}`} required />
       <RadioGroup name={`question-${num}-answer`}>
         {optionsNumberArray.map((optionNumber, idx) => (
           <Stack direction="row" className={classes.inputStack} key={optionNumber}>
