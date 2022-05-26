@@ -11,6 +11,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import GoogleIcon from '@mui/icons-material/Google';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 // Components
 import CssBaseline from '@mui/material/CssBaseline';
@@ -128,4 +129,5 @@ export {
   GoogleIcon,
   VisibilityOffIcon,
   Skeleton,
+  RemoveCircleIcon,
 };

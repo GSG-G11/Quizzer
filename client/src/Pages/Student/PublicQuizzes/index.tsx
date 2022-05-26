@@ -27,7 +27,6 @@ function PublicQuizzes() {
   };
 
   const handleButtonClick = ({ currentTarget }: MouseEvent) => {
-    console.log(currentTarget);
     const selectedCategory = (currentTarget as Element).id;
     navigate(`/student/quiz-details?type=public&id=${selectedCategory.split('&').join('_')}`);
   };
