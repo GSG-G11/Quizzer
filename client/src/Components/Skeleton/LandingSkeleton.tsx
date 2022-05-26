@@ -6,14 +6,14 @@ function LandingSkeleton() {
     <Container>
 
       <Stack width="100%" marginTop="50px">
-        <Skeleton animation="wave" width="250px" height={150} />
+        <Skeleton animation="wave" width="250px" height={100} />
         <Skeleton animation="wave" width="440px" height={100} />
         <Skeleton animation="wave" width="270px" height={90} />
         <Skeleton animation="wave" width="440px" height={130} />
         <Skeleton
           animation="wave"
           width="600px"
-          height={545}
+          height={485}
           style={{
             position: 'absolute',
             alignSelf: 'end',
