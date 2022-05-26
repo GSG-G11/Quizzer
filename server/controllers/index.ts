@@ -15,6 +15,7 @@ export {
   updateLeaderboard,
   getStudentProfile,
   editStudentProfile,
+  getStdPublicQuizzes,
 } from './student';
 
 export {

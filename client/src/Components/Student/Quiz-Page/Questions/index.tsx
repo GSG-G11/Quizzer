@@ -62,11 +62,7 @@ function Questions({
       ))}
 
       <Stack direction="row" justifyContent="space-around" width="100%" mt="1rem">
-<<<<<<< HEAD
         <Button size="small" color="secondary" sx={{ color: 'primary.dark' }} variant="outlined" onClick={prevQuestion} startIcon={<ArrowBackIcon />}>Back</Button>
-=======
-        <Button size="small" color="secondary" sx={{ color: 'primary.dark' }} variant="outlined" onClick={backQuestion} startIcon={<ArrowBackIcon />}>Back</Button>
->>>>>>> e8d35af94acd3513c8c78acf26a30da4273238ad
         <Button size="small" sx={{ color: 'secondary.main' }} variant="contained" onClick={nextQuestion} endIcon={<ArrowForwardIcon />}>Next</Button>
       </Stack>
     </Box>
