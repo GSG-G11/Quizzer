@@ -1,4 +1,6 @@
-import React, { useState, SyntheticEvent } from 'react';
+import { ArrowBack as ArrowBackIcon, ArrowForward as ArrowForwardIcon } from '@mui/icons-material';
+import { Button, Stack } from '@mui/material';
+import React, { useState, SyntheticEvent, MouseEvent } from 'react';
 import {
   Tabs, Tab, Box, Divider,
 } from '../../../../mui';
@@ -9,16 +11,25 @@ import TabPanel from './TabPanel';
 function Questions({
   questions, setAnswers, hasSubmitted, answers,
 }:IQuestions) {
-  const [value, setValue] = useState(0);
+  const [questionNumber, setQuestionNumber] = useState(0);
 
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+    setQuestionNumber(newValue);
+  };
+
+  const nextQuestion = (_event:MouseEvent) => {
+    const lastQuestion = +questionNumber >= questions.length - 1;
+    !lastQuestion && setQuestionNumber((prev) => prev + 1);
+  };
+  const prevQuestion = (_event:MouseEvent) => {
+    const firstQuestion = +questionNumber <= 0;
+    !firstQuestion && setQuestionNumber((prev) => prev - 1);
   };
   return (
 
     <Box sx={{ width: '100%' }}>
       <Tabs
-        value={value}
+        value={questionNumber}
         onChange={handleChange}
         variant="scrollable"
         indicatorColor="secondary"
@@ -37,7 +48,7 @@ function Questions({
       <Divider orientation="horizontal" flexItem />
 
       {questions?.map((question: IQuestion, i:number) => (
-        <TabPanel value={value} index={i} key={question.id}>
+        <TabPanel value={questionNumber} index={i} key={question.id}>
           <QuestionCard
             qNumber={i + 1}
             question={question.question}
@@ -50,6 +61,10 @@ function Questions({
         </TabPanel>
       ))}
 
+      <Stack direction="row" justifyContent="space-around" width="100%" mt="1rem">
+        <Button size="small" color="secondary" sx={{ color: 'primary.dark' }} variant="outlined" onClick={prevQuestion} startIcon={<ArrowBackIcon />}>Back</Button>
+        <Button size="small" sx={{ color: 'secondary.main' }} variant="contained" onClick={nextQuestion} endIcon={<ArrowForwardIcon />}>Next</Button>
+      </Stack>
     </Box>
   );
 }
