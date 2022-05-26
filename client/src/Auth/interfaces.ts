@@ -19,13 +19,14 @@ interface IUserInfo {
 interface IAuthContext {
   user: IUser | null;
   authModalType: 'role' | 'login_signup' | null;
+  errors: string[];
   setAuthModalType: (_: 'role' | 'login_signup' | null) => void;
   signup: (_: IUserInfo) => void;
   login: (_: IUserInfo) => void;
   logout: () => void;
   getUser: () => void
   setErrors: (_: string[]) => void;
-  errors: string[];
+  setQuizAttemptedToEnroll: (_: string) => void;
 }
 
 export { IUser, IUserInfo, IAuthContext };

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { categories, autoCompleteOptions } from '../PublicQuizzes/categories';
 import {
   Container,
   Stack,
   Typography,
   Button,
   AccessTimeFilledIcon,
+  Skeleton,
 } from '../../../mui';
 import { useSnackBar, useAuth } from '../../../Hooks';
 import classes from './QuizDetails.module.css';
@@ -19,44 +21,57 @@ type Quiz = {
   description: string;
   mark?: number;
   time?: number;
-  questions?: [];
 }
 
 function QuizDetails() {
-  const { state: { quiz } }: any = useLocation();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [quiz, setQuiz] = useState<Quiz>({ title: '', description: '' });
   const navigate = useNavigate();
-  const { setAuthModalType, user } = useAuth();
   const { showSnackBar } = useSnackBar();
-  const isPrivateQuiz = quiz.id;
-  const quizDetails: Quiz = { ...quiz };
+  const { setAuthModalType, setQuizAttemptedToEnroll, user } = useAuth();
+  const [searchParams] = useSearchParams();
+  const isPrivateQuiz = searchParams.get('type') === 'private';
+  const quizId = searchParams.get('id') as string;
+  const publicTitle = quizId.split('_').join('&');
 
-  if (!isPrivateQuiz) {
-    quizDetails.questions = quiz.questions.map((question: any) => ({
-      question: question.question,
-      type: 'mcq',
-      answers: {
-        answer: question.correctAnswer,
-        options: [...question.incorrectAnswers, question.correctAnswer].sort(
-          () => 0.5 - Math.random(),
-        ),
-      },
-    }));
-  }
+  useEffect(() => {
+    const validQuery = ['private', 'public'].includes(searchParams.get('type') as string) && autoCompleteOptions.includes(publicTitle);
+    if (!validQuery && !isPrivateQuiz) { navigate('/quiz-not-found'); return; }
+
+    const getPrivateQuizData = async () => {
+      try {
+        setLoading(true);
+        const { data: { data: privateQuizData } } = await axios.get(`/api/v1/student/quiz/${quizId}`);
+        setQuiz(privateQuizData);
+      } catch (err: any) {
+        navigate('/quiz-not-found');
+      }
+      setLoading(false);
+    };
+
+    if (isPrivateQuiz) {
+      getPrivateQuizData();
+    } else {
+      setLoading(false);
+      setQuiz({
+        title: publicTitle,
+        description: categories.find((cat) => cat.category === publicTitle)?.description as string,
+      });
+    }
+  }, [searchParams]);
 
   const handleEnroll = async () => {
     if (isPrivateQuiz) {
+      if (!user) { setAuthModalType('login_signup'); setQuizAttemptedToEnroll(quizId); }
       try {
-        const { data: { data: questions } } = await axios.get(`/api/v1/student/questions/${quiz.id}`);
-        navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, questions, type: 'private' } } });
+        await axios.get(`/api/v1/student/questions/${quiz.id}`);
+        navigate(`/student/quiz/enroll?type=private&id=${quizId}`);
       } catch ({ response: { data: { message } } }) {
-        if (message === 'Unauthorized') {
-          setAuthModalType('login_signup');
-        } else if (message === "Student can't attend a quiz more than once") {
-          showSnackBar('You have already enrolled in this quiz', 'warning');
-        }
+        if (message === "Student can't attend a quiz more than once") { showSnackBar('You have already enrolled in this quiz', 'warning'); }
       }
-    } else if (!user) setAuthModalType('login_signup');
-    else navigate('/student/quiz/enroll', { state: { quiz: { ...quizDetails, type: 'public' } } });
+      return;
+    }
+    navigate(`/student/quiz/enroll?type=public&id=${quizId}`);
   };
 
   const {
@@ -64,7 +79,7 @@ function QuizDetails() {
     title,
     description,
     time,
-  } = quizDetails;
+  } = quiz;
 
   const quizSource = (
     <Typography color="primary" className={classes.teacherWrapper}>
@@ -75,24 +90,39 @@ function QuizDetails() {
 
   return (
     <Container className={classes.container}>
-      <Typography component="div" variant="h4" color="primary" className={classes.title}>{title}</Typography>
-      <Typography component="div">{quizSource}</Typography>
-      <Typography component="div" className={classes.description}>{description}</Typography>
-      <Stack component="div" flexDirection="row" justifyContent="center" alignItems="center">
-        <span className={classes.timeLimit}>
-          Exact Time Limit:
-          {' '}
-        </span>
-        <span className={classes.spanIcon}>
-          {' '}
-          {isPrivateQuiz ? `${time}m` : '10m'}
-          {' '}
-          <AccessTimeFilledIcon className={classes.timeIcon} />
-        </span>
-      </Stack>
-      <Stack component="div">
-        <Button variant="contained" className={classes.enrollBtn} color="primary" onClick={handleEnroll}>Enroll now</Button>
-      </Stack>
+      {
+        !loading
+          ? (
+            <>
+              <Typography component="div" variant="h4" color="primary" className={classes.title}>{title}</Typography>
+              <Typography component="div">{quizSource}</Typography>
+              <Typography component="div" className={classes.description}>{description}</Typography>
+              <Stack component="div" flexDirection="row" justifyContent="center" alignItems="center">
+                <span className={classes.timeLimit}>
+                  Exact Time Limit:
+                  {' '}
+                </span>
+                <span className={classes.spanIcon}>
+                  {' '}
+                  {isPrivateQuiz ? `${time}m` : '6m'}
+                  {' '}
+                  <AccessTimeFilledIcon className={classes.timeIcon} />
+                </span>
+              </Stack>
+              <Stack component="div">
+                <Button variant="contained" className={classes.enrollBtn} color="primary" onClick={handleEnroll}>Enroll now</Button>
+              </Stack>
+            </>
+          ) : (
+            <Stack width="100%" alignItems="center" marginTop="50px">
+              <Skeleton animation="wave" width="150px" height={50} style={{ marginBottom: 6 }} />
+              <Skeleton animation="wave" width="150px" height={30} style={{ marginBottom: 6 }} />
+              <Skeleton animation="wave" width="100%" height={180} style={{ marginBottom: 6 }} />
+              <Skeleton animation="wave" width="150px" height={30} style={{ marginBottom: 6 }} />
+              <Skeleton animation="wave" width="160px" height={70} style={{ marginBottom: 6 }} />
+            </Stack>
+          )
+      }
     </Container>
   );
 }
