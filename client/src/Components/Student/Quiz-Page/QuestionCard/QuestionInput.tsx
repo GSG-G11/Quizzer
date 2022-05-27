@@ -10,8 +10,8 @@ function QuestionInput({
     <FormControlLabel
       disabled={hasSubmitted}
       control={questionType === 'short_answer'
-        ? <TextField placeholder="Enter your answer" fullWidth color="secondary" onChange={handleShortAnswer} autoComplete="off" value={answers[question]} />
-        : <Radio sx={{ padding: '1.5rem 1rem' }} color="secondary" checked={answers[question] === option} />}
+        ? <TextField placeholder="Enter your answer" fullWidth color="secondary" onChange={handleShortAnswer} autoComplete="off" value={answers[question]?.toString()} />
+        : <Radio sx={{ padding: '1.5rem 1rem' }} color="secondary" checked={answers[question]?.toString() === option?.toString()} />}
       value={option?.toString()} // * convert true/false values to string
       label={option?.toString()}
       sx={{
@@ -20,4 +20,5 @@ function QuestionInput({
     />
   );
 }
+
 export default QuestionInput;

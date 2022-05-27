@@ -49,7 +49,7 @@ function Quiz() {
     let questionsUrl = '';
 
     if (type === 'public') {
-      questionsUrl = `https://the-trivia-api.com/api/questions?categories=${quizId}&limit=10&region=PS&difficulty=easy`;
+      questionsUrl = `https://the-trivia-api.com/api/questions?categories=${quizId}&limit=10`;
       const { data } = await axios.get(questionsUrl);
       // * format public quiz questions array to be similar to the private quiz questions array format
       const formattedQuestions = formatPublicQuestions(data);
