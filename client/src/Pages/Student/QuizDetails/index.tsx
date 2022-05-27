@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useConfirm } from 'material-ui-confirm';
 import { categories, autoCompleteOptions } from '../PublicQuizzes/categories';
 import {
   Container,
@@ -28,9 +29,8 @@ function QuizDetails() {
   const [quiz, setQuiz] = useState<Quiz>({ title: '', description: '' });
   const navigate = useNavigate();
   const { showSnackBar } = useSnackBar();
-  const {
-    setAuthModalType, setQuizAttemptedToEnroll, user,
-  } = useAuth();
+  const confirm = useConfirm();
+  const { setAuthModalType, setQuizAttemptedToEnroll, user } = useAuth();
   const [searchParams] = useSearchParams();
   const isPrivateQuiz = searchParams.get('type') === 'private';
   const quizId = searchParams.get('id') as string;
@@ -70,6 +70,7 @@ function QuizDetails() {
         return;
       }
       try {
+        await confirm({ description: 'are you sure you want to enroll', title: 'Warning' });
         await axios.get(`/api/v1/student/questions/${quiz.id}`);
         navigate(`/student/quiz/enroll?type=private&id=${quizId}`);
       } catch ({ response: { data: { message } } }) {
@@ -77,6 +78,7 @@ function QuizDetails() {
       }
       return;
     }
+    await confirm({ description: 'Are you sure you want to enroll?', title: 'Warning' });
     navigate(`/student/quiz/enroll?type=public&id=${quizId}`);
   };
 
