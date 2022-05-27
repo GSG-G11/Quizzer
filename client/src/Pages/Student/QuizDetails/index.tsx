@@ -29,8 +29,14 @@ function QuizDetails() {
   const [quiz, setQuiz] = useState<Quiz>({ title: '', description: '' });
   const navigate = useNavigate();
   const { showSnackBar } = useSnackBar();
+<<<<<<< HEAD
   const confirm = useConfirm();
   const { setAuthModalType, setQuizAttemptedToEnroll, user } = useAuth();
+=======
+  const {
+    setAuthModalType, setQuizAttemptedToEnroll, user,
+  } = useAuth();
+>>>>>>> 8f66e503410805127f6ddf9adc4ba7daa1ffd8f8
   const [searchParams] = useSearchParams();
   const isPrivateQuiz = searchParams.get('type') === 'private';
   const quizId = searchParams.get('id') as string;
@@ -64,7 +70,11 @@ function QuizDetails() {
 
   const handleEnroll = async () => {
     if (isPrivateQuiz) {
-      if (!user) { setAuthModalType('login_signup'); setQuizAttemptedToEnroll(quizId); }
+      if (!user || !user.isVerified) {
+        setAuthModalType('login_signup');
+        setQuizAttemptedToEnroll(quizId);
+        return;
+      }
       try {
         await confirm({ description: 'are you sure you want to enroll', title: 'Warning' });
         await axios.get(`/api/v1/student/questions/${quiz.id}`);

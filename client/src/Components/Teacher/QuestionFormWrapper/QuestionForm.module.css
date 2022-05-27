@@ -12,3 +12,14 @@
   font-weight: bold;
   margin-right: 5px;
 }
+
+.deleteIcon {
+  margin-left: 1rem;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.deleteIcon:hover {
+  opacity: 1;
+}
