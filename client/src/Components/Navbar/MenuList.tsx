@@ -28,7 +28,7 @@ function MenuList({ setDrawer, toggleMenu, anchorEl }: IMenuList) {
         </Typography>
 
         <MenuItem onClick={() => { hideDrawerAndMenu(); navigate(`/${role}/profile`); }}>Profile</MenuItem>
-        {pathname !== '/student/quiz/enroll' && <MenuItem onClick={() => { hideDrawerAndMenu(); logout(); }}>Logout</MenuItem>}
+        {pathname !== '/student/quiz/enroll' && pathname !== '/teacher/quiz/new' && <MenuItem onClick={() => { hideDrawerAndMenu(); logout(); }}>Logout</MenuItem>}
       </Stack>
     </Menu>
   );

@@ -6,7 +6,7 @@
 }
 
 .logo {
-  flex-grow: 1;
+  width: fit-content;
   cursor: pointer;
   color: var(--primary-dark);
   font-weight: bold;

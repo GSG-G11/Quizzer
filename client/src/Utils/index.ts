@@ -1,4 +1,5 @@
 import { AlertColor } from '@mui/material';
+import copy from 'copy-to-clipboard';
 import { IApiPublicQuestions } from '../Pages/Student/Quiz/interfaces';
 
 export const properCase = (str: string) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
@@ -9,7 +10,7 @@ interface ICopyToClipboard {
 }
 
 export const copyToClipboard = ({ str, showSnackBar }: ICopyToClipboard) => {
-  str && navigator.clipboard.writeText(str);
+  str && copy(str);
   showSnackBar?.('Copied to clipboard', 'success');
 };
 

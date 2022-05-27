@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Alert,
-  AppBar, Container, Drawer, IconButton, Toolbar, Typography, useMediaQuery, useTheme,
+  AppBar, Box, Container, Drawer, IconButton, Toolbar, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import BurgerIcon from '@mui/icons-material/Menu';
@@ -24,7 +24,9 @@ function Navbar({ setCodeFormOpen, setRole }:INavbar) {
         <Container maxWidth="lg" disableGutters>
 
           <Toolbar>
-            <Typography variant="h4" className={classes.logo} onClick={() => navigate(role ? `${role}` : '/')}>Quizzer</Typography>
+            <Box flexGrow="1">
+              <Typography variant="h4" className={classes.logo} onClick={() => navigate(role ? `${role}` : '/')}>Quizzer</Typography>
+            </Box>
 
             {isSmallScreen && (
             <>
