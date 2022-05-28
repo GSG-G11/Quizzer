@@ -76,7 +76,7 @@ function Quiz() {
 
     setExamTime({ minutes: privateQuizInfo.time, seconds: 0 });
 
-    setQuiz({ ...privateQuizInfo, questions });
+    setQuiz({ ...privateQuizInfo, questions, type: 'private' });
     return setLoading(false);
   };
 
@@ -106,7 +106,7 @@ function Quiz() {
   const sendScore = async ({ hasPressedSubmitBtn }:THasPressedSubmitBtn) => {
     await submitAnswers({ hasPressedSubmitBtn });
     if (!user) {
-      return navigate(`/student/quiz/result?score=${score}&mark=${quiz.mark}`, { replace: true });
+      return navigate(`/student/quiz/result?score=${score}&mark=${quiz.mark}&type=${quiz.type}`, { replace: true });
     }
 
     try {
@@ -120,17 +120,19 @@ function Quiz() {
         : 'Quiz Result Sent To Your Email';
 
       showSnackBar(message, 'success');
-      return navigate(`/student/quiz/result?score=${score}&mark=${quiz.mark}`, { replace: true });
+      if (quiz.type === 'private') return navigate(`/student/quiz/result?type=${quiz.type}`, { replace: true });
+      return navigate(`/student/quiz/result?score=${score}&mark=${quiz.mark}&type=${quiz.type}`, { replace: true });
     } catch (error:any) {
       showSnackBar(error.response.message, 'error');
-      return navigate(`/student/quiz/result?score=${score}&mark=${quiz.mark}`, { replace: true });
+      return navigate('/error', { replace: true });
     }
   };
 
   // * prompt user from navigating away from quiz
   useBlocker(async () => {
     await sendScore({ hasPressedSubmitBtn: true });
-    navigate(`/student/quiz/result?score=${score}&mark=${quiz.mark}`, { replace: true });
+    if (quiz.type === 'private') return navigate(`/student/quiz/result?type=${quiz.type}`, { replace: true });
+    return navigate(`/student/quiz/result?score=${score}&mark=${quiz.mark}&type=${quiz.type}`, { replace: true });
   }, !hasSubmitted);
 
   useEffect(() => {
