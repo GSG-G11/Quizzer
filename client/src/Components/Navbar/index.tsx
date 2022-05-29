@@ -12,7 +12,6 @@ import { useAuth } from '../../Hooks';
 
 function Navbar({ setCodeFormOpen, setRole }:INavbar) {
   const [drawerOpen, setDrawer] = useState<boolean>(false);
-  const { user } = useAuth();
   const { role, isVerified } = useAuth().user || {};
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(useTheme().breakpoints.down('md'));
